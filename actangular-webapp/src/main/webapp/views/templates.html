@@ -1,0 +1,1391 @@
+
+<div id='main/main.html'>
+<div ag-loading class="con-status">
+<div class="loading" style="display: none;" translate="LOADING"></div>
+<div class="con-error" style="display: none;" translate="CON_ERROR"></div>
+</div>
+<div class="notifications" ng-controller="NotificationsController">
+<div ng-click="closeAlert(alert.id)" alert ng-repeat="alert in alerts" type="{{alert.type}}" close="">
+<div class="alert-content">
+<span class="fa alert-icon fa-2x"></span> <span translate="{{alert.translateKey}}" translate-values="{{alert.translateValues}}"></span>
+</div>
+</div>
+</div>
+<nav class="header">
+<div class="row">
+<div class="col-md-2 logo"><div></div></div>
+<div class="col-md-1"></div>
+<div class="col-md-6 search">
+        	<div class="input-group" dropdown>
+      <input type="text" class="form-control" placeholder="{{'Search' | translate}}">
+     
+      <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+    </div>
+</div>
+
+<div class="col-md-3 profile-col" ng-controller="ProfileController" ng-init="profileDropDown.isopen = false">
+
+<div class="btn-group" dropdown is-open="profileDropDown.isopen">
+      <button type="button" class="btn btn-profile dropdown-toggle">
+      <span class="authorImg">
+ <img alt="profile" ag-user-pic="currentUser.id"> {{currentUser.name}}
+</span> <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" ng-click="stopEvent($event);profileDropDown.isopen = false;changeLang()">{{'PREFERENCE' | translate}}</a></li>
+        <li class="divider"></li>
+        <li><a href="" ng-click="stopEvent($event);profileDropDown.isopen = false;logout()">{{'_LOGOUT' | translate}}</a></li>
+      </ul>
+</div>
+</div>
+</div>
+</nav>
+<div id="content" class="row">
+<div id="sideNav" class="col-md-2 left-section" ag-nav="active">
+<div ng-show="!showItem" class="page">
+<div class="incontrols">
+<div class="controls"  ng-controller="NewController">
+<button tooltip="{{'NEW_TASK' | translate}}" class="btn btn-warning" ng-click="newTask()"><i class="fa fa-tasks"></i></button>
+   <button tooltip="{{'START_PROCESS' | translate}}" class="btn btn-danger" ng-click="startProcess()"><i class="glyphicon glyphicon-random"></i></button>
+</div>
+</div>
+   <div class="row listRow">
+<div class="col-md-12 innerContent">
+<div class="alist">
+<ul class="nav nav-pills nav-stacked">
+  		<li><a href="#/home"><i class="fa fa-home fa-fw"></i><span translate="MENU_HOME">Home</span></a></li>
+	</ul>
+	<ul class="nav nav-pills nav-stacked">
+		<li class="sectionHeader"><i class="fa fa-tasks"></i> <span translate="MENU_TASKS">Tasks</span></li>
+  		<li><a href="#/tasks/inbox" translate="MENU_INBOX">Inbox</a></li>
+  		<li><a href="#/tasks/mytasks" translate="MENU_MYTASKS">My Tasks</a></li>
+  		<li><a href="#/tasks/involved" translate="MENU_INVOLVED">Involved</a></li>
+  		<li><a href="#/tasks/queued" translate="MENU_QUEUED">Queue</a></li>
+  		<li><a href="#/tasks/archived" translate="MENU_ARCHIVED">Archive</a></li>
+	</ul>
+	<ul class="nav nav-pills nav-stacked">
+		<li class="sectionHeader"><i class="glyphicon glyphicon-random"></i> <span translate="MENU_PROCESSES">Processes</span></li>
+		<li><a href="#/processes/definitions" translate="MENU_DEFINITIONS">Definitions</a></li>
+  		<li><a href="#/processes/myinstances" translate="MENU_MYINSTANCES">My Instances</a></li>
+  		<li><a href="#/processes/participant" translate="MENU_PARTICIPANT">Participant</a></li>
+  		<li><a href="#/processes/archived" translate="MENU_ARCHIVED">Archive</a></li>
+	</ul>
+</div>
+</div>
+</div>
+   
+</div>
+</div>
+<div class="col-md-10 right-section" ng-controller="PageController">
+<div class="page" ng-include="page.template">
+</div>
+</div>
+</div>
+</div>
+
+<div id="views/listPage.html">
+<div class="incontrols">
+<div class="row controls" ng-include="page.controlsTemplate"></div>
+</div>
+<div class="row listRow">
+<div class="col-md-12 innerContent">
+<div id="list" ng-hide="page.showingItem" class="alist" ag-page-scroll="page" ng-include="page.listTemplate"></div>
+<div class="alist" ng-if="page.showingItem" ag-page-item="page" ></div>
+</div>
+</div>
+</div>
+
+
+<script type="text/ag-template"  id="task/event.html">
+<td ng-if="currentUser.id === taskEvent.userId" class="authorImg">
+<img ng-src="service/identity/users/{{taskEvent.userId}}/picture" alt="...">
+</td>
+<td colspan="9">
+<div class="popover" ng-class="{'right': currentUser.id === taskEvent.userId, 'left': currentUser.id !== taskEvent.userId}">
+<div class="arrow"></div>
+<div class="popover-inner">
+      <div class="popover-title"><div ag-user="taskEvent.userId"></div> <div ag-ago="taskEvent.time"></div></div>
+      <div class="popover-content" translate="TASK_EVENT_{{taskEvent.action}}" translate-values="taskEvent"></div>
+  </div>
+</div>
+</td>
+<td ng-if="currentUser.id !== taskEvent.userId" class="authorImg">
+<img ng-src="service/identity/users/{{taskEvent.userId}}/picture" alt="...">
+</td>
+</script>
+
+<div  id="common/itemsNav.html">
+<ul>
+<li translate="ITEMSCOUNT" translate-values="{ from: (page.from), to:(page.to), total: (page.total) }"></li>
+  <li tooltip="{{'_PREV' | translate}}"><button class="btn btn-default" ng-click="page.previous();tt_isOpen = false"
+				ng-disabled="!page.hasPrevious">
+				<i class="glyphicon glyphicon-chevron-left"></i>
+			</button></li>
+  <li tooltip="{{'_NEXT' | translate}}"><button class="btn btn-default" ng-click="page.next();tt_isOpen = false"
+				ng-disabled="!page.hasNext">
+				<i class="glyphicon glyphicon-chevron-right"></i>
+			</button></li>
+</ul>
+</div>
+
+<div  id="task/listControls.html">
+<div class="col-xs-6">
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.refresh()"><i class="glyphicon glyphicon-refresh"> </i></button>
+<div class="btn-group abtn-group" dropdown ng-init="sortBy={isopen:false}" is-open="sortBy.isopen">
+<button type="button" class="btn btn-default sort-btn" ng-disabled="disabled" ng-click="stopEvent($event);sortBy.isopen=!sortBy.isopen;">
+      <span class="glyphicon glyphicon-sort"></span> {{'SORT_BY_'+page.sortKey | translate}}
+      </button>
+      <button type="button" class="btn btn-default" ng-click="stopEvent($event);page.toggleOrder()">
+        <span class="glyphicon" ng-class= "{'glyphicon-sort-by-attributes': page.requestParam.order === 'asc' ,'glyphicon-sort-by-attributes-alt': page.requestParam.order === 'desc'}"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="(key, value) in page.sortKeys" ng-if="value !== page.sortKey"><a href ng-click="sortBy.isopen=false;page.sortBy(key)" translate="{{'SORT_BY_'+value}}"></a></li>
+      </ul>
+    </div>
+</div>
+<div class="col-xs-6 itemCount" ng-include="'common/itemsNav.html'"></div>
+</div>
+
+<div  id="task/list.html">
+<div  ng-if="page.list.total === 0" class="noList">
+<h3><span class="label label-default" translate="NO_TASKS"></span></h3>
+</div>
+<div ng-repeat="task in page.list" class="detail">
+<div class="row name header-row">
+	<div class="col-md-6 name-col">
+		<a href="#/tasks/{{page.section}}/{{task.id}}">{{task.id}} - {{task.name}}</a>
+	</div>
+<div class="col-md-6 edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.createTime"></span></span>
+<span ng-if="task.processInstanceId" class="label label-info"><span class="glyphicon glyphicon-random"></span> {{task.processInstanceId}} - {{task.processDefinitionId | definitionName}}</span>
+<span class="label" ng-class= "{'label-success': task.priority === 50 ,'label-danger': task.priority > 50 , 'label-warning': task.priority < 50}"><span class="glyphicon glyphicon-flag"></span></span>
+</div>
+</div>
+
+<div class="row line-row">
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="task.owner">
+<span ag-user="task.owner" otherwiseKey="NO_OWNER"></span>
+</div>
+
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="task.assignee">
+<span ag-user="task.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+</div>
+
+<div class="col-md-3">
+<span class="glyphicon glyphicon-time"></span> <span ag-ago="task.dueDate" otherwiseKey="NO_DUE"></span>
+</div>
+<div ng-if="task.category" class="col-md-3">
+<span class="glyphicon glyphicon-tag"></span><span> {{task.category}}</span>
+</div>
+</div>
+</div>
+</div>
+
+<div  id="task/itemControls.html">
+<div class="col-md-2">
+<button class="btn btn-default" tooltip="{{'_BACK' | translate}}" ng-click="page.back()"><i class="glyphicon glyphicon-chevron-left"> </i></button>
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.task.refresh()"><i class="glyphicon glyphicon-refresh"> </i></button>
+</div>
+<div class="col-md-8 hname">
+<div>{{page.task.id}} - {{page.task.name}}</div>
+</div>
+<div class="col-md-2 itemCount">
+<button ng-if="page.task.isAssignee" class="btn btn-success" ng-click="page.complete(page.task)" tooltip="{{'_COMPLETE' | translate}}"><i class="glyphicon glyphicon-ok"></i></button>
+<button ng-if="page.task.isOwner" tooltip="{{'EDIT_TASK' | translate}}" class="btn btn-warning" ng-click="page.editTask(page.task)"><i class="glyphicon glyphicon-pencil"></i></button>
+<button ng-if="page.task.isOwner && !page.task.processInstanceId" class="btn btn-danger" ng-click="page.deleteTask(page.task)" tooltip="{{'_DELETE' | translate}}"><i class="glyphicon glyphicon-remove"></i></button>
+<button ng-if="!page.task.assignee && page.task.isCandidate" tooltip="{{'CLAIM' | translate}}" class="btn btn-info" ng-click="page.claim(page.task)"><i class="glyphicon glyphicon-download-alt"></i></button>
+</div>
+</div>
+
+<div  id="task/item.html">
+<div class='task-page'>
+<div class="row subRow rowData">
+<div class="col-md-7 colData">
+
+<div class="row subRow">
+<div class="col-md-12 detailCol">
+<div class="detail">
+<div class="edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.createTime"></span></span>
+<span ng-if="page.task.processInstanceId" class="label label-info"><span class="glyphicon glyphicon-random"></span> {{page.task.processInstanceId}} - {{page.task.processDefinitionId | definitionName}}</span>
+<span ng-if="page.task.parentTaskId" class="label label-info"><span class="glyphicon glyphicon-arrow-up"></span> {{page.task.parentTaskId}}</span>
+<span ng-if="page.task.dueDate" class="label label-warning"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.dueDate"></span></span>
+<span ng-if="page.task.category" class="label label-default"><span class="glyphicon glyphicon-tag"></span> {{page.task.category}}</span>
+<span class="label" ng-class= "{'label-success': page.task.priority === 50 ,'label-danger': page.task.priority > 50 , 'label-warning': page.task.priority < 50}"><span class="glyphicon glyphicon-flag"></span></span>
+</div>
+
+<div class="row desc">
+<div class="col-md-12">
+<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="page.task.description" otherwiseKey="NO_DESCRIPTION"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row subRow">
+<div class="col-md-12 detailCol">
+<div class="tabsCon" ng-controller="TaskTabsCtrl" ng-init="(page.task.identityLinks.length >= 0)? '':page.task.refreshIdentityLinks();selectedTab='people';">
+<tabset class="tabset">
+    <tab select="selectedTab='people'">
+	<tab-heading>
+        <i class="fa fa-group"></i> {{'PEOPLE' | translate}}
+      </tab-heading>
+<div class="identity-link-con">
+<div class="identity-link authorImg">
+<img alt="profile" ag-user-pic="page.task.owner">
+<span ag-user="page.task.owner" otherwiseKey="NO_OWNER"></span>
+<div class="identity-info">
+<span class="label label-primary"><span ag-identity-link-type="'owner'"></span></span>
+<button ng-click="editIdentityLink(page.task, 'owner')" class="btn btn-warning label"><i class="glyphicon glyphicon-pencil"></i></button>
+</div>
+</div><div class="identity-link authorImg">
+<img alt="profile" ag-user-pic="page.task.assignee">
+<span ag-user="page.task.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+<div class="identity-info">
+<span class="label label-primary"><span ag-identity-link-type="'assignee'"></span></span>
+<button ng-click="editIdentityLink(page.task, 'assignee')" class="btn btn-warning label"><i class="glyphicon glyphicon-pencil"></i></button>
+</div>
+</div><div class="identity-link authorImg" ng-repeat="identityLink in page.task.identityLinks">
+<img alt="profile" ag-identity-link-pic="identityLink">
+<span ag-identity-link-name="identityLink"></span>
+<div class="identity-info">
+<span class="label label-info"><span ag-identity-link-type="identityLink.type"></span></span>
+<button ng-click="deleteIdentityLink(page.task, identityLink)" class="btn btn-danger label"><i class="glyphicon glyphicon-remove"></i></button>
+</div>
+</div>
+</div>
+</tab>
+    <tab select="(page.task.attachments.length>=0)? '':page.task.refreshAttachments(); selectedTab='attachments'">
+      <tab-heading>
+        <i class="glyphicon glyphicon-paperclip"></i> {{'ATTACHMENTS' | translate}}
+      </tab-heading>
+      <div class="rowsCon">
+<div class="row line-row img-row" ng-repeat="attachment in page.task.attachments">
+<div class="col-md-4" style="white-space: nowrap"><a target="_blank" ag-attachment="attachment"></a></div>
+<div class="col-md-4" ag-content="attachment.description" otherwiseKey="NO_DESCRIPTION"></div>
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="attachment.userId">
+<span ag-user="attachment.userId"></span>
+</div>
+<div class="col-md-1 edit-col">
+<button ng-click="deleteAttachment(page.task, attachment)" class="btn btn-danger label"><i class="glyphicon glyphicon-remove"></i></button>
+</div>
+</div>
+<div class="emptyList" ng-if="page.task.attachments.length === 0"><span class="label label-default" translate="NO_ATTACHMENTS"></span></div>
+</div>
+    </tab>
+    <tab select="(page.task.subTasks.length>=0)? '':page.task.refreshSubTasks();selectedTab = 'subtasks' ">
+	<tab-heading>
+        <i class="fa fa-tasks"></i> {{'SUBTASKS' | translate}}
+      </tab-heading>
+      
+<div class="rowsCon">
+      <div class="row line-row" ng-repeat="subTask in page.task.subTasks">
+<div class="col-md-2">{{subTask.id}}</div>
+<div class="col-md-6">{{subTask.name}}</div>
+<div class="col-md-4 authorImg">
+<img alt="profile" ag-user-pic="subTask.assignee">
+<span ag-user="subTask.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+</div>
+</div>
+<div class="emptyList" ng-if="page.task.subTasks.length === 0"><span class="label label-default" translate="NO_SUBTASKS"></span></div>
+</div>
+    </tab>
+<li class="edit tab-edit-con">
+<button ng-show = "selectedTab === 'people'" tooltip="{{'INVOLVE_TO_TASK' | translate}}" ng-click="addIdentityLink(page.task)" class="btn btn-primary"><i class="glyphicon glyphicon-user"></i></button>
+    <button ng-show = "selectedTab === 'attachments'" tooltip="{{'_ADD_ATTACHMENT' | translate}}" ng-click="attach(page.task)" class="btn btn-primary"><i class="glyphicon glyphicon-paperclip"></i></button>
+    <button ng-show = "selectedTab === 'subtasks'" tooltip="{{'NEW_SUB_TASK' | translate}}" ng-click="newSubTask(page.task)" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
+</li>
+  </tabset>
+  </div>
+  </div>
+  </div>
+
+<div class="row subRow">
+<div class="col-md-12 detailCol">
+<div class="detail">
+<div class="edit">
+<button class="btn btn-primary" ng-click="page.showAddVar(page.task)"><i class="glyphicon glyphicon-plus"></i></button>
+</div>
+<div class="name">{{'VARIABLES' | translate}}</div>
+<div class="varsCon rowsCon scollable-rows">
+<div class="row line-row simple-row" ng-repeat="variable in page.task.variables | orderBy:'+name'">
+<div class="col-md-4">{{variable.name}}</div>
+<div class="col-md-7">{{variable.value | variable: variable.type}}</div>
+<div class="col-md-1 edit-col">
+<button ng-click="page.showEditVar(page.task, variable)" class="btn btn-warning label"><i class="glyphicon glyphicon-pencil"></i></button>
+</div>
+</div>
+<div class="emptyList" ng-if="page.task.variables.length === 0"><span class="label label-default" translate="NO_VARIABLES"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-5 colData" ng-init="(page.task.events.length >= 0)? '':page.task.refreshEvents()">
+<div class="detail">
+<button tooltip="{{'POST_COMMENT' | translate}}" ng-click="page.postComment(page.task)" class="btn btn-primary edit"><span class="glyphicon glyphicon-comment"></span></button>
+<div class="name">{{'EVENTS' | translate}}</div>
+<div class="eventsList">
+<table class="eventsTable">
+<tr ng-repeat="taskEvent in page.task.events" ng-include="'task/event.html'" ng-class="{'right-event': currentUser.id === taskEvent.userId, 'left-event': currentUser.id !== taskEvent.userId}">
+</tr>
+</table>
+<div class="emptyList" ng-if="page.task.events.length===0"><span class="label label-default" translate="NO_EVENTS"></span></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- task archive -->
+
+<div  id="hisroticTask/listControls.html">
+<div class="col-xs-6">
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.refresh()"><i class="glyphicon glyphicon-refresh"> </i></button>
+<div class="btn-group abtn-group" dropdown ng-init="sortBy={isopen:false}" is-open="sortBy.isopen">
+<button type="button" class="btn btn-default sort-btn" ng-disabled="disabled" ng-click="stopEvent($event);sortBy.isopen=!sortBy.isopen;">
+      <span class="glyphicon glyphicon-sort"></span> {{'SORT_BY_'+page.sortKey | translate}}
+      </button>
+      <button type="button" class="btn btn-default" ng-click="stopEvent($event);page.toggleOrder()">
+        <span class="glyphicon" ng-class= "{'glyphicon-sort-by-attributes': page.requestParam.order === 'asc' ,'glyphicon-sort-by-attributes-alt': page.requestParam.order === 'desc'}"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="(key, value) in page.sortKeys" ng-if="value !== page.sortKey"><a href ng-click="sortBy.isopen=false;page.sortBy(key)" translate="{{'SORT_BY_'+value}}"></a></li>
+      </ul>
+    </div>
+</div>
+<div class="col-xs-6 itemCount" ng-include="'common/itemsNav.html'"></div>
+</div>
+
+<div  id="hisroticTask/list.html">
+<div  ng-if="page.list.total === 0" class="noList">
+<h3><span class="label label-default" translate="NO_TASKS"></span></h3>
+</div>
+<div ng-repeat="task in page.list" class="detail">
+<div class="row name header-row">
+	<div class="col-md-6 name-col">
+		<a href="#/tasks/{{page.section}}/{{task.id}}">{{task.id}} - {{task.name}}</a>
+	</div>
+<div class="col-md-6 edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.startTime"></span></span>
+<span class="label" ng-class= "{'label-success': task.deleteReason === 'completed','label-danger': task.deleteReason === 'deleted'}"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.endTime"></span></span>
+<span ng-if="task.processInstanceId" class="label label-info"><span class="glyphicon glyphicon-random"></span> {{task.processInstanceId}} - {{task.processDefinitionId | definitionName}}</span>
+<span class="label" ng-class= "{'label-success': task.priority === 50 ,'label-danger': task.priority > 50 , 'label-warning': task.priority < 50}"><span class="glyphicon glyphicon-flag"></span></span>
+</div>
+</div>
+
+<div class="row line-row">
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="task.owner">
+<span ag-user="task.owner" otherwiseKey="NO_OWNER"></span>
+</div>
+
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="task.assignee">
+<span ag-user="task.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+</div>
+
+<div class="col-md-3">
+<span class="glyphicon glyphicon-time"></span> <span ag-ago="task.dueDate" otherwiseKey="NO_DUE"></span>
+</div>
+<div ng-if="task.category" class="col-md-3">
+<span class="glyphicon glyphicon-tag"></span><span> {{task.category}}</span>
+</div>
+</div>
+</div>
+</div>
+
+<div  id="hisroticTask/itemControls.html">
+<div class="col-md-2">
+<button class="btn btn-default" tooltip="{{'_BACK' | translate}}" ng-click="page.back()"><i class="glyphicon glyphicon-chevron-left"> </i></button>
+</div>
+<div class="col-md-8 hname">
+<div>{{page.task.id}} - {{page.task.name}}</div>
+</div>
+<div class="col-md-2 itemCount">
+</div>
+</div>
+
+<div  id="hisroticTask/item.html">
+<div class='task-page'>
+<div class="row subRow rowData">
+<div class="col-md-7 colData">
+
+<div class="row subRow">
+<div class="col-md-12 detailCol">
+<div class="detail">
+<div class="edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.startTime"></span></span>
+<span class="label" ng-class= "{'label-success': page.task.deleteReason === 'completed','label-danger': page.task.deleteReason === 'deleted'}"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.endTime"></span></span>
+<span ng-if="page.task.processInstanceId" class="label label-info"><span class="glyphicon glyphicon-random"></span> {{page.task.processInstanceId}} - {{page.task.processDefinitionId | definitionName}}</span>
+<span ng-if="page.task.parentTaskId" class="label label-info"><span class="glyphicon glyphicon-arrow-up"></span> {{page.task.parentTaskId}}</span>
+<span ng-if="page.task.dueDate" class="label label-warning"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.dueDate"></span></span>
+<span ng-if="page.task.category" class="label label-default"><span class="glyphicon glyphicon-tag"></span> {{page.task.category}}</span>
+<span class="label" ng-class= "{'label-success': page.task.priority === 50 ,'label-danger': page.task.priority > 50 , 'label-warning': page.task.priority < 50}"><span class="glyphicon glyphicon-flag"></span></span>
+</div>
+
+<div class="row desc">
+<div class="col-md-12">
+<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="page.task.description" otherwiseKey="NO_DESCRIPTION"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row subRow">
+<div class="col-md-12 detailCol">
+<div class="tabsCon" ng-controller="TaskTabsCtrl" ng-init="(page.task.identityLinks.length >= 0)? '':page.task.refreshIdentityLinks();selectedTab='people';">
+<tabset class="tabset">
+    <tab select="selectedTab='people'">
+	<tab-heading>
+        <i class="fa fa-group"></i> {{'PEOPLE' | translate}}
+      </tab-heading>
+<div class="identity-link-con">
+<div class="identity-link authorImg">
+<img alt="profile" ag-user-pic="page.task.owner">
+<span ag-user="page.task.owner" otherwiseKey="NO_OWNER"></span>
+<div class="identity-info">
+<span class="label label-primary"><span ag-identity-link-type="'owner'"></span></span>
+</div>
+</div><div class="identity-link authorImg">
+<img alt="profile" ag-user-pic="page.task.assignee">
+<span ag-user="page.task.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+<div class="identity-info">
+<span class="label label-primary"><span ag-identity-link-type="'assignee'"></span></span>
+</div>
+</div><div class="identity-link authorImg" ng-repeat="identityLink in page.task.identityLinks">
+<img alt="profile" ag-identity-link-pic="identityLink">
+<span ag-identity-link-name="identityLink"></span>
+<div class="identity-info">
+<span class="label label-info"><span ag-identity-link-type="identityLink.type"></span></span>
+</div>
+</div>
+</div>
+</tab>
+    <tab select="(page.task.attachments.length>=0)? '':page.task.refreshAttachments(); selectedTab='attachments'">
+      <tab-heading>
+        <i class="glyphicon glyphicon-paperclip"></i> {{'ATTACHMENTS' | translate}}
+      </tab-heading>
+      <div class="rowsCon">
+<div class="row line-row img-row" ng-repeat="attachment in page.task.attachments">
+<div class="col-md-4" style="white-space: nowrap"><a target="_blank" ag-attachment="attachment"></a></div>
+<div class="col-md-4" ag-content="attachment.description" otherwiseKey="NO_DESCRIPTION"></div>
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="attachment.userId">
+<span ag-user="attachment.userId"></span>
+</div>
+<div class="col-md-1 edit-col">
+</div>
+</div>
+<div class="emptyList" ng-if="page.task.attachments.length === 0"><span class="label label-default" translate="NO_ATTACHMENTS"></span></div>
+</div>
+    </tab>
+    <tab select="(page.task.subTasks.length>=0)? '':page.task.refreshSubTasks();selectedTab = 'subtasks' ">
+	<tab-heading>
+        <i class="fa fa-tasks"></i> {{'SUBTASKS' | translate}}
+      </tab-heading>
+      
+<div class="rowsCon">
+      <div class="row line-row" ng-repeat="subTask in page.task.subTasks">
+<div class="col-md-2">{{subTask.id}}</div>
+<div class="col-md-6">{{subTask.name}}</div>
+<div class="col-md-4 authorImg">
+<img alt="profile" ag-user-pic="subTask.assignee">
+<span ag-user="subTask.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+</div>
+</div>
+<div class="emptyList" ng-if="page.task.subTasks.length === 0"><span class="label label-default" translate="NO_SUBTASKS"></span></div>
+</div>
+    </tab>
+  </tabset>
+  </div>
+  </div>
+  </div>
+
+<div class="row subRow">
+<div class="col-md-12 detailCol">
+<div class="detail">
+<div class="name">{{'VARIABLES' | translate}}</div>
+<div class="varsCon rowsCon scollable-rows">
+<div class="row line-row simple-row" ng-repeat="variable in page.task.variables | orderBy:'+name'">
+<div class="col-md-4">{{variable.name}}</div>
+<div class="col-md-7">{{variable.value | variable: variable.type}}</div>
+<div class="col-md-1 edit-col">
+</div>
+</div>
+<div class="emptyList" ng-if="page.task.variables.length === 0"><span class="label label-default" translate="NO_VARIABLES"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-5 colData" ng-init="(page.task.events.length >= 0)? '':page.task.refreshEvents()">
+<div class="detail">
+<div class="name">{{'EVENTS' | translate}}</div>
+<div class="eventsList">
+<table class="eventsTable">
+<tr ng-repeat="taskEvent in page.task.events" ng-include="'task/event.html'" ng-class="{'right-event': currentUser.id === taskEvent.userId, 'left-event': currentUser.id !== taskEvent.userId}">
+</tr>
+</table>
+<div class="emptyList" ng-if="page.task.events.length===0"><span class="label label-default" translate="NO_EVENTS"></span></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- end archive -->
+
+<div  id="definition/listControls.html">
+<div class="col-md-9">
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.refresh()"><i class="glyphicon glyphicon-refresh"> </i></button>
+</div>
+<div class="col-md-3 itemCount" ng-include="'common/itemsNav.html'"></div>
+</div>
+
+<div  id="definition/list.html">
+<div  ng-if="page.list.total === 0" class="noList">
+<h3><span class="label label-default" translate="NO_DEFINITIONS"></span></h3>
+</div>
+	<div ng-repeat="definition in page.list" class="detail">
+	
+		<div class="row name header-row">
+	<div class="col-md-6 name-col">
+		{{definition.id}} - {{definition.name}}
+	</div>
+<div class="col-md-6 edit-col">
+<span ng-if="definition.category" class="label label-success"><span class="glyphicon glyphicon-tag"></span> <span> {{definition.category}}</span></span>
+<span class="label label-info"><span class="fa fa-files-o"></span><span> {{definition.version}}</span></span>
+<button tooltip="{{'START_PROCESS' | translate}}"
+			ng-click="page.start(definition)" class="btn btn-primary label">
+			<span class="glyphicon glyphicon-play"></span>
+		</button>
+</div>
+</div>	
+		<div class="row desc">
+		<div class="col-md-12">
+		<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="definition.description" otherwiseKey="NO_DESCRIPTION"></span>
+		</div>
+		</div>
+		<div class="diagram" ag-definition-diagram="definition" otherwiseKey="NO_DIAGRAM"></div>
+	</div>
+</div>
+
+<div  id="process/listControls.html">
+<div class="col-md-9">
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.refresh()"><i class="glyphicon glyphicon-refresh"> </i></button>
+<div class="btn-group abtn-group" dropdown ng-init="sortBy={isopen:false}" is-open="sortBy.isopen">
+<button type="button" class="btn btn-default sort-btn" ng-disabled="disabled" ng-click="stopEvent($event);sortBy.isopen=!sortBy.isopen;">
+      <span class="glyphicon glyphicon-sort"></span> {{'SORT_BY_'+page.sortKey | translate}}
+      </button>
+      <button type="button" class="btn btn-default" ng-click="stopEvent($event);page.toggleOrder()">
+        <span class="glyphicon" ng-class= "{'glyphicon-sort-by-attributes': page.requestParam.order === 'asc' ,'glyphicon-sort-by-attributes-alt': page.requestParam.order === 'desc'}"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="(key, value) in page.sortKeys" ng-if="value !== page.sortKey"><a href ng-click="sortBy.isopen=false;page.sortBy(key)" translate="{{'SORT_BY_'+value}}"></a></li>
+      </ul>
+    </div>
+</div>
+<div class="col-md-3 itemCount" ng-include="'common/itemsNav.html'"></div>
+</div>
+
+<div  id="process/list.html">
+<div  ng-if="page.list.total === 0" class="noList">
+<h3><span class="label label-default" translate="NO_PROCESSES"></span></h3>
+</div>
+<div ng-repeat="process in page.list" class="detail">
+	<div class="row name header-row">
+	<div class="col-md-6 name-col">
+		<a href="#/processes/{{page.section}}/{{process.id}}">{{process.id}} - {{process.definition.name}}</a>
+	</div>
+<div class="col-md-6 edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="process.startTime"></span></span>
+<span ng-if="process.definition.category" class="label label-success"><span class="glyphicon glyphicon-tag"></span> <span> {{process.definition.category}}</span></span>
+<span class="label label-info"><span class="fa fa-files-o"></span><span> {{process.definition.version}}</span></span>
+</div>
+</div>	
+		<div class="row desc">
+		<div class="col-md-12">
+		<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="process.definition.description" otherwiseKey="NO_DESCRIPTION"></span>
+		</div>
+		</div>
+		<div class="diagram" ag-process-diagram="process" ag-process-activities="process.activities" otherwiseKey="NO_DIAGRAM"></div>
+	</div>
+</div>
+
+<div  id="process/itemControls.html">
+<div class="col-md-2">
+<button class="btn btn-default" tooltip="{{'_BACK' | translate}}" ng-click="page.back()"><i class="glyphicon glyphicon-chevron-left"> </i></button>
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.processInstance.refresh(true)"><i class="glyphicon glyphicon-refresh"> </i></button>
+</div>
+<div class="col-md-8 hname">
+<div>{{page.processInstance.id}} - <span ng-if="page.processInstance.name">{{page.processInstance.name}}</span><span ng-if="!page.processInstance.name">{{page.processInstance.definition.name}}</span></div>
+</div>
+<div class="col-md-2 itemCount">
+</div>
+</div>
+
+<div  id="process/item.html">
+<div class="pageItem">
+<div class="detail">
+<div class="row header-row">
+<div class="col-md-12 edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.processInstance.startTime"></span></span>
+<span class="label label-success"><span class="glyphicon glyphicon-tag"></span><span> {{page.processInstance.definition.category}}</span></span>
+<span class="label label-info"><span class="fa fa-files-o"></span><span> {{page.processInstance.definition.version}}</span></span>
+</div>
+</div>
+		<div class="row desc">
+		<div class="col-md-12">
+		<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="page.processInstance.definition.description" otherwiseKey="NO_DESCRIPTION"></span>
+		</div>
+		</div>
+		<div class="diagram" ag-process-diagram="page.processInstance" ag-process-activities="page.processInstance.activities" otherwiseKey="NO_DIAGRAM"></div>
+	</div>
+
+<div class="detail">
+<div class="row">
+<div class="col-md-12" ng-init="page.processInstance.refreshIdentityLinks()">
+<div class="name">{{'PEOPLE' | translate}}</div>
+<div class="varsCon">
+<div class="identity-link-con">
+<div class="identity-link authorImg" ng-repeat="identityLink in page.processInstance.identityLinks">
+<img alt="profile" ag-identity-link-pic="identityLink">
+<span ag-identity-link-name="identityLink"></span>
+<div class="identity-info">
+<span class="label label-info"><span ag-identity-link-type="identityLink.type"></span></span>
+</div>
+</div>
+</div>
+</div>
+<div class="emptyList" ng-if="page.processInstance.identityLinks.length === 0"><span class="label label-default" translate="NO_INVOLVEMENT"></span></div>
+</div>
+</div>
+</div>
+	
+<div class="detail">
+<div class="row">
+<div class="col-md-12" ng-init="page.processInstance.refreshVariables()">
+<div class="name">{{'VARIABLES' | translate}}</div>
+<div class="varsCon rowsCon scollable-rows">
+<div class="row line-row simple-row" ng-repeat="variable in page.processInstance.variables">
+<div class="col-md-5">{{variable.name}}</div>
+<div class="col-md-6">{{variable.value | variable:variable.type}}</div>
+<div class="col-md-1 edit-col">
+<button ng-click="page.showEditVar(page.processInstance, variable)" class="btn btn-warning label"><i class="glyphicon glyphicon-pencil"></i></button>
+</div>
+</div>
+</div>
+<div class="emptyList" ng-if="page.processInstance.variables.length === 0"><span class="label label-default" translate="NO_VARIABLES"></span></div>
+</div>
+</div>
+</div>
+
+<div class="detail">
+<div class="row">
+<div class="col-md-12" ng-init="page.processInstance.refreshTasks()">
+<div class="name">{{'MENU_TASKS' | translate}}</div>
+<div class="varsCon rowsCon scollable-rows">
+<div class="row line-row img-row" ng-repeat="task in page.processInstance.tasks">
+<div class="col-md-3">{{task.id}} {{task.name}}</div>
+<div class="col-md-3"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.startTime"></span></div>
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="task.assignee">
+<span ag-user="task.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+</div>
+<div class="col-md-3"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.endTime" otherwiseKey="Not Completed"></span></div>
+</div>
+</div>
+<div class="emptyList" ng-if="page.processInstance.tasks.total === 0"><span class="label label-default" translate="NO_TASKS"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- archived process -->
+
+<div  id="archivedProcess/listControls.html">
+<div class="col-md-9">
+<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}"  ng-click="page.refresh()"><i class="glyphicon glyphicon-refresh"> </i></button>
+<div class="btn-group abtn-group" dropdown ng-init="sortBy={isopen:false}" is-open="sortBy.isopen">
+<button type="button" class="btn btn-default sort-btn" ng-disabled="disabled" ng-click="stopEvent($event);sortBy.isopen=!sortBy.isopen;">
+      <span class="glyphicon glyphicon-sort"></span> {{'SORT_BY_'+page.sortKey | translate}}
+      </button>
+      <button type="button" class="btn btn-default" ng-click="stopEvent($event);page.toggleOrder()">
+        <span class="glyphicon" ng-class= "{'glyphicon-sort-by-attributes': page.requestParam.order === 'asc' ,'glyphicon-sort-by-attributes-alt': page.requestParam.order === 'desc'}"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+      <li ng-repeat="(key, value) in page.sortKeys" ng-if="value !== page.sortKey"><a href ng-click="sortBy.isopen=false;page.sortBy(key)" translate="{{'SORT_BY_'+value}}"></a></li>
+      </ul>
+    </div>
+</div>
+<div class="col-md-3 itemCount" ng-include="'common/itemsNav.html'"></div>
+</div>
+
+<div  id="archivedProcess/list.html">
+<div  ng-if="page.list.total === 0" class="noList">
+<h3><span class="label label-default" translate="NO_PROCESSES"></span></h3>
+</div>
+<div ng-repeat="process in page.list" class="detail">
+	<div class="row name header-row">
+	<div class="col-md-6 name-col">
+		<a href="#/processes/{{page.section}}/{{process.id}}">{{process.id}} - {{process.definition.name}}</a>
+	</div>
+<div class="col-md-6 edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="process.startTime"></span></span>
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="process.endTime"></span></span>
+<span ng-if="process.definition.category" class="label label-success"><span class="glyphicon glyphicon-tag"></span> <span> {{process.definition.category}}</span></span>
+<span class="label label-info"><span class="fa fa-files-o"></span><span> {{process.definition.version}}</span></span>
+</div>
+</div>	
+		<div class="row desc">
+		<div class="col-md-12">
+		<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="process.definition.description" otherwiseKey="NO_DESCRIPTION"></span>
+		</div>
+		</div>
+		<div class="diagram" ag-definition-diagram="process.definition" otherwiseKey="NO_DIAGRAM"></div>
+	</div>
+</div>
+
+<div  id="archivedProcess/itemControls.html">
+<div class="col-md-2">
+<button class="btn btn-default" tooltip="{{'_BACK' | translate}}" ng-click="page.back()"><i class="glyphicon glyphicon-chevron-left"> </i></button>
+</div>
+<div class="col-md-8 hname">
+<div>{{page.processInstance.id}} - <span ng-if="page.processInstance.name">{{page.processInstance.name}}</span><span ng-if="!page.processInstance.name">{{page.processInstance.definition.name}}</span></div>
+</div>
+<div class="col-md-2 itemCount">
+</div>
+</div>
+
+<div  id="archivedProcess/item.html">
+<div class="pageItem">
+<div class="detail">
+<div class="row header-row">
+<div class="col-md-12 edit-col">
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.processInstance.startTime"></span></span>
+<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="page.processInstance.endTime"></span></span>
+<span class="label label-success"><span class="glyphicon glyphicon-tag"></span><span> {{page.processInstance.definition.category}}</span></span>
+<span class="label label-info"><span class="fa fa-files-o"></span><span> {{page.processInstance.definition.version}}</span></span>
+</div>
+</div>
+		<div class="row desc">
+		<div class="col-md-12">
+		<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="page.processInstance.definition.description" otherwiseKey="NO_DESCRIPTION"></span>
+		</div>
+		</div>
+		<div class="diagram" ag-definition-diagram="page.processInstance.definition" otherwiseKey="NO_DIAGRAM"></div>
+	</div>
+
+<div class="detail">
+<div class="row">
+<div class="col-md-12" ng-init="page.processInstance.refreshIdentityLinks()">
+<div class="name">{{'PEOPLE' | translate}}</div>
+<div class="varsCon">
+<div class="identity-link-con">
+<div class="identity-link authorImg" ng-repeat="identityLink in page.processInstance.identityLinks">
+<img alt="profile" ag-identity-link-pic="identityLink">
+<span ag-identity-link-name="identityLink"></span>
+<div class="identity-info">
+<span class="label label-info"><span ag-identity-link-type="identityLink.type"></span></span>
+</div>
+</div>
+</div>
+</div>
+<div class="emptyList" ng-if="page.processInstance.identityLinks.length === 0"><span class="label label-default" translate="NO_INVOLVEMENT"></span></div>
+</div>
+</div>
+</div>
+	
+<div class="detail">
+<div class="row">
+<div class="col-md-12" ng-init="page.processInstance.refreshVariables()">
+<div class="name">{{'VARIABLES' | translate}}</div>
+<div class="varsCon rowsCon scollable-rows">
+<div class="row line-row simple-row" ng-repeat="variable in page.processInstance.variables">
+<div class="col-md-5">{{variable.name}}</div>
+<div class="col-md-6">{{variable.value | variable:variable.type}}</div>
+<div class="col-md-1 edit-col">
+</div>
+</div>
+</div>
+<div class="emptyList" ng-if="page.processInstance.variables.length === 0"><span class="label label-default" translate="NO_VARIABLES"></span></div>
+</div>
+</div>
+</div>
+
+<div class="detail">
+<div class="row">
+<div class="col-md-12" ng-init="page.processInstance.refreshTasks()">
+<div class="name">{{'MENU_TASKS' | translate}}</div>
+<div class="varsCon rowsCon scollable-rows">
+<div class="row line-row img-row" ng-repeat="task in page.processInstance.tasks">
+<div class="col-md-3">{{task.id}} {{task.name}}</div>
+<div class="col-md-3"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.startTime"></span></div>
+<div class="col-md-3 authorImg">
+<img alt="profile" ag-user-pic="task.assignee">
+<span ag-user="task.assignee" otherwiseKey="NO_ASSIGNEE"></span>
+</div>
+<div class="col-md-3"><span class="glyphicon glyphicon-time"></span> <span ag-ago="task.endTime" otherwiseKey="Not Completed"></span></div>
+</div>
+</div>
+<div class="emptyList" ng-if="page.processInstance.tasks.total === 0"><span class="label label-default" translate="NO_TASKS"></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- end archived process -->
+	
+<div id="login.html">
+        <div class="modal-header">
+        <div class="modal-title logo login"><div></div></div>
+        </div>
+        <form class="loginForm" name="loginForm" autocomplete="off" ng-submit="submitForm(loginForm.$valid)" novalidate>
+        <div class="modal-body">
+        <div class="form-group">
+        <label for="userId" translate="_USERID">User Id</label>
+        <input id="userId" name="userId" autocomplete="off" class="form-control" type="text" ng-model="credentials.userId" required>
+        </div>
+        <div class="form-group">
+        <label for="userPassword" translate="_PASSWORD">Password</label>
+        <input id="userPassword" name="userPassword" class="form-control" type="password" ng-model="credentials.userPassword" required>
+        </div>
+        
+        <div class="row">
+        <div class="col-md-2">
+        </div>
+  <div class="col-md-8" ng-init="langDropDown.isopen = false">
+        <div class="btn-group" dropdown is-open="langDropDown.isopen">
+      <button type="button" class="btn btn-default dropdown-toggle"><i class="fa fa-language"></i> 
+      <span ng-if="lang === 'en'" class="lang">English</span>
+      <span ng-if="lang === 'ar'" class="lang">عربي</span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li><a href="#" ng-if="lang !== 'ar'" ng-click="stopEvent($event);langDropDown.isopen = false;setLang('ar')">عربي</a></li>
+        <li><a href="#" ng-if="lang !== 'en'" ng-click="stopEvent($event);langDropDown.isopen = false;setLang('en')">English</a></li>
+      </ul>
+</div>
+</div>
+<div class="col-md-2">
+        </div>
+</div>
+         <div class="row">
+  <div class="col-md-12">
+    <div class="input-group remember">
+      <div class="input-group-addon">
+        <input type="checkbox" ng-model="credentials.remember">
+      </div>
+      <div class="form-control" translate="_REMEBER"></div>
+    </div>
+  </div>
+  </div>
+        <div class="login-msg"> <span ng-if="msg.msg" class="label" ng-class="{'label-info':msg.type === 'info', 'label-danger': msg.type === 'error'}">{{msg.msg | translate}}</span> </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type=submit>{{'_LOGIN' | translate}}</button>
+        </div>
+        </form>
+</div>
+
+<div id="views/createTask.html">
+        <div class="modal-header">
+        	<h3 class="modal-title"><span class="fa fa-tasks"></span> {{title | translate}}</h3>
+        </div>
+        <form name="createTaskForm" autocomplete="off" ng-submit="submitForm(createTaskForm.$valid, assignee)" novalidate>
+        <div class="modal-body">
+        <div class="row">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         		<span class="input-group-addon" translate="_NAME"></span>
+        		<input id="name" name="name" ag-focus autocomplete="off" class="form-control" type="text" ng-model="task.name" ng-required="true">
+        		<span class="input-group-addon invalid" ng-if="showErrors && createTaskForm.name.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	</div>
+        </div>
+        <div class="row">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         		<span class="input-group-addon" translate="CATEGORY"></span>
+        		<input id="category" name="category" autocomplete="off" class="form-control" type="text" ng-model="task.category">
+        	</div>
+        	</div>
+        </div>
+        
+        <div class="row">
+  			<div class="col-lg-8">
+        	<div class="input-group" ng-init="dueDateStatus.opened = false">
+        		<span class="input-group-addon" translate="DUE"></span>
+              	<input name="due" type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy"  is-open="dueDateStatus.opened" ng-model="task.dueDate" 
+				current-text="{{'DATE_POPUP_CURRENT' | translate}}" clear-text="{{'DATE_POPUP_CLEAR' | translate}}" close-text="{{'DATE_POPUP_CLOSE' | translate}}" />
+              	<span class="input-group-btn">
+                <button ng-click="stopEvent($event);dueDateStatus.opened = !dueDateStatus.opened;" class="btn btn-default"
+                ng-class="{'btn-danger':(showErrors && createTaskForm.due.$error.date)}">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </button>
+              	</span>
+         	</div>
+         	</div>
+         	<div class="col-lg-4" ng-init="priorityStatus.opened = false">
+         		<div class="btn-group input-group" dropdown is-open="priorityStatus.opened">
+      			<button type="button" class="btn btn-success dropdown-toggle" ng-class= "{'btn-danger': task.priority > 50 , 'btn-warning': task.priority < 50}" ng-disabled="disabled">
+        		<span class="glyphicon glyphicon-flag"></span> {{task.priority | taskPriority | translate}} <span class="caret"></span>
+      			</button>
+      			<ul class="dropdown-menu" role="menu">
+        		<li><a href ng-show="task.priority <= 50" ng-click="priorityStatus.opened = false;task.priority = 100"><span class="glyphicon glyphicon-flag flag-hi"></span> {{'HIGH_PRIORITY' | translate}}</a></li>
+        		<li><a href ng-show="task.priority != 50" ng-click="priorityStatus.opened = false;task.priority = 50"><span class="glyphicon glyphicon-flag flag-md"></span> {{'NORMAL_PRIORITY' | translate}}</a></li>
+        		<li><a href ng-show="task.priority >= 50" ng-click="priorityStatus.opened = false;task.priority = 0"><span class="glyphicon glyphicon-flag flag-lw"></span> {{'LOW_PRIORITY' | translate}}</a></li>
+     			 </ul>
+    			</div>
+         	</div>
+       </div>
+       
+    <div class="row">
+  		<div class="col-lg-12">
+    		<div class="input-group">
+         		<span class="input-group-addon" translate="_DESCRIPTION"></span>
+        		<textarea id="description" class="form-control" ng-model="task.description"></textarea>
+        	</div>
+        </div>
+   </div>
+   </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type=submit translate="_OK"></button>
+            <button class="btn btn-warning" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+        </form>
+</div>
+
+<div id="views/confirmation.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="CONFIRM_TITLE"></h3>
+        </div>
+        <div class="modal-body">
+        
+        <div class="row formProp">
+  			<div class="col-lg-12 confirm" translate="{{msg}}" translate-values="msgParams"></div>
+    </div>
+        
+   </div>
+   
+        <div class="modal-footer">
+
+                     <button class="btn btn-primary" ng-click="ok()">{{'_YES' | translate}}</button>
+            <button class="btn btn-warning" ng-click="cancel()">{{'_NO' | translate}}</button>
+        </div>
+</div>
+
+<div id="views/startProcess.html">
+        <div class="modal-header">
+            <h3 class="modal-title"><span class="glyphicon glyphicon-random"></span> {{'START_PROCESS' | translate}}</h3>
+        </div>
+        <form name="processDefinitionForm" autocomplete="off" novalidate ng-submit="ok(selectedItems)">
+        <div class="modal-body">
+        <div class="row formProp" ag-keynav="filteredList">
+  			<div class="col-lg-12 select-list-con">
+         <div class="row">
+  			<div class="col-lg-12">
+  			<div class="input-group">
+        <input  ng-model="processDefinitionFilter" tabindex="1" ag-focus ng-change="filteredList = (itemList | filter:{name: processDefinitionFilter})" type="text" class="form-control" />
+        <span class="input-group-addon" ng-class="{'invalid':(showErrors && selectedItems.length===0)}"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+  			<div class="col-lg-12">
+    			 <ul id="selectionCon" tabindex="2" class="nav nav-pills nav-stacked form-control select-list">
+        <li ng-repeat="processDefinition in filteredList"
+            selection-model
+            selection-model-selected-class="active"
+            selection-model-cleanup-strategy="deselect"
+            selection-model-selected-items="selectedItems">
+            <div class="item">
+          <span class="glyphicon glyphicon-random"> </span> <span style="padding-left: 5px;"> {{processDefinition.name}}</span>
+          </div>
+        </li>
+      </ul>
+    		</div>
+    </div>
+    </div>
+    </div>
+   </div>
+        <div class="modal-footer">
+                     <button class="btn btn-primary" tabindex="3" type="submit" translate="_OK"></button>
+            <button class="btn btn-warning" tabindex="4" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+</form>
+</div>
+<div id="views/addIdentityLink.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="{{title}}"></h3>
+        </div>
+        <form name="identityLinkForm" autocomplete="off" novalidate ng-submit="ok(identityLinkForm.$valid, selectedItems, identityRole)">
+        <div class="modal-body">
+        <div class="row formProp" ng-init="filteredList = (itemList | orderBy:'+name')" ag-keynav="filteredList">
+  			<div class="col-lg-12 select-list-con">
+         <div class="row">
+  			<div class="col-lg-12">
+  			<div class="input-group">
+        <input  ng-model="identityFilter" tabindex="1" ag-focus ng-change="filteredList = (itemList | filter:{name: identityFilter} | orderBy:'+name')" type="text" class="form-control" />
+        <span class="input-group-addon" ng-class="{'invalid':(showErrors && selectedItems.length===0)}"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+  			<div class="col-lg-12">
+    			 <ul id="selectionCon" tabindex="2" class="nav nav-pills nav-stacked form-control select-list">
+        <li ng-repeat="identity in filteredList"
+            selection-model
+            selection-model-selected-class="active"
+            selection-model-cleanup-strategy="deselect"
+            selection-model-selected-items="selectedItems">
+            <div class="item">
+          <span ng-class="{'glyphicon ico-space glyphicon-user': identity.identityType === 'user', 
+          'fa fa-group': identity.identityType === 'group'}"></span> {{identity.name}}
+          </div>
+        </li>
+      </ul>
+    		</div>
+    </div>
+    </div>
+    </div>
+        <div class="row formProp">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         	<span class="input-group-addon">{{'SELECT_ROLE_TYPE'  | translate}}</span>
+         		<select tabindex="3" name="identityLinkType" class="form-control" ng-model="identityRole" ng-options="'ROLE_'+type | translate for type in types" ng-required="true">
+  </select>
+  <span class="input-group-addon invalid" ng-if="showErrors && identityLinkForm.identityLinkType.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	</div>
+        </div>
+   </div>
+        <div class="modal-footer">
+                     <button class="btn btn-primary" tabindex="4" type="submit" translate="_OK"></button>
+            <button class="btn btn-warning" tabindex="5" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+</form>
+</div>
+
+<div id="views/selectIdentity.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="{{title}}"></h3>
+        </div>
+        <form name="identityLinkForm" autocomplete="off" novalidate ng-submit="ok(selectedItems)">
+        <div class="modal-body">
+        <div class="row formProp" ng-init="filteredList = (itemList | orderBy:'+name')" ag-keynav="filteredList">
+  			<div class="col-lg-12 select-list-con">
+         <div class="row">
+  			<div class="col-lg-12">
+  			<div class="input-group">
+        <input  ng-model="identityFilter" tabindex="1" ag-focus ng-change="filteredList = (itemList | filter:{name: identityFilter} | orderBy:'+name')" type="text" class="form-control" />
+        <span class="input-group-addon" ng-class="{'invalid':(showErrors && selectedItems.length===0)}"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+  			<div class="col-lg-12">
+    			 <ul id="selectionCon" tabindex="2" class="nav nav-pills nav-stacked form-control select-list">
+        <li ng-repeat="identity in filteredList"
+            selection-model
+            selection-model-selected-class="active"
+            selection-model-cleanup-strategy="deselect"
+            selection-model-selected-items="selectedItems">
+            <div class="item">
+          <span ng-if="identity.identityType === 'user'" class="glyphicon ico-space glyphicon-user"></span><span ng-if="identity.identityType === 'group'" class="fa fa-group"></span> {{identity.name}}
+          </div>
+        </li>
+      </ul>
+    		</div>
+    </div>
+    </div>
+    </div>
+   </div>
+        <div class="modal-footer">
+        <button ng-if="removable" tabindex="5" class="btn btn-danger opp-float" ng-click="stopEvent($event);deleteVar(variable)" translate="_DELETE"></button>
+                     <button class="btn btn-primary" tabindex="3" type="submit" translate="_OK"></button>
+            <button class="btn btn-warning" tabindex="4" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+</form>
+</div>
+
+<div id="views/task/addAttachment.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title | translate}}</h3>
+        </div>
+        <form name="formPropertiesForm" autocomplete="off" ng-submit="submitForm(attachmentType, formPropertiesForm.$valid)" novalidate>
+        <div class="modal-body">
+        
+         <div class="row formProp">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         	<div class="btn-group">
+        <label class="btn btn-primary" ng-model="attachmentType" btn-radio="'URL'" ng-click="data.name = ''; selectedFile = null;">{{'URL'  | translate}}</label>
+        <label class="btn btn-primary" ng-model="attachmentType" btn-radio="'File'" ng-click="data.name = ''; selectedFile = null;">{{'FILE'  | translate}}</label>
+    </div>
+        	</div>
+        	
+        	</div>
+        	
+        </div>
+        
+        <div class="row formProp">
+  			<div class="col-lg-12">
+         	<div ng-if="attachmentType === 'URL'" class="input-group">
+         	<span class="input-group-addon" translate="URL"></span>
+         	<input name="url" type="url" class="form-control" ng-model="data.externalUrl" ng-required="true">
+         	<span class="input-group-addon invalid" ng-if="showErrors && (formPropertiesForm.url.$error.required || formPropertiesForm.url.$error.url)"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	<div ng-if="attachmentType === 'File'" class="input-group">
+         	<span class="input-group-addon" translate="CHOOSE_FILE"></span>
+         	<span class="btn btn-default btn-file form-control">
+         	<span ng-if="!fileName" class="glyphicon glyphicon-paperclip"></span>
+         	<span ng-if="fileName">{{fileName}}</span>
+                        <input name="selFile" type="file" ng-file-select="onFileSelect($files);fileSelected=true;fileName=$files[0].name" ng-required="true">
+                    </span>
+         	
+         	<span class="input-group-addon invalid" ng-if="showErrors && !fileSelected"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	</div>
+        </div>
+        
+        <div class="row formProp">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         	<span class="input-group-addon" translate="_NAME"></span>
+         	<input name="name" type="text" class="form-control" ng-model="data.name" ng-required=true>
+         	<span class="input-group-addon invalid" ng-if="showErrors && formPropertiesForm.name.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	</div>
+        </div>
+        
+        <div class="row formProp">
+  		<div class="col-lg-12">
+    		<div class="input-group">
+         		<span class="input-group-addon" translate="_DESCRIPTION"></span>
+        		<textarea id="description" class="form-control" ng-model="data.description"></textarea>
+        	</div>
+        </div>
+   </div>
+   
+   <div class="row formProp" ng-if="uploading">
+  		<div class="col-lg-12">
+   <progressbar class="progress-striped active" value="uploadProgress" type="{{type}}">{{type}} <i ng-if="showWarning">!!! Watch out !!!</i></progressbar>
+        </div>
+        </div>
+   </div>
+        <div class="modal-footer">
+
+                     <button class="btn btn-primary" type="submit" translate="_OK"></button>
+            <button class="btn btn-warning" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+</form>
+</div>
+
+<div id="views/postComment.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="POST_COMMENT"></h3>
+        </div>
+        <form name="commentForm" autocomplete="off" ng-submit="submitForm(commentForm.$valid, comment)" novalidate>
+        <div class="modal-body">
+        
+        <div class="row formProp">
+  		<div class="col-lg-12">
+    		<div class="input-group">
+         		<span class="input-group-addon" translate="COMMENT"></span>
+        		<textarea name="comment" class="form-control" ng-model="comment" ng-required="true"></textarea>
+        		<span class="input-group-addon invalid" ng-show="showErrors && commentForm.comment.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        </div>
+   </div>
+   
+   </div>
+        <div class="modal-footer">
+
+                     <button class="btn btn-primary" type="submit">{{'_OK' | translate}}</button>
+            <button class="btn btn-warning" ng-click="stopEvent($event);cancel()">{{'_CANCEL' | translate}}</button>
+        </div>
+</form>
+</div>
+
+<div id="views/addVar.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="ADD_VAR"></h3>
+        </div>
+        <form name="addVarForm" autocomplete="off" novalidate ng-init="variable = {name:''}; duplicateName = false" ng-submit="ok(addVarForm.$valid && !duplicateName, variable)">
+        <div class="modal-body">
+        
+        <div class="row">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         		<span class="input-group-addon" translate="_NAME"></span>
+        		<input name="name" autocomplete="off" class="form-control" type="text" ng-model="variable.name" ng-change="duplicateName = checkDuplicate(variable.name)" ng-required="true">
+        		<span class="input-group-addon invalid" ng-if="showErrors && (addVarForm.name.$error.required || duplicateName)"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	</div>
+        </div>
+   </div>
+   
+        <div class="modal-footer">
+<button class="btn btn-primary" type="submit" translate="_OK"></button>
+            <button class="btn btn-warning" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+</form>
+</div>
+
+<div id="views/editVar.html">
+        <div class="modal-header">
+            <h3 class="modal-title" translate="EDIT_VAR"></h3>
+        </div>
+        <form name="addVarForm" autocomplete="off" novalidate ng-submit="ok(addVarForm.$valid, variable)">
+        <div class="modal-body">
+        
+        <div class="row">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         		<span class="input-group-addon" translate="_NAME"></span>
+        		<div name="name" class="form-control">{{variable.name}}</div>
+        	</div>
+        	</div>
+        </div>
+        <div class="row">
+  			<div class="col-lg-12">
+         	<div class="input-group">
+         	<span class="input-group-addon" translate="VAR_TYPE"></span>
+         		<select name="varType" class="form-control" ng-model="variable.type" ng-required="true">
+         		<option value="string" translate="VAR_TYPE_STRING"></option>
+         		<option value="long" translate="VAR_TYPE_NUMBER"></option>
+         		<option value="date" translate="VAR_TYPE_DATE"></option>
+  </select>
+  <span class="input-group-addon invalid" ng-if="showErrors && addVarForm.varType.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	</div>
+        </div>
+        
+        <div class="row">
+  		<div class="col-lg-12">
+    		<div ng-if="variable.type !== 'date'" class="input-group">
+         		<span class="input-group-addon" translate="VAR_VALUE"></span>
+        		<input ng-if="variable.type === 'string'" name="varValue" type="text" ng-model="variable.stringValue" class="form-control">
+        		<input ng-if="variable.type === 'long'"  name="varValue" type="number" ng-model="variable.numberValue" ng-required="true" class="form-control">
+        		<span class="input-group-addon invalid" ng-if="showErrors && addVarForm.varValue.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+        	</div>
+        	<div ng-if="variable.type === 'date'" class="input-group" ng-init="status.opened = false">
+		<span class="input-group-addon" translate="VAR_VALUE"></span>
+		<input name="varValue"
+			type="text" class="form-control"
+			ng-required="true"
+			datepicker-popup="dd-MM-yyyy hh:mm"
+			is-open="status.opened" ng-model="variable.dateValue"
+			close-text="Close" /> <span class="input-group-btn">
+			<button
+				ng-click="stopEvent($event);status.opened = !status.opened;"
+				class="btn btn-default" ng-class="{'btn-danger':(showErrors && addVarForm.varValue.$error.required)}">
+				<span class="glyphicon glyphicon-calendar"></span>
+			</button>
+		</span>
+	</div>
+        </div>
+   </div>
+        
+   </div>
+   
+        <div class="modal-footer">
+        <button class="btn btn-danger opp-float" ng-click="stopEvent($event);deleteVar(variable)" translate="_DELETE"></button>
+<button class="btn btn-primary" type="submit" translate="_OK"></button>
+            <button class="btn btn-warning" ng-click="stopEvent($event);cancel()" translate="_CANCEL"></button>
+        </div>
+</form>
+</div>
+<div id="views/form/form.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{title | translate}}</h3>
+        </div>
+        <form name="formPropertiesForm" autocomplete="off" ng-submit="submitForm(formPropertiesForm.$valid)" novalidate>
+        <div class="modal-body">
+        <div class="row formProp" ng-repeat="formProperty in formProperties" ng-include="formProperty.view">
+        </div>
+
+   		</div>
+        <div class="modal-footer">
+            <button ng-if="!readOnly" class="btn btn-primary" type=submit>{{'_OK' | translate}}</button>
+            <button class="btn btn-warning" ng-click="stopEvent($event);cancel()">{{'_CANCEL' | translate}}</button>
+        </div>
+        </form>
+</div>
+
+<div id="views/form/string.html">
+<div class="col-lg-12">
+    <div class="input-group">
+    	<span class="input-group-addon">{{formProperty.name}}</span>
+    	<input ag-name="formProperty.id" type="text" ng-model="formProperty.value" ng-readonly="!formProperty.writable" ng-required="formProperty.required" class="form-control">
+    	<span class="input-group-addon invalid" ng-if="showErrors && formPropertiesForm[formProperty.id].$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+    </div>
+</div>
+</div>
+
+<div id="views/form/long.html">
+<div class="col-lg-12">
+    <div class="input-group">
+    	<span class="input-group-addon">{{formProperty.name}}</span>
+    	<input ag-name="formProperty.id" type="number" ng-model="formProperty.value" ng-readonly="!formProperty.writable" ng-required="formProperty.required" class="form-control">
+    	<span class="input-group-addon invalid" ng-if="showErrors && formPropertiesForm[formProperty.id].$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+    </div>
+</div>
+</div>
+
+<div id="views/form/boolean.html">
+<div class="col-lg-12">
+    <div class="input-group">
+    	<span class="input-group-addon">
+    	<input ag-name="formProperty.id" type="checkbox" ng-model="formProperty.value" ng-readonly="!formProperty.writable" ng-required="formProperty.required">
+    	</span>
+    	<span class="form-control">{{formProperty.name}}</span>
+    	<span class="input-group-addon invalid" ng-if="showErrors && formPropertiesForm[formProperty.id].$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+    </div>
+</div>
+</div>
+
+<div id="views/form/date.html">
+<div class="col-lg-12">
+	<div class="input-group" ng-init="formProperty.opened = false">
+		<span class="input-group-addon">{{formProperty.name}}</span> <input ag-name="formProperty.id"
+			type="text" class="form-control"
+			ng-readonly="!formProperty.writable" ng-required="formProperty.required"
+			datepicker-popup="dd-MM-yyyy hh:mm"
+			is-open="formProperty.opened" ng-model="formProperty.value"
+			close-text="Close" /> <span class="input-group-btn">
+			<button
+				ng-click="stopEvent($event);formProperty.opened = !formProperty.opened;"
+				class="btn btn-default" ng-class="{'btn-danger':(showErrors && formPropertiesForm[formProperty.id].$error.required)}">
+				<span class="glyphicon glyphicon-calendar"></span>
+			</button>
+		</span>
+	</div>
+</div>
+</div>
+
+<div id="views/form/enum.html">
+<div class="col-lg-12">
+<div class="input-group">
+<span class="input-group-addon">{{formProperty.name}} </span>
+<select ag-name="formProperty.id" class="form-control" ng-model="formProperty.value" ng-options="enumValue.id as enumValue.name for enumValue in formProperty.enumValues" ng-readonly="!formProperty.writable" ng-required="formProperty.required">
+</select>
+<span class="input-group-addon invalid" ng-if="showErrors && formPropertiesForm[formProperty.id].$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+</div>
+</div>
+</div>

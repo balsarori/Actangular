@@ -1,0 +1,219 @@
+body {direction: rtl;text-align: right;}
+
+.itemCount{padding-left: 25px;padding-right: 0; text-align: left;}
+
+.left-section .controls{border-right: none;border-left: 2px solid #efefef;margin: 0;} 
+.innerContent{padding-right:0;}
+
+.itemsnav > div:first-child > button{border-bottom-right-radius: 4px;border-top-right-radius: 4px;border-top-left-radius:0;border-bottom-left-radius:0}
+.itemsnav > div:last-child > button{border-top-left-radius:4px;border-bottom-left-radius:4px;border-bottom-right-radius:0;border-top-right-radius:0;}
+
+.itemCount ul li:last-child{
+	margin-left:0;
+	margin-right: -3px;
+}
+.itemCount > ul > li:nth-child(2) > button{border-bottom-right-radius: 4px;border-top-right-radius: 4px;border-top-left-radius:0;border-bottom-left-radius:0}
+.itemCount > ul > li:last-child > button{border-top-left-radius:4px;border-bottom-left-radius:4px;border-bottom-right-radius:0;border-top-right-radius:0;}
+
+#left {float:right;}
+#right {float:left;}
+.rightContols{
+	float: left;
+}
+
+.notifications/*, .notifications .alert*/{
+right: auto;
+left:0;
+}
+
+.subRow {
+    margin-left: 0;
+    margin-right: -15px;
+}
+
+.detail .edit, .tabset .edit, .edit > .btn, .tabsCon .nav-tabs > li.tab-edit-con {float: left;}
+.left-section .listRow {border-left: 1px solid #909090;border-right: none;}
+.nav > li.sectionHeader {background-position: 100% 0;}
+
+.detailCol > .detail, .detailCol > .tabsCon {
+    margin-left: -35px;
+    margin-right: 6px;
+}
+.abtn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle){border-radius: 4px;border-bottom-right-radius: 0;border-top-right-radius: 0;}
+
+.edit-col {
+    padding-right: 0;
+    padding-left: 6px;
+    text-align: left;
+}
+
+.tabset .tab-edit, .tabset .tab-edit-con {
+    margin-right: 0;margin-left: -5px;
+}
+/*
+.popover.left > .arrow {
+	border-left-width: 0;
+    border-right-color: rgba(0, 0, 0, 0.25);
+    left: -11px;
+}
+.popover.right > .arrow {
+	border-left-color: rgba(0, 0, 0, 0.25);
+    border-right-width: 0;
+    right: -11px;
+}*/
+
+/*.eventsTable .popover.left{float: left;}*/
+/*.eventsTable .popover.right{float: left;}*/
+
+.eventsTable .left-event {
+	/*float: left;*/text-align: left;
+	}
+.eventsTable .right-event {
+	/*float: right;*/
+	}
+
+.popover.left, .eventsTable .popover.left {
+  margin-left: 10px; margin-right: 0;
+}
+
+.popover.left > .arrow {
+  left: -11px;
+  right: auto;
+  border-right-color: #999;
+  border-right-color: rgba(0, 0, 0, .25);
+  border-left-width: 0;
+  border-right-width: 10px;
+}
+.popover.left > .arrow:after {
+  left: 1px;
+  right:auto;
+  border-right-color: #fff;
+  border-left-width: 0;
+  border-right-width: 10px;
+}
+
+.popover.right {
+  margin-left: 0;
+  margin-right: 10px;
+}
+.popover.right > .arrow {
+  right: -11px;
+  border-right-width: 0;
+  border-left-color: #999;
+  border-left-color: rgba(0, 0, 0, .25);
+  border-left-width: 10px;
+}
+.popover.right > .arrow:after {
+  right: 1px;
+  left:auto;
+  border-right-width: 0;
+  border-left-color: #fff;
+  border-left-width: 10px;
+}
+.eventsTable .popover-title > div:first-child {padding-right: 0;padding-left:120px;}
+
+.eventsTable .popover-title > div:last-child {right: auto;left: 10px;}
+.tab-pane .line-row{
+margin-left: 0;
+    margin-right: -10px;
+}
+.modal-footer .opp-float{
+	float: right;
+}
+
+/*.identity-link{
+	float: right;
+}*/
+.identity-link > .identity-info{float: left;}
+
+.colData{padding:0 15px 0 10px;}
+
+.profile-col {text-align: left; padding-right: 0;padding-left: 40px;}
+.profile-col .btn-group{text-align: right;} 
+
+.alert-icon {margin-left: 5px;margin-right: 0;}
+.alert-content{margin-left: 35px;}
+
+svg{direction: ltr}
+/** bootstrap **/
+
+.alert-dismissable{
+	padding-right:15px;
+}
+ .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
+    border-radius: 0 4px 4px 0;
+}
+.btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+    border-radius: 4px 0 0 4px;
+}
+ 
+.btn-group .btn + .btn, .btn-group .btn + .btn-group, .btn-group .btn-group + .btn, .btn-group .btn-group + .btn-group {
+    margin-left: 0;
+    margin-right: -1px;
+}
+.btn-group > .btn, .btn-group-vertical > .btn, .tabsCon .nav-tabs > li{float: right;}
+ .navbar-right{
+	float: left !important;
+}
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group{margin-left: 0; margin-right: -1px;}
+
+ .glyphicon-chevron-right:before {
+    content: "";
+}
+ .glyphicon-chevron-left:before {
+    content: "";
+}
+ .input-group .form-control:first-child,  .input-group-addon:first-child,  .input-group-btn:first-child > .btn,  .input-group-btn:first-child > .btn-group > .btn,  .input-group-btn:first-child > .dropdown-toggle,  .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),  .input-group-btn:last-child > .btn-group:not(:last-child) > .btn {
+border-bottom-right-radius: 4px;
+border-top-right-radius: 4px;
+border-bottom-left-radius: 0;
+border-top-left-radius: 0;
+}
+
+ .input-group .form-control:last-child,  .input-group-addon:last-child,  .input-group-btn:last-child > .btn,  .input-group-btn:last-child > .btn-group > .btn,  .input-group-btn:last-child > .dropdown-toggle,  .input-group-btn:first-child > .btn:not(:first-child),  .input-group-btn:first-child > .btn-group:not(:first-child) > .btn {
+border-bottom-right-radius: 0;
+border-top-right-radius: 0;
+border-bottom-left-radius: 4px;
+border-top-left-radius: 4px;
+}
+
+ .input-group-addon:first-child{
+border: 1px solid #CCCCCC;
+border-left: 0 none;
+}
+
+ .input-group-addon:last-child{
+border: 1px solid #CCCCCC;
+border-right: 0 none;
+}
+ .modal-footer{
+	text-align: left;
+}
+ .col-sm-1,  .col-sm-2,  .col-sm-3,  .col-sm-4,  .col-sm-5,  .col-sm-6,  .col-sm-7,  .col-sm-8,  .col-sm-9,  .col-sm-10,  .col-sm-11,  .col-sm-12,  .col-md-1,  .col-md-2,  .col-md-3,  .col-md-4,  .col-md-5,  .col-md-6,  .col-md-7,  .col-md-8,  .col-md-9,  .col-md-10,  .col-md-11,  .col-md-12,  .col-lg-1,  .col-lg-2,  .col-lg-3,  .col-lg-4,  .col-lg-5,  .col-lg-6,  .col-lg-7,  .col-lg-8,  .col-lg-9,  .col-lg-10,  .col-lg-11,  .col-lg-12,  .col-xs-1,  .col-xs-2,  .col-xs-3,  .col-xs-4,  .col-xs-5,  .col-xs-6,  .col-xs-7,  .col-xs-8,  .col-xs-9,  .col-xs-10,  .col-xs-11,  .col-xs-12 {
+    float: right;
+  }
+
+   .dropdown-menu{
+  float: right;
+  /*right: 0;*/
+  }
+  
+   .alert-dismissable .close{
+  right: 0;
+  left: -21 px;
+  }
+  
+   .close{
+  float: left;
+  }
+  
+ .popover{
+	text-align: right;
+}
+ .pull-right{
+	float: left !important;
+}
+
+ .pull-left{
+	float: right !important;
+}

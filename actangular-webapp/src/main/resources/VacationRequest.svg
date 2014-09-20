@@ -1,0 +1,216 @@
+<svg id="sid-3AE98A63-BFAE-47AE-AC12-EEB6AAD7C214" width="688" height="329" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"><defs><marker id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFstart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFconditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFdefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFarrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="inherit"/>
+			<path id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Bstart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Bconditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="inherit"/>
+			<path id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Bdefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Bend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Barrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07Astart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07Aconditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="inherit"/>
+			<path id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07Adefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07Aend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07Aarrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="inherit"/>
+			<path id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker></defs><g stroke="black" font-family="Verdana, sans-serif" font-size-adjust="none" font-style="normal" font-variant="normal" font-weight="normal" line-heigth="normal" font-size="12"><g class="stencils" transform="translate(-222, -111)"><g class="me"/><g class="children"><g id="thestart" sid="svg-sid-14C4178D-0648-4575-BC70-7472D8208B54"><g class="stencils" transform="translate(247, 161)"><g class="me"><g pointer-events="fill" id="sid-0DF87278-8B43-41B8-9511-7ED25765D547" title="Start event">
+  
+    <defs id="sid-0DF87278-8B43-41B8-9511-7ED25765D547_sid-0DF87278-8B43-41B8-9511-7ED25765D547_5">
+		<radialGradient id="sid-0DF87278-8B43-41B8-9511-7ED25765D547background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-0DF87278-8B43-41B8-9511-7ED25765D547_sid-0DF87278-8B43-41B8-9511-7ED25765D547_6"/>
+			<stop id="sid-0DF87278-8B43-41B8-9511-7ED25765D547fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <circle id="sid-0DF87278-8B43-41B8-9511-7ED25765D547bg_frame" cx="15" cy="15" r="15" stroke="black" fill="url(#sid-0DF87278-8B43-41B8-9511-7ED25765D547background) white" stroke-width="1"/>
+	<text font-size="11" id="sid-0DF87278-8B43-41B8-9511-7ED25765D547text_name" x="15" y="32" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 32)" text-anchor="middle"/>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(247, 161)"><g pointer-events="all" display="none" transform="translate(7, 7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="handleRequest" sid="svg-sid-A25B8DEF-9E5D-4607-AF9D-3EBA90F85E52"><g class="stencils" transform="translate(362, 136)"><g class="me"><g pointer-events="fill" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F" title="User task">
+  	<defs id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_17">
+		<radialGradient id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fbackground" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_18"/>
+			<stop id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Ffill_el" offset="100%" stop-color="#ffffcc" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+	<rect id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Ftext_frame" x="1" y="1" width="119" height="78" rx="10" ry="10" stroke="none" stroke-width="0" fill="none"/>
+	<rect id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fbg_frame" x="0" y="0" width="125" height="79" rx="10" ry="10" stroke="black" stroke-width="1" fill="url(#sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fbackground) #ffffcc"/>
+		<text font-size="12" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Ftext_name" x="62" y="39" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 62 39)" text-anchor="middle"><tspan x="62" y="39" dy="-1" id="ext-gen1329">Handle vacation</tspan><tspan x="62" y="39" dy="11" id="ext-gen1328">request</tspan></text>
+	
+	<g id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255FuserTask" transform="scale(0.7,0.7) translate(8,8)">
+		<path style="opacity:1;fill:#F4F6F7;stroke:#000000" d="M0.585,24.167h24.083v-7.833c0,0-2.333-3.917-7.083-5.167h-9.25    c-4.417,1.333-7.833,5.75-7.833,5.75L0.585,24.167z" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_19"/>
+		<path style="opacity:1;fill:none;stroke:#000000" d="M 6 20 L 6 24" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_20"/>
+		<path style="opacity:1;fill:none;stroke:#000000" d="M 20 20 L 20 24" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_21"/>
+		<circle fill="#000000" stroke="#000000" cx="13.002" cy="5.916" r="5.417" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_22"/>
+		<path style="opacity:1;fill:#F0EFF0;stroke:#000000" d="M8.043,7.083c0,0,2.814-2.426,5.376-1.807s4.624-0.693,4.624-0.693    c0.25,1.688,0.042,3.75-1.458,5.584c0,0,1.083,0.75,1.083,1.5s0.125,1.875-1,3s-5.5,1.25-6.75,0S8.668,12.834,8.668,12    s0.583-1.25,1.25-1.917C8.835,9.5,7.419,7.708,8.043,7.083z" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_23"/>
+	</g>
+  
+	<g id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Floop" display="none">
+      <path style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.0999999;stroke-dasharray:none;stroke-opacity:1" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fpath2396" d=" M59.639349 74.188343  L59.639349 77.188343  L56.639349 77.188343  M59.639349 77.188343  A4.875 4.875 0 1 1 63.670301 77.189378 "/>
+    </g>
+	
+	
+	<g id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fparallel" display="none">
+		<path fill="none" stroke="black" d=" M58.5 69  v8  M62.5 69  v8  M66.5 69  v8 " stroke-width="2" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_24"/>
+	</g>
+	<g id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fsequential" display="none">
+		<path fill="none" stroke="#000000" stroke-width="2" d=" M58.75 75  h10  M58.75 71  h10  M58.75 67  h10 " id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_25"/>
+	</g>
+	
+
+	<g id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255Fcompensation" display="none">
+		<path fill="none" stroke="black" d=" M77.5 73  L81.5 69  L81.5 77  L77.5 73  L77.5 69  L73.5 73  L77.5 77  L77.5 73 " stroke-width="1" id="sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_sid-BBF9DABF-1D1F-4C32-9D3D-E9B22B39255F_26"/>
+	</g>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(362, 136)"><g pointer-events="all" display="none" transform="translate(-7, 11.75)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 31.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 51.25)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(23.25, 70)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(54.5, 70)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(85.75, 70)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(116, 11.75)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(116, 31.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(116, 51.25)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(23.25, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(54.5, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(85.75, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(54.5, 31.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="approvalGateway" sid="svg-sid-03C38195-8CAB-4F4F-9C55-A3A52FEFCF94"><g class="stencils" transform="translate(527, 156)"><g class="me"><g id="sid-C14AC869-5E75-498C-933C-082E2622A36D" title="Exclusive gateway">
+  
+    <defs id="sid-C14AC869-5E75-498C-933C-082E2622A36D_sid-C14AC869-5E75-498C-933C-082E2622A36D_4">
+		<radialGradient id="sid-C14AC869-5E75-498C-933C-082E2622A36Dbackground" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-C14AC869-5E75-498C-933C-082E2622A36D_sid-C14AC869-5E75-498C-933C-082E2622A36D_5"/>
+			<stop id="sid-C14AC869-5E75-498C-933C-082E2622A36Dfill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <path d=" M0 20.5  L20.5 0  L40 20.5  L20.5 40  z" id="sid-C14AC869-5E75-498C-933C-082E2622A36Dbg_frame" fill="url(#sid-C14AC869-5E75-498C-933C-082E2622A36Dbackground) white" stroke="black" style="stroke-width:1"/>
+    <g id="sid-C14AC869-5E75-498C-933C-082E2622A36Dcross">
+      <path id="sid-C14AC869-5E75-498C-933C-082E2622A36Dcrosspath" stroke="black" fill="black" d=" M13.25 12.05  L17.25 12.05  L27.65 28.95  L23.75 28.95  z" style="stroke-width:1"/>
+      <path id="sid-C14AC869-5E75-498C-933C-082E2622A36Dcrosspath2" stroke="black" fill="black" d=" M13.25 28.95  L23.75 12.05  L27.65 12.05  L17.25 28.95  z" style="stroke-width:1"/>
+    </g>
+	
+	<text id="sid-C14AC869-5E75-498C-933C-082E2622A36Dtext_name" x="30" y="30" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 30 30)" text-anchor="start"/>
+	
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(527, 156)"><g pointer-events="all" display="none" transform="translate(12.5, 12.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="vacationApproved" sid="svg-sid-E68097EA-8834-4231-A23C-E2E4716AB742"><g class="stencils" transform="translate(672, 136)"><g class="me"><g pointer-events="fill" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451" title="User task">
+  	<defs id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_17">
+		<radialGradient id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_18"/>
+			<stop id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451fill_el" offset="100%" stop-color="#ffffcc" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+	<rect id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451text_frame" x="1" y="1" width="105" height="80" rx="10" ry="10" stroke="none" stroke-width="0" fill="none"/>
+	<rect id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451bg_frame" x="0" y="0" width="111.00000000000001" height="81" rx="10" ry="10" stroke="black" stroke-width="1" fill="url(#sid-A39C18DE-9A51-45CD-9897-FC51A186F451background) #ffffcc"/>
+		<text font-size="12" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451text_name" x="55" y="40" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 55 40)" text-anchor="middle"><tspan x="55" y="40" dy="-1">Vacation</tspan><tspan x="55" y="40" dy="11">Approved</tspan></text>
+	
+	<g id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451userTask" transform="scale(0.7,0.7) translate(8,8)">
+		<path style="opacity:1;fill:#F4F6F7;stroke:#000000" d="M0.585,24.167h24.083v-7.833c0,0-2.333-3.917-7.083-5.167h-9.25    c-4.417,1.333-7.833,5.75-7.833,5.75L0.585,24.167z" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_19"/>
+		<path style="opacity:1;fill:none;stroke:#000000" d="M 6 20 L 6 24" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_20"/>
+		<path style="opacity:1;fill:none;stroke:#000000" d="M 20 20 L 20 24" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_21"/>
+		<circle fill="#000000" stroke="#000000" cx="13.002" cy="5.916" r="5.417" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_22"/>
+		<path style="opacity:1;fill:#F0EFF0;stroke:#000000" d="M8.043,7.083c0,0,2.814-2.426,5.376-1.807s4.624-0.693,4.624-0.693    c0.25,1.688,0.042,3.75-1.458,5.584c0,0,1.083,0.75,1.083,1.5s0.125,1.875-1,3s-5.5,1.25-6.75,0S8.668,12.834,8.668,12    s0.583-1.25,1.25-1.917C8.835,9.5,7.419,7.708,8.043,7.083z" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_23"/>
+	</g>
+  
+	<g id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451loop" display="none">
+      <path style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.0999999;stroke-dasharray:none;stroke-opacity:1" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451path2396" d=" M52.90200860000001 76.188343  L52.90200860000001 79.188343  L49.90200860000001 79.188343  M52.90200860000001 79.188343  A4.875 4.875 0 1 1 56.93296060000001 79.189378 "/>
+    </g>
+	
+	
+	<g id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451parallel" display="none">
+		<path fill="none" stroke="black" d=" M51.5 71  v8  M55.5 71  v8  M59.5 71  v8 " stroke-width="2" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_24"/>
+	</g>
+	<g id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451sequential" display="none">
+		<path fill="none" stroke="#000000" stroke-width="2" d=" M51.61 77  h10  M51.61 73  h10  M51.61 69  h10 " id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_25"/>
+	</g>
+	
+
+	<g id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451compensation" display="none">
+		<path fill="none" stroke="black" d=" M68.82000000000001 75  L72.82000000000001 71  L72.82000000000001 79  L68.82000000000001 75  L68.82000000000001 71  L64.82000000000001 75  L68.82000000000001 79  L68.82000000000001 75 " stroke-width="1" id="sid-A39C18DE-9A51-45CD-9897-FC51A186F451_sid-A39C18DE-9A51-45CD-9897-FC51A186F451_26"/>
+	</g>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(672, 136)"><g pointer-events="all" display="none" transform="translate(-7, 12.25)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 32.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 52.75)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(19.750000000000004, 72)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(47.50000000000001, 72)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(75.25000000000001, 72)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(102, 12.25)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(102, 32.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(102, 52.75)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(19.750000000000004, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(47.50000000000001, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(75.25000000000001, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(47.50000000000001, 32.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="end1" sid="svg-sid-4A39D761-284A-4EEE-9A22-26FA51BA35EC"><g class="stencils" transform="translate(857, 162)"><g class="me"><g pointer-events="fill" id="sid-4B265139-F745-4156-AC16-A784AC54B7EB" title="End event">
+
+    <defs id="sid-4B265139-F745-4156-AC16-A784AC54B7EB_sid-4B265139-F745-4156-AC16-A784AC54B7EB_5">
+		<radialGradient id="sid-4B265139-F745-4156-AC16-A784AC54B7EBbackground" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-4B265139-F745-4156-AC16-A784AC54B7EB_sid-4B265139-F745-4156-AC16-A784AC54B7EB_6"/>
+			<stop id="sid-4B265139-F745-4156-AC16-A784AC54B7EBfill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <circle id="sid-4B265139-F745-4156-AC16-A784AC54B7EBbg_frame" cx="14" cy="14" r="14" stroke="black" fill="url(#sid-4B265139-F745-4156-AC16-A784AC54B7EBbackground) white" stroke-width="3"/>
+	<text font-size="11" id="sid-4B265139-F745-4156-AC16-A784AC54B7EBtext_name" x="14" y="30" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 14 30)" text-anchor="middle"/>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(857, 162)"><g pointer-events="all" display="none" transform="translate(6, 6)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="adjustRequest" sid="svg-sid-B999620F-0664-464B-8580-A71ABEF54BE6"><g class="stencils" transform="translate(671, 235)"><g class="me"><g pointer-events="fill" id="sid-78649616-0E12-4033-88D5-72338193E74A" title="User task">
+  	<defs id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_17">
+		<radialGradient id="sid-78649616-0E12-4033-88D5-72338193E74Abackground" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_18"/>
+			<stop id="sid-78649616-0E12-4033-88D5-72338193E74Afill_el" offset="100%" stop-color="#ffffcc" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+	<rect id="sid-78649616-0E12-4033-88D5-72338193E74Atext_frame" x="1" y="1" width="109" height="76" rx="10" ry="10" stroke="none" stroke-width="0" fill="none"/>
+	<rect id="sid-78649616-0E12-4033-88D5-72338193E74Abg_frame" x="0" y="0" width="114.99999999999999" height="77" rx="10" ry="10" stroke="black" stroke-width="1" fill="url(#sid-78649616-0E12-4033-88D5-72338193E74Abackground) #ffffcc"/>
+		<text font-size="12" id="sid-78649616-0E12-4033-88D5-72338193E74Atext_name" x="57" y="38" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 57 38)" text-anchor="middle"><tspan x="57" y="38" dy="-1" id="ext-gen766">Adjust vacation</tspan><tspan x="57" y="38" dy="11" id="ext-gen767">request</tspan></text>
+	
+	<g id="sid-78649616-0E12-4033-88D5-72338193E74AuserTask" transform="scale(0.7,0.7) translate(8,8)">
+		<path style="opacity:1;fill:#F4F6F7;stroke:#000000" d="M0.585,24.167h24.083v-7.833c0,0-2.333-3.917-7.083-5.167h-9.25    c-4.417,1.333-7.833,5.75-7.833,5.75L0.585,24.167z" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_19"/>
+		<path style="opacity:1;fill:none;stroke:#000000" d="M 6 20 L 6 24" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_20"/>
+		<path style="opacity:1;fill:none;stroke:#000000" d="M 20 20 L 20 24" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_21"/>
+		<circle fill="#000000" stroke="#000000" cx="13.002" cy="5.916" r="5.417" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_22"/>
+		<path style="opacity:1;fill:#F0EFF0;stroke:#000000" d="M8.043,7.083c0,0,2.814-2.426,5.376-1.807s4.624-0.693,4.624-0.693    c0.25,1.688,0.042,3.75-1.458,5.584c0,0,1.083,0.75,1.083,1.5s0.125,1.875-1,3s-5.5,1.25-6.75,0S8.668,12.834,8.668,12    s0.583-1.25,1.25-1.917C8.835,9.5,7.419,7.708,8.043,7.083z" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_23"/>
+	</g>
+  
+	<g id="sid-78649616-0E12-4033-88D5-72338193E74Aloop" display="none">
+      <path style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.0999999;stroke-dasharray:none;stroke-opacity:1" id="sid-78649616-0E12-4033-88D5-72338193E74Apath2396" d=" M54.82696299999999 72.188343  L54.82696299999999 75.188343  L51.82696299999999 75.188343  M54.82696299999999 75.188343  A4.875 4.875 0 1 1 58.85791499999999 75.189378 "/>
+    </g>
+	
+	
+	<g id="sid-78649616-0E12-4033-88D5-72338193E74Aparallel" display="none">
+		<path fill="none" stroke="black" d=" M53.5 67  v8  M57.5 67  v8  M61.5 67  v8 " stroke-width="2" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_24"/>
+	</g>
+	<g id="sid-78649616-0E12-4033-88D5-72338193E74Asequential" display="none">
+		<path fill="none" stroke="#000000" stroke-width="2" d=" M53.65 73  h10  M53.65 69  h10  M53.65 65  h10 " id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_25"/>
+	</g>
+	
+
+	<g id="sid-78649616-0E12-4033-88D5-72338193E74Acompensation" display="none">
+		<path fill="none" stroke="black" d=" M71.29999999999998 71  L75.29999999999998 67  L75.29999999999998 75  L71.29999999999998 71  L71.29999999999998 67  L67.29999999999998 71  L71.29999999999998 75  L71.29999999999998 71 " stroke-width="1" id="sid-78649616-0E12-4033-88D5-72338193E74A_sid-78649616-0E12-4033-88D5-72338193E74A_26"/>
+	</g>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(671, 235)"><g pointer-events="all" display="none" transform="translate(-7, 11.25)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 30.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 49.75)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(20.749999999999996, 68)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(49.49999999999999, 68)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(78.25, 68)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(106, 11.25)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(106, 30.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(106, 49.75)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(20.749999999999996, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(49.49999999999999, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(78.25, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(49.49999999999999, 30.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="resendGateway" sid="svg-sid-6076D0E9-3D7E-4611-8B9C-77111C62D52C"><g class="stencils" transform="translate(706, 375)"><g class="me"><g id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830" title="Exclusive gateway">
+  
+    <defs id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830_sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830_4">
+		<radialGradient id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830_sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830_5"/>
+			<stop id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <path d=" M0 20.5  L20.5 0  L40 20.5  L20.5 40  z" id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830bg_frame" fill="url(#sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830background) white" stroke="black" style="stroke-width:1"/>
+    <g id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830cross">
+      <path id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830crosspath" stroke="black" fill="black" d=" M13.25 12.05  L17.25 12.05  L27.65 28.95  L23.75 28.95  z" style="stroke-width:1"/>
+      <path id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830crosspath2" stroke="black" fill="black" d=" M13.25 28.95  L23.75 12.05  L27.65 12.05  L17.25 28.95  z" style="stroke-width:1"/>
+    </g>
+	
+	<text id="sid-0E27F0A9-CE30-490B-9FA0-CAE1BA277830text_name" x="30" y="30" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 30 30)" text-anchor="start"/>
+	
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(706, 375)"><g pointer-events="all" display="none" transform="translate(12.5, 12.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="end2" sid="svg-sid-D6AEF2D4-4480-4D05-9A2A-0A1260F40E42"><g class="stencils" transform="translate(856, 381)"><g class="me"><g pointer-events="fill" id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382" title="End event">
+
+    <defs id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382_sid-A1BF3EC6-B857-4655-AA77-350CB79F2382_5">
+		<radialGradient id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382_sid-A1BF3EC6-B857-4655-AA77-350CB79F2382_6"/>
+			<stop id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <circle id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382bg_frame" cx="14" cy="14" r="14" stroke="black" fill="url(#sid-A1BF3EC6-B857-4655-AA77-350CB79F2382background) white" stroke-width="3"/>
+	<text font-size="11" id="sid-A1BF3EC6-B857-4655-AA77-350CB79F2382text_name" x="14" y="30" stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 14 30)" text-anchor="middle"/>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(856, 381)"><g pointer-events="all" display="none" transform="translate(6, 6)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g></g><g class="edge"><g id="flow1" sid="svg-sid-ACFE0167-D8CC-4682-922C-02ADCC0E1E6F"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91_1" d="M277.5996046413058 175.9520012164883L361.2929734836942 175.6944831585117 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91start)" marker-end="url(#sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91end)"/></g><text id="sid-5163409C-0DDC-4760-B2F4-F34AA5D1DA91text_name" x="285" y="167" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(359.82370585015684 277 175)" text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow2" sid="svg-sid-5E3B8808-AA58-4453-9A73-DAB68F8CB34C"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CF_1" d="M487.9609044525273 176.01594231262217L526.3203455474727 176.32780768737783 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFstart)" marker-end="url(#sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFend)"/></g><text id="sid-0C8F5EF2-EE97-450C-9435-212564AEC0CFtext_name" x="495" y="168" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0.46580908276501987 487 176)" text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow5" sid="svg-sid-AFDBBB79-17E6-4897-A5B6-71F5F818459D"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70_1" d="M783.4335876798104 176.305109450593L856.5468810701896 176.050359299407 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-D5178E12-A15E-4616-8B11-76C8931FBB70start)" marker-end="url(#sid-D5178E12-A15E-4616-8B11-76C8931FBB70end)"/></g><text id="sid-D5178E12-A15E-4616-8B11-76C8931FBB70text_name" x="791" y="168" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(359.8003639454756 783 176)" text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow6" sid="svg-sid-D3AD858B-5E32-4481-8BD3-AA7FB484EA11"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03_1" d="M727.8586087597607 312.6248656545974L726.8445162402393 374.4845093454026 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-A6CD1677-AA63-41EC-947A-69B892A62E03start)" marker-end="url(#sid-A6CD1677-AA63-41EC-947A-69B892A62E03end)"/></g><text id="sid-A6CD1677-AA63-41EC-947A-69B892A62E03text_name" x="719" y="304" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-89.06080905426421 727 312)" text-anchor="end"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow3" sid="svg-sid-AD56DF79-064F-4322-A541-6EF9DEC9D868"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7_1" d="M547.5 196.4453125L547.5 273.5 L670.9375 273.5 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7start)" marker-end="url(#sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7end)"/></g><text id="sid-8EA7BE0E-ED5C-4916-9D89-F622C84E4CD7text_name" x="539" y="188" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 547 196)" text-anchor="end"><tspan dy="0" x="539" y="188" id="ext-gen628">Rejected</tspan></text></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow4" sid="svg-sid-F0B95080-C14B-4E89-B9B0-740D4D033DC4"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975B_1" d="M567.484375 176.5L671.65625 176.5 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Bstart)" marker-end="url(#sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Bend)"/></g><text id="sid-C7C6FE7E-67CF-4A32-91C0-42DA5845975Btext_name" x="575" y="168" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 567 176)" text-anchor="start"><tspan dy="0" x="575" y="168" id="ext-gen629">Approved</tspan></text></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow8" sid="svg-sid-A99F9A90-C986-4BCB-8A07-A61B290A4E8D"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55_1" d="M705.4453125 395.5L424.5 395.5 L424.5 215.171875 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-DD342A76-C0CA-4A15-A6B0-E65752940F55start)" marker-end="url(#sid-DD342A76-C0CA-4A15-A6B0-E65752940F55end)"/></g><text id="sid-DD342A76-C0CA-4A15-A6B0-E65752940F55text_name" x="697" y="387" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 705 395)" text-anchor="end"><tspan dy="0" x="697" y="387" id="ext-gen770">Resend</tspan></text></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="flow7" sid="svg-sid-C840E872-4FEA-4FD9-B49A-72C7BB8916C1"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07A_1" d="M746.5585876798104 395.430109450593L855.5468810701896 395.050359299407 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-AC754A35-16E3-4026-9396-EB79A9DDF07Astart)" marker-end="url(#sid-AC754A35-16E3-4026-9396-EB79A9DDF07Aend)"/></g><text id="sid-AC754A35-16E3-4026-9396-EB79A9DDF07Atext_name" x="754" y="387" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(359.80036394547557 746 395)" text-anchor="start"><tspan dy="0" x="754" y="387" id="ext-gen1117">Don't Resend</tspan></text></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g></g></g></g></svg>

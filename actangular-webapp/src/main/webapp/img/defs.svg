@@ -1,0 +1,17 @@
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  	<defs>
+  		<marker id="_start_marker_conditional_default" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1"/>
+	  		<path d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1"/>
+	  	</marker>
+		<marker id="_start_marker_conditional" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1"/>
+	  	</marker>
+		<marker id="_start_marker_default" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1"/>
+	  	</marker>
+		<marker id="_end_marker" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker>
+	</defs>
+  </svg>

@@ -1,0 +1,14 @@
+.header{background-color: #eeeeee}
+.left-section .innerContent{background-color: #eeeeee}
+/*.detail{background-color: #f5f5f5}*/
+.right-section .controls{background-color: #cdcdcd}
+.right-section .innerContent{background-color: #fff}
+
+.btn-profile{
+	background-color: #eeeeee;border-color: #eeeeee;color: #000;
+}
+.btn-profile:hover, .btn-profile:focus, 
+.btn-profile:active, .btn-profile.active, 
+.open .dropdown-toggle.btn-profile{
+	background-color: #dddddd;border-color: #dddddd;color: #000;
+}

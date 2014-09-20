@@ -1,0 +1,218 @@
+<svg id="sid-5931536D-14F7-4CD6-847F-613CD0A53074" width="773" height="280" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"><defs><marker id="sid-F7E6A255-107F-4388-AF0D-934A916192A7start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-F7E6A255-107F-4388-AF0D-934A916192A7conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-F7E6A255-107F-4388-AF0D-934A916192A7default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-F7E6A255-107F-4388-AF0D-934A916192A7end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-F7E6A255-107F-4388-AF0D-934A916192A7arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-5F6C7F88-39DA-4865-8657-462AD478229Cstart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-5F6C7F88-39DA-4865-8657-462AD478229Cconditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-5F6C7F88-39DA-4865-8657-462AD478229Cdefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-5F6C7F88-39DA-4865-8657-462AD478229Cend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-5F6C7F88-39DA-4865-8657-462AD478229Carrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26Dstart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26Dconditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26Ddefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26Dend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26Darrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Estart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Econditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Edefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Eend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Earrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517start" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517conditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517default" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517end" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517arrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker><marker id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Dstart" refX="1" refY="5" markerUnits="userSpaceOnUse" markerWidth="17" markerHeight="11" orient="auto">
+	  		<path id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Dconditional" d="M 0 6 L 8 1 L 15 5 L 8 9 L 1 5" fill="white" stroke="black" stroke-width="1" display="none"/>
+			<path id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Ddefault" d="M 5 0 L 11 10" fill="white" stroke="black" stroke-width="1" display="none"/>
+	  	</marker><marker id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Dend" refX="15" refY="6" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="12" orient="auto">
+	  		<path id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Darrowhead" d="M 0 1 L 15 6 L 0 11z" fill="black" stroke="black" stroke-linejoin="round" stroke-width="2"/>
+	  	</marker></defs><g stroke="black" font-family="Verdana, sans-serif" font-size-adjust="none" font-style="normal" font-variant="normal" font-weight="normal" line-heigth="normal" font-size="12"><g class="stencils" transform="translate(-111, -5)"><g class="me"/><g class="children"><g id="thestart" sid="svg-sid-6176DB54-753A-4B19-866B-D88AE871F223"><g class="stencils" transform="translate(136, 127)"><g class="me"><g pointer-events="fill" id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622" title="Start event">
+  
+    <defs id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622_sid-2F89A881-F2B3-478D-9A93-AD9F076AE622_5">
+		<radialGradient id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622_sid-2F89A881-F2B3-478D-9A93-AD9F076AE622_6"/>
+			<stop id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <circle id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622bg_frame" cx="15" cy="15" r="15" stroke="black" fill="url(#sid-2F89A881-F2B3-478D-9A93-AD9F076AE622background) white" stroke-width="1"/>
+	<text font-size="11" id="sid-2F89A881-F2B3-478D-9A93-AD9F076AE622text_name" x="15" y="32"  stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 32)"  text-anchor="middle"/>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(136, 127)"><g pointer-events="all" display="none" transform="translate(7, 7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="userTask1" sid="svg-sid-B9B4E598-2619-45C4-A217-318A6D438B00"><g class="stencils" transform="translate(231, 102)"><g class="me"><g pointer-events="fill"  id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136" title="User task">
+  	<defs id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_17">
+		<radialGradient id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_18"/>
+			<stop id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136fill_el" offset="100%" stop-color="#ffffcc" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+	<rect id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136text_frame" x="1" y="1" width="94" height="79" rx="10" ry="10" stroke="none" stroke-width="0" fill="none"/>
+	<rect id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136bg_frame" x="0" y="0" width="100" height="80" rx="10" ry="10" stroke="black" stroke-width="1" fill="url(#sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136background) #ffffcc"/>
+		<text font-size="12" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136text_name" x="50" y="40"   stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 40)"  text-anchor="middle"><tspan x="50" y="40" dy="5" id="ext-gen348">Task1</tspan></text>
+	
+	<g id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136userTask" transform="scale(0.7,0.7) translate(8,8)">
+		<path  style="opacity:1;fill:#F4F6F7;stroke:#000000" d="M0.585,24.167h24.083v-7.833c0,0-2.333-3.917-7.083-5.167h-9.25    c-4.417,1.333-7.833,5.75-7.833,5.75L0.585,24.167z" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_19"/>
+		<path  style="opacity:1;fill:none;stroke:#000000" d="M 6 20 L 6 24" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_20"/>
+		<path  style="opacity:1;fill:none;stroke:#000000" d="M 20 20 L 20 24" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_21"/>
+		<circle  fill="#000000" stroke="#000000" cx="13.002" cy="5.916" r="5.417" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_22"/>
+		<path  style="opacity:1;fill:#F0EFF0;stroke:#000000" d="M8.043,7.083c0,0,2.814-2.426,5.376-1.807s4.624-0.693,4.624-0.693    c0.25,1.688,0.042,3.75-1.458,5.584c0,0,1.083,0.75,1.083,1.5s0.125,1.875-1,3s-5.5,1.25-6.75,0S8.668,12.834,8.668,12    s0.583-1.25,1.25-1.917C8.835,9.5,7.419,7.708,8.043,7.083z" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_23"/>
+	</g>
+  
+	<g id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136loop" display="none">
+      <path  style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.0999999;stroke-dasharray:none;stroke-opacity:1" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136path2396" d="M 47.608384,75.188343 L 47.608384,78.188343 L 44.608384,78.188343 M 47.608384,78.188343 A 4.875,4.875 0 1 1 51.639336,78.189378"/>
+    </g>
+	
+	
+	<g id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136parallel" display="none">
+		<path  fill="none" stroke="black" d="M46 70 v8 M50 70 v8 M54 70 v8" stroke-width="2" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_24"/>
+	</g>
+	<g id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136sequential" display="none">
+		<path  fill="none" stroke="#000000" stroke-width="2" d="M46,76h10M46,72h10 M46,68h10" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_25"/>
+	</g>
+	
+
+	<g id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136compensation" display="none">
+		<path  fill="none" stroke="black" d="M 62 74 L 66 70 L 66 78 L 62 74 L 62 70 L 58 74 L 62 78 L 62 74" stroke-width="1" id="sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_sid-78FB7FB9-7984-4C79-B8B0-AA5692FB4136_26"/>
+	</g>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(231, 102)"><g pointer-events="all" display="none" transform="translate(-7, 12)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 52)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(17, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(67, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 12)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 52)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(17, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(67, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="parallel1" sid="svg-sid-816618CF-CF83-4BE3-AAD2-52945300FBC8"><g class="stencils" transform="translate(407, 123)"><g class="me"><g id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07" title="Parallel gateway">
+
+    <defs id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07_sid-EA9D699F-248C-4921-BB8B-FF97272A9D07_4">
+		<radialGradient id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07_sid-EA9D699F-248C-4921-BB8B-FF97272A9D07_5"/>
+			<stop id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <path d=" M0 20.5  L20.5 0  L40 20.5  L20.5 40  z" id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07bg_frame" fill="url(#sid-EA9D699F-248C-4921-BB8B-FF97272A9D07background) white" stroke="black" style="stroke-width:1"/>
+    <path d=" M11.25 20.5  L30.25 20.5  M20.5 11.25  L20.5 30.25 " id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07path9" stroke="black" style="fill:none;stroke-width:3"/>
+    
+	<text id="sid-EA9D699F-248C-4921-BB8B-FF97272A9D07text_name" x="30" y="30"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 30 30)"  text-anchor="start"/>
+	
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(407, 123)"><g pointer-events="all" display="none" transform="translate(12.5, 12.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="task2" sid="svg-sid-8837C7DA-2D3B-4017-80D0-C4936BDA3441"><g class="stencils" transform="translate(492, 30)"><g class="me"><g pointer-events="fill"  id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3" title="User task">
+  	<defs id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_17">
+		<radialGradient id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_18"/>
+			<stop id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3fill_el" offset="100%" stop-color="#ffffcc" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+	<rect id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3text_frame" x="1" y="1" width="94" height="79" rx="10" ry="10" stroke="none" stroke-width="0" fill="none"/>
+	<rect id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3bg_frame" x="0" y="0" width="100" height="80" rx="10" ry="10" stroke="black" stroke-width="1" fill="url(#sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3background) #ffffcc"/>
+		<text font-size="12" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3text_name" x="50" y="40"   stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 40)"  text-anchor="middle"><tspan x="50" y="40" dy="5">Task2</tspan></text>
+	
+	<g id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3userTask" transform="scale(0.7,0.7) translate(8,8)">
+		<path  style="opacity:1;fill:#F4F6F7;stroke:#000000" d="M0.585,24.167h24.083v-7.833c0,0-2.333-3.917-7.083-5.167h-9.25    c-4.417,1.333-7.833,5.75-7.833,5.75L0.585,24.167z" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_19"/>
+		<path  style="opacity:1;fill:none;stroke:#000000" d="M 6 20 L 6 24" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_20"/>
+		<path  style="opacity:1;fill:none;stroke:#000000" d="M 20 20 L 20 24" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_21"/>
+		<circle  fill="#000000" stroke="#000000" cx="13.002" cy="5.916" r="5.417" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_22"/>
+		<path  style="opacity:1;fill:#F0EFF0;stroke:#000000" d="M8.043,7.083c0,0,2.814-2.426,5.376-1.807s4.624-0.693,4.624-0.693    c0.25,1.688,0.042,3.75-1.458,5.584c0,0,1.083,0.75,1.083,1.5s0.125,1.875-1,3s-5.5,1.25-6.75,0S8.668,12.834,8.668,12    s0.583-1.25,1.25-1.917C8.835,9.5,7.419,7.708,8.043,7.083z" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_23"/>
+	</g>
+  
+	<g id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3loop" display="none">
+      <path  style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.0999999;stroke-dasharray:none;stroke-opacity:1" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3path2396" d="M 47.608384,75.188343 L 47.608384,78.188343 L 44.608384,78.188343 M 47.608384,78.188343 A 4.875,4.875 0 1 1 51.639336,78.189378"/>
+    </g>
+	
+	
+	<g id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3parallel" display="none">
+		<path  fill="none" stroke="black" d="M46 70 v8 M50 70 v8 M54 70 v8" stroke-width="2" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_24"/>
+	</g>
+	<g id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3sequential" display="none">
+		<path  fill="none" stroke="#000000" stroke-width="2" d="M46,76h10M46,72h10 M46,68h10" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_25"/>
+	</g>
+	
+
+	<g id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3compensation" display="none">
+		<path  fill="none" stroke="black" d="M 62 74 L 66 70 L 66 78 L 62 74 L 62 70 L 58 74 L 62 78 L 62 74" stroke-width="1" id="sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_sid-A7E6A6C7-F1EB-4FAD-B6B5-18A6E3E28CE3_26"/>
+	</g>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(492, 30)"><g pointer-events="all" display="none" transform="translate(-7, 12)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 52)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(17, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(67, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 12)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 52)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(17, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(67, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="task3" sid="svg-sid-9EB65BF7-A04E-457F-8B0B-474BA3E8AF14"><g class="stencils" transform="translate(492, 180)"><g class="me"><g pointer-events="fill"  id="sid-3FD86397-7951-46F8-BE82-654473DE7026" title="User task">
+  	<defs id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_17">
+		<radialGradient id="sid-3FD86397-7951-46F8-BE82-654473DE7026background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_18"/>
+			<stop id="sid-3FD86397-7951-46F8-BE82-654473DE7026fill_el" offset="100%" stop-color="#ffffcc" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+	<rect id="sid-3FD86397-7951-46F8-BE82-654473DE7026text_frame" x="1" y="1" width="94" height="79" rx="10" ry="10" stroke="none" stroke-width="0" fill="none"/>
+	<rect id="sid-3FD86397-7951-46F8-BE82-654473DE7026bg_frame" x="0" y="0" width="100" height="80" rx="10" ry="10" stroke="black" stroke-width="1" fill="url(#sid-3FD86397-7951-46F8-BE82-654473DE7026background) #ffffcc"/>
+		<text font-size="12" id="sid-3FD86397-7951-46F8-BE82-654473DE7026text_name" x="50" y="40"   stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 50 40)"  text-anchor="middle"><tspan x="50" y="40" dy="5" id="ext-gen800">Task3</tspan></text>
+	
+	<g id="sid-3FD86397-7951-46F8-BE82-654473DE7026userTask" transform="scale(0.7,0.7) translate(8,8)">
+		<path  style="opacity:1;fill:#F4F6F7;stroke:#000000" d="M0.585,24.167h24.083v-7.833c0,0-2.333-3.917-7.083-5.167h-9.25    c-4.417,1.333-7.833,5.75-7.833,5.75L0.585,24.167z" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_19"/>
+		<path  style="opacity:1;fill:none;stroke:#000000" d="M 6 20 L 6 24" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_20"/>
+		<path  style="opacity:1;fill:none;stroke:#000000" d="M 20 20 L 20 24" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_21"/>
+		<circle  fill="#000000" stroke="#000000" cx="13.002" cy="5.916" r="5.417" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_22"/>
+		<path  style="opacity:1;fill:#F0EFF0;stroke:#000000" d="M8.043,7.083c0,0,2.814-2.426,5.376-1.807s4.624-0.693,4.624-0.693    c0.25,1.688,0.042,3.75-1.458,5.584c0,0,1.083,0.75,1.083,1.5s0.125,1.875-1,3s-5.5,1.25-6.75,0S8.668,12.834,8.668,12    s0.583-1.25,1.25-1.917C8.835,9.5,7.419,7.708,8.043,7.083z" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_23"/>
+	</g>
+  
+	<g id="sid-3FD86397-7951-46F8-BE82-654473DE7026loop" display="none">
+      <path  style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.0999999;stroke-dasharray:none;stroke-opacity:1" id="sid-3FD86397-7951-46F8-BE82-654473DE7026path2396" d="M 47.608384,75.188343 L 47.608384,78.188343 L 44.608384,78.188343 M 47.608384,78.188343 A 4.875,4.875 0 1 1 51.639336,78.189378"/>
+    </g>
+	
+	
+	<g id="sid-3FD86397-7951-46F8-BE82-654473DE7026parallel" display="none">
+		<path  fill="none" stroke="black" d="M46 70 v8 M50 70 v8 M54 70 v8" stroke-width="2" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_24"/>
+	</g>
+	<g id="sid-3FD86397-7951-46F8-BE82-654473DE7026sequential" display="none">
+		<path  fill="none" stroke="#000000" stroke-width="2" d="M46,76h10M46,72h10 M46,68h10" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_25"/>
+	</g>
+	
+
+	<g id="sid-3FD86397-7951-46F8-BE82-654473DE7026compensation" display="none">
+		<path  fill="none" stroke="black" d="M 62 74 L 66 70 L 66 78 L 62 74 L 62 70 L 58 74 L 62 78 L 62 74" stroke-width="1" id="sid-3FD86397-7951-46F8-BE82-654473DE7026_sid-3FD86397-7951-46F8-BE82-654473DE7026_26"/>
+	</g>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(492, 180)"><g pointer-events="all" display="none" transform="translate(-7, 12)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(-7, 52)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(17, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(67, 71)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 12)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(91, 52)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(17, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(67, -7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g><g pointer-events="all" display="none" transform="translate(42, 32)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="parallel2" sid="svg-sid-674D18F1-F4D6-4863-ABCE-DCDA665A49E2"><g class="stencils" transform="translate(651, 124)"><g class="me"><g id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55" title="Parallel gateway">
+
+    <defs id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55_sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55_4">
+		<radialGradient id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55_sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55_5"/>
+			<stop id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <path d=" M0 20.5  L20.5 0  L40 20.5  L20.5 40  z" id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55bg_frame" fill="url(#sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55background) white" stroke="black" style="stroke-width:1"/>
+    <path d=" M11.25 20.5  L30.25 20.5  M20.5 11.25  L20.5 30.25 " id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55path9" stroke="black" style="fill:none;stroke-width:3"/>
+    
+	<text id="sid-766F6E0E-7738-4D36-8E13-C490F7D2EE55text_name" x="30" y="30"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 30 30)"  text-anchor="start"/>
+	
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(651, 124)"><g pointer-events="all" display="none" transform="translate(12.5, 12.5)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="thetimer" sid="svg-sid-BB7C9971-6891-4752-AD50-294163275C54"><g class="stencils" transform="translate(756, 129)"><g class="me"><g pointer-events="fill" id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1" title="Intermediate timer catching event">
+  
+    <defs id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1_sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1_6">
+		<radialGradient id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1background" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1_sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1_7"/>
+			<stop id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1fill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+    
+    <circle id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1bg_frame" cx="15" cy="15" r="15" stroke="black" fill="url(#sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1background) white" stroke-width="1" style="stroke-dasharray: 5.5, 3"/>
+    	
+    <circle id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1frame2_non_interrupting" cx="15" cy="15" r="12" stroke="black" fill="none" stroke-width="1" style="stroke-dasharray: 4.5, 3"/>
+    
+    <circle id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1frame" cx="15" cy="15" r="15" stroke="black" fill="none" stroke-width="1"/>
+    <circle id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1frame2" cx="15" cy="15" r="12" stroke="black" fill="none" stroke-width="1"/>
+    
+    <circle id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1circle" cx="15" cy="15" r="10" stroke="black" fill="none" stroke-width="1"/>
+    <path id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1path1" d=" M15 5  L15 8  M20 6  L18.5 9  M24 10  L21 11.5  M25 15  L22 15  M24 20  L21 18.5  M20 24  L18.5 21  M15 25  L15 22  M10 24  L11.5 21  M6 20  L9 18.5  M5 15  L8 15  M6 10  L9 11.5  M10 6  L11.5 9  M17 8  L15 15  L19 15 " fill="none" stroke="black"/>
+	<text font-size="11" id="sid-D7ACEC4C-1EE2-4B32-A572-D599055887A1text_name" x="15" y="32"  stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 15 32)"  text-anchor="middle"/>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(756, 129)"><g pointer-events="all" display="none" transform="translate(7, 7)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g><g id="theend" sid="svg-sid-919EA126-02D5-4478-BE7A-AB7A5741B8B5"><g class="stencils" transform="translate(831, 130)"><g class="me"><g pointer-events="fill" id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BD" title="End event">
+
+    <defs id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BD_sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BD_5">
+		<radialGradient id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BDbackground" cx="10%" cy="10%" r="100%" fx="10%" fy="10%">
+			<stop offset="0%" stop-color="#ffffff" stop-opacity="1" id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BD_sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BD_6"/>
+			<stop id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BDfill_el" offset="100%" stop-color="#ffffff" stop-opacity="1"/>
+		</radialGradient>
+	</defs>
+	
+    <circle id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BDbg_frame" cx="14" cy="14" r="14" stroke="black" fill="url(#sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BDbackground) white" stroke-width="3"/>
+	<text font-size="11" id="sid-D4C5363C-1C4C-402A-84B4-0C4197E1F2BDtext_name" x="14" y="30"  stroke="black" stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(0 14 30)"  text-anchor="middle"/>
+  </g></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets" transform="translate(831, 130)"><g pointer-events="all" display="none" transform="translate(6, 6)"><circle cx="8" cy="8" r="4" stroke="none" fill="red" fill-opacity="0.3"/></g></g></g></g></g><g class="edge"><g id="sid-BCBD2CD3-AA7D-463F-9F71-D0B6D5E33594" sid="svg-sid-BCBD2CD3-AA7D-463F-9F71-D0B6D5E33594"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-F7E6A255-107F-4388-AF0D-934A916192A7_1" d="M166.21875 142L230.234375 142 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-F7E6A255-107F-4388-AF0D-934A916192A7start)" marker-end="url(#sid-F7E6A255-107F-4388-AF0D-934A916192A7end)"/></g><text id="sid-F7E6A255-107F-4388-AF0D-934A916192A7text_name" x="174" y="134"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 166 142)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-54D3C67C-43AD-4517-839D-2C0265740CF4" sid="svg-sid-54D3C67C-43AD-4517-839D-2C0265740CF4"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989_1" d="M427.5 122.9765625L427.5 70 L491.80078125 70 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-0CD8114A-A6BF-4FD7-A911-047629ED2989start)" marker-end="url(#sid-0CD8114A-A6BF-4FD7-A911-047629ED2989end)"/></g><text id="sid-0CD8114A-A6BF-4FD7-A911-047629ED2989text_name" x="435" y="114"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(270 427 122)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-B0FF0A87-B9C3-4A3D-B6B4-CA9C60FE49F3" sid="svg-sid-B0FF0A87-B9C3-4A3D-B6B4-CA9C60FE49F3"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907_1" d="M427.5 163.625L427.5 220 L491.80078125 220 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-DF458167-B948-4F36-9C0E-C7FB5382C907start)" marker-end="url(#sid-DF458167-B948-4F36-9C0E-C7FB5382C907end)"/></g><text id="sid-DF458167-B948-4F36-9C0E-C7FB5382C907text_name" x="419" y="155"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(-90 427 163)"  text-anchor="end"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-EF7FC638-5F98-4560-9943-7B76B69758C7" sid="svg-sid-EF7FC638-5F98-4560-9943-7B76B69758C7"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-5F6C7F88-39DA-4865-8657-462AD478229C_1" d="M331.5 142L369 142 L406.968898599451 142.65463618274916 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-5F6C7F88-39DA-4865-8657-462AD478229Cstart)" marker-end="url(#sid-5F6C7F88-39DA-4865-8657-462AD478229Cend)"/></g><text id="sid-5F6C7F88-39DA-4865-8657-462AD478229Ctext_name" x="339" y="134"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 331 142)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-4571641E-21D7-4D93-89ED-E3B936900935" sid="svg-sid-4571641E-21D7-4D93-89ED-E3B936900935"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26D_1" d="M592.3828125 70L671 70 L671 123.921875 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-D89C7202-B181-4F8D-935B-602C1BF8A26Dstart)" marker-end="url(#sid-D89C7202-B181-4F8D-935B-602C1BF8A26Dend)"/></g><text id="sid-D89C7202-B181-4F8D-935B-602C1BF8A26Dtext_name" x="600" y="62"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 592 70)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-FE9A5E3D-780E-4F18-94E1-99D81E25EC8A" sid="svg-sid-FE9A5E3D-780E-4F18-94E1-99D81E25EC8A"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088E_1" d="M592.3828125 220L671 220 L671 164 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Estart)" marker-end="url(#sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Eend)"/></g><text id="sid-64B2B286-AFFC-4B5B-A78D-04C19FBE088Etext_name" x="600" y="212"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 592 220)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-5C992277-C1A5-48C1-8391-C4038F0F0F6F" sid="svg-sid-5C992277-C1A5-48C1-8391-C4038F0F0F6F"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517_1" d="M691.1562373742953 144.4012249378176L755.2304813757047 144.0792438121824 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-BD3E280D-5A91-4159-9109-FB96C23FD517start)" marker-end="url(#sid-BD3E280D-5A91-4159-9109-FB96C23FD517end)"/></g><text id="sid-BD3E280D-5A91-4159-9109-FB96C23FD517text_name" x="699" y="136"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(359.7120839334429 691 144)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g><g id="sid-ECF30C32-612C-47A8-B8C4-EBC00D82DED6" sid="svg-sid-ECF30C32-612C-47A8-B8C4-EBC00D82DED6"><g class="stencils"><g class="me"><g pointer-events="painted"><path id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4D_1" d="M786.453125 144L830.125 144 " stroke="black" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" marker-start="url(#sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Dstart)" marker-end="url(#sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Dend)"/></g><text id="sid-2FFC7422-8033-4188-8129-FA45CEE5FC4Dtext_name" x="794" y="136"  stroke-width="0pt" letter-spacing="-0.01px" transform="rotate(360 786 144)"  text-anchor="start"/></g><g class="children" style="overflow:hidden"/><g class="edge"/></g><g class="controls"><g class="dockers"/><g class="magnets"/></g></g></g></g></g></svg>
