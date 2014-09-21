@@ -240,11 +240,6 @@ angular.module('agApp',
 	$scope.startProcess = function(){
 		$ui.showStartNewProcess();
 	};
-})
-.run(function($rootScope){
-	$rootScope.stopEvent = function (event) {
-		event.preventDefault();event.stopPropagation();
-	};
 });
 
 })();

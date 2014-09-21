@@ -47,7 +47,7 @@ angular.module('ui.bootstrap.tabs').controller('TabsetController', ['$scope', fu
 
 /* agUI */
 angular.module('agUI', 
-		['ui.bootstrap','ui.utils','selectionModel', 'angularFileUpload'])
+		['ui.bootstrap','selectionModel', 'angularFileUpload'])
 .constant('attachmentIcons', 
 		{'image': 'fa fa-file-image-o', 'compressed': 'fa fa-file-archive-o',
 	'application/pdf': 'fa fa-file-pdf-o','application/msword': 'fa fa-file-word-o'})
@@ -161,16 +161,16 @@ angular.module('agUI',
 	};
 	
    this.showSelectIdentity = function (resolve, onOK, onCancel){
-			  this.showModal('views/selectIdentity.html', 'SelectIdentityController', resolve, onOK, onCancel);
+		this.showModal('views/selectIdentity.html', 'SelectIdentityController', resolve, onOK, onCancel);
 	};
 	
 	this.showAddIdentityLink = function (identityType, roles, title, onOK, onCancel){
 		var options = {options: function () {return {title: title, roles:roles, identityType:identityType};}};
-		  this.showModal('views/addIdentityLink.html', 'AddIdentityController', options, onOK, onCancel);
+		this.showModal('views/addIdentityLink.html', 'AddIdentityController', options, onOK, onCancel);
 	};  
 	
 	this.showPostComment = function (resource){
-		  this.showModal('views/postComment.html', 'CommentController', {resource: function(){return resource;}});
+		this.showModal('views/postComment.html', 'CommentController', {resource: function(){return resource;}});
 	};
 	
 	this.showAddVar = function (resource){
@@ -207,19 +207,27 @@ angular.module('agUI',
 	
 	$ui.registar('showNotification',function (notification) {
 		$scope.addAnAlert(notification);
-		
 	});
     
-})/*
+})
 .controller('AgModalController', function($scope, $modalInstance, $injector, options) {
-	$scope.title = options.title;
-	
-	$injector.invoke(options.handler, null, {scope: $scope, modal: $modalInstance, options: options});
+	if(options.title)
+		$scope.title = options.title;
 	
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
 	};
-})*/
+	
+	if(options.handler){
+		var handler = options.handler;
+		if(angular.isString(handler)){
+			handler = $injector.get(handler);
+			$injector.invoke(handler.handle, handler, {scope: $scope, modal: $modalInstance, options: options});
+		}else{
+			$injector.invoke(handler, null, {scope: $scope, modal: $modalInstance, options: options});
+		}
+	}
+})
 .controller('ConfirmationController', function($scope, $modalInstance, options) {
 	$scope.msg = options.msg;
 	$scope.msgParams = options.msgParams;
@@ -350,6 +358,22 @@ angular.module('agUI',
 			  }
        });
 		  }};
+})
+.directive('agClick', function($parse) {
+      return {
+        compile: function($element, attr) {
+          var fn = $parse(attr.agClick);
+          return function(scope, element, attr) {
+            element.on('click', function(event) {
+              scope.$apply(function() {
+                fn(scope, {$event:event});
+                event.preventDefault();
+                event.stopPropagation();
+              });
+            });
+          };
+        }
+      };
 })
 .directive('agDate', function($translate, $filter) {
     return {link: function(scope, element, attrs) {
