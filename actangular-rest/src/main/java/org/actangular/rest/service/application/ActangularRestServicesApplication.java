@@ -14,6 +14,7 @@ package org.actangular.rest.service.application;
 
 import org.actangular.rest.service.api.ActangularRestResponseFactory;
 import org.actangular.rest.service.api.boot.BootResource;
+import org.actangular.rest.service.api.runtime.process.ExtendedProcessInstanceIdentityLinkResource;
 import org.actangular.rest.service.api.runtime.task.ExtendedTaskAttachmentContentResource;
 import org.activiti.rest.common.api.DefaultResource;
 import org.activiti.rest.common.filter.JsonpFilter;
@@ -79,6 +80,7 @@ public class ActangularRestServicesApplication extends
 	
 	protected void attachExtendedResources(Router router) {
 		router.attach("/boot", BootResource.class);
+		router.attach("/runtime/process-instances/{processInstanceId}/identitylinks/users/{identityId}/{type}", ExtendedProcessInstanceIdentityLinkResource.class);
 		router.attach("/runtime/tasks/{taskId}/attachments/{attachmentId}/content", ExtendedTaskAttachmentContentResource.class);
 	}
 	
