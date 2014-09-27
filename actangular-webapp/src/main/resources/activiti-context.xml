@@ -12,14 +12,13 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="createDemoUsersAndGroups" value="true" />
         <property name="createDemoProcessDefinitions" value="true" />
         <property name="createDemoModels" value="true" />
-        <property name="createDemoTasks" value="true" />
+        <property name="demoTasksPerUser" value="25" />
 	</bean>
 
 	<bean id="dbProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	    <property name="locations">
             <list>
                 <value>classpath:db.properties</value>
-                <value>file:activiti-rest.properties</value>
             </list>
         </property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
