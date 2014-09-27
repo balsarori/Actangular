@@ -29,69 +29,65 @@ import org.restlet.resource.Get;
 
 /**
  * @author Bassam Al-Sarori
- *
+ * 
  */
 public class BootResource extends SecuredResource {
 
-	@Get
-	public BootResponse getData(){
-		 if(!authenticate())
-		      return null;
-		 
-		 BootResponse bootResponse = new BootResponse();
-		 
-		 initUsersData(bootResponse);
-		 initGroupsData(bootResponse);
-		 initMemberOfData(bootResponse);
-		 initProcessDefinitionData(bootResponse);
-		 
-		 return bootResponse;
-	}
-	
-	protected void initUsersData(BootResponse bootResponse){
-		List<UserResponse> users = new ArrayList<UserResponse>();
-		List<User> usersList = ActivitiUtil.getIdentityService().createUserQuery().list();
-		for(User user: usersList){
-			users.add(getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory()
-            .createUserResponse(this, user, false));
-			//users.add(new InitUserResponse(user.getId(), user.getFirstName()+" "+user.getLastName()));
-		}
-		
-		bootResponse.setUsers(users);
-	}
-	
-	protected void initGroupsData(BootResponse bootResponse){
-		List<GroupResponse> groups = new ArrayList<GroupResponse>();
-		List<Group> groupsList = ActivitiUtil.getIdentityService().createGroupQuery().list();
-		
-		for(Group group: groupsList){
-			groups.add(getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory()
-            .createGroupResponse(this, group));
-		}
-		
-		bootResponse.setGroups(groups);
-	}
-	
-	protected void initMemberOfData(BootResponse bootResponse){
-		List<String> groups = new ArrayList<String>();
-		List<Group> groupsList = ActivitiUtil.getIdentityService().createGroupQuery().groupMember(loggedInUser).list();
-		
-		for(Group group: groupsList){
-			groups.add(group.getId());
-		}
-		
-		bootResponse.setMemberOf(groups);
-	}
-	
-	protected void initProcessDefinitionData(BootResponse bootResponse) {
-		List<ProcessDefinition> list = ActivitiUtil.getRepositoryService().createProcessDefinitionQuery().list();
-	    List<ProcessDefinitionResponse> responseList = new ArrayList<ProcessDefinitionResponse>();
-	    RestResponseFactory restResponseFactory = getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory();
-	    for (ProcessDefinition processDefinition : list) {
-	      responseList.add(restResponseFactory.createProcessDefinitionResponse(this, processDefinition));
-	    }
-	    bootResponse.setProcessDefinitions(responseList);
-	  }
-	
-	
+  @Get
+  public BootResponse getData() {
+    if (!authenticate())
+      return null;
+
+    BootResponse bootResponse = new BootResponse();
+
+    initUsersData(bootResponse);
+    initGroupsData(bootResponse);
+    initMemberOfData(bootResponse);
+    initProcessDefinitionData(bootResponse);
+
+    return bootResponse;
+  }
+
+  protected void initUsersData(BootResponse bootResponse) {
+    List<UserResponse> users = new ArrayList<UserResponse>();
+    List<User> usersList = ActivitiUtil.getIdentityService().createUserQuery().list();
+    for (User user : usersList) {
+      users.add(getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory().createUserResponse(this, user, false));
+    }
+
+    bootResponse.setUsers(users);
+  }
+
+  protected void initGroupsData(BootResponse bootResponse) {
+    List<GroupResponse> groups = new ArrayList<GroupResponse>();
+    List<Group> groupsList = ActivitiUtil.getIdentityService().createGroupQuery().list();
+
+    for (Group group : groupsList) {
+      groups.add(getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory().createGroupResponse(this, group));
+    }
+
+    bootResponse.setGroups(groups);
+  }
+
+  protected void initMemberOfData(BootResponse bootResponse) {
+    List<String> groups = new ArrayList<String>();
+    List<Group> groupsList = ActivitiUtil.getIdentityService().createGroupQuery().groupMember(loggedInUser).list();
+
+    for (Group group : groupsList) {
+      groups.add(group.getId());
+    }
+
+    bootResponse.setMemberOf(groups);
+  }
+
+  protected void initProcessDefinitionData(BootResponse bootResponse) {
+    List<ProcessDefinition> list = ActivitiUtil.getRepositoryService().createProcessDefinitionQuery().list();
+    List<ProcessDefinitionResponse> responseList = new ArrayList<ProcessDefinitionResponse>();
+    RestResponseFactory restResponseFactory = getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory();
+    for (ProcessDefinition processDefinition : list) {
+      responseList.add(restResponseFactory.createProcessDefinitionResponse(this, processDefinition));
+    }
+    bootResponse.setProcessDefinitions(responseList);
+  }
+
 }

@@ -29,55 +29,56 @@ import org.restlet.resource.Get;
 
 /**
  * @author Bassam Al-Sarori
- *
+ * 
  */
 public class ExtendedTaskAttachmentContentResource extends TaskBaseResource {
 
-	@Get
-	public InputRepresentation getAttachmentContent() {
-		
-	    if(!authenticate())
-	        return null;
-	      
-	      HistoricTaskInstance task = getHistoricTaskFromRequest();
-	      
-	      String attachmentId = getAttribute("attachmentId");
-	      if(attachmentId == null) {
-	        throw new ActivitiIllegalArgumentException("AttachmentId is required.");
-	      }
-	      
-	      Attachment attachment = ActivitiUtil.getTaskService().getAttachment(attachmentId);
-	      
-	      if(attachment == null || !task.getId().equals(attachment.getTaskId())) {
-	        throw new ActivitiObjectNotFoundException("Task '" + task.getId() +"' doesn't have an attachment with id '" + attachmentId + "'.", Attachment.class);
-	      }
-	      
-	      InputStream attachmentStream = ActivitiUtil.getTaskService().getAttachmentContent(attachmentId);
-	      if(attachmentStream == null) {
-	        throw new ActivitiObjectNotFoundException("Attachment with id '" + attachmentId + "' doesn't have content associated with it.", Attachment.class);
-	      }
-	      
-	      // Try extracting media-type is type is set and is a valid type
-	      MediaType type = null;
-	      if(attachment.getType() != null && MediaType.valueOf(attachment.getType()) != null) {
-	        type = MediaType.valueOf(attachment.getType());
-	      }
-	      
-	      if(type == null || !type.isConcrete()) {
-	        type = MediaType.APPLICATION_OCTET_STREAM;
-	      }
-	      
-	      InputRepresentation inputRepresentation = new InputRepresentation(attachmentStream, type);
-	      Disposition disposition = new Disposition(Disposition.TYPE_ATTACHMENT);
-	      disposition.setFilename(attachment.getName());
-	      disposition.getParameters().set("filename*", "UTF-8''"+Reference.encode(attachment.getName()));
-	      try {
-	    	  disposition.setSize(attachmentStream.available());
-	      } catch (IOException e) {
-	    	  e.printStackTrace();
-	      }
-	      inputRepresentation.setDisposition(disposition);
-			
-		return inputRepresentation;
-	}
+  @Get
+  public InputRepresentation getAttachmentContent() {
+    if (!authenticate())
+      return null;
+
+    HistoricTaskInstance task = getHistoricTaskFromRequest();
+
+    String attachmentId = getAttribute("attachmentId");
+    if (attachmentId == null) {
+      throw new ActivitiIllegalArgumentException("AttachmentId is required.");
+    }
+
+    Attachment attachment = ActivitiUtil.getTaskService().getAttachment(attachmentId);
+
+    if (attachment == null || !task.getId().equals(attachment.getTaskId())) {
+      throw new ActivitiObjectNotFoundException("Task '" + task.getId() + "' doesn't have an attachment with id '" + attachmentId + "'.",
+          Attachment.class);
+    }
+
+    InputStream attachmentStream = ActivitiUtil.getTaskService().getAttachmentContent(attachmentId);
+    if (attachmentStream == null) {
+      throw new ActivitiObjectNotFoundException("Attachment with id '" + attachmentId + "' doesn't have content associated with it.",
+          Attachment.class);
+    }
+
+    // Try extracting media-type is type is set and is a valid type
+    MediaType type = null;
+    if (attachment.getType() != null && MediaType.valueOf(attachment.getType()) != null) {
+      type = MediaType.valueOf(attachment.getType());
+    }
+
+    if (type == null || !type.isConcrete()) {
+      type = MediaType.APPLICATION_OCTET_STREAM;
+    }
+
+    InputRepresentation inputRepresentation = new InputRepresentation(attachmentStream, type);
+    Disposition disposition = new Disposition(Disposition.TYPE_ATTACHMENT);
+    disposition.setFilename(attachment.getName());
+    disposition.getParameters().set("filename*", "UTF-8''" + Reference.encode(attachment.getName()));
+    try {
+      disposition.setSize(attachmentStream.available());
+    } catch (IOException e) {
+      //e.printStackTrace();
+    }
+    inputRepresentation.setDisposition(disposition);
+
+    return inputRepresentation;
+  }
 }

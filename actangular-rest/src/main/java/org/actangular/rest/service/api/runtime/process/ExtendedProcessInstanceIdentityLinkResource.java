@@ -11,27 +11,26 @@ import org.restlet.resource.Delete;
 
 /**
  * @author Bassam Al-Sarori
- *
+ * 
  */
-public class ExtendedProcessInstanceIdentityLinkResource extends
-		ProcessInstanceIdentityLinkResource {
+public class ExtendedProcessInstanceIdentityLinkResource extends ProcessInstanceIdentityLinkResource {
 
-	  @Delete
-	  public void deleteIdentityLink() {
-	    if(!authenticate())
-	      return;
-	    
-	    ProcessInstance processInstance = getProcessInstanceFromRequest();
-	    
-	    // Extract and validate identity link from URL
-	    String identityId = getAttribute("identityId");
-	    String type = getAttribute("type");
-	    validateIdentityLinkArguments(identityId, type);
-	    
-	    getIdentityLink(identityId, type, processInstance.getId());
-	    
-	    ActivitiUtil.getRuntimeService().deleteUserIdentityLink(processInstance.getId(),identityId,type);
-	    
-	    setStatus(Status.SUCCESS_NO_CONTENT);
-	  }
+  @Delete
+  public void deleteIdentityLink() {
+    if (!authenticate())
+      return;
+
+    ProcessInstance processInstance = getProcessInstanceFromRequest();
+
+    // Extract and validate identity link from URL
+    String identityId = getAttribute("identityId");
+    String type = getAttribute("type");
+    validateIdentityLinkArguments(identityId, type);
+
+    getIdentityLink(identityId, type, processInstance.getId());
+
+    ActivitiUtil.getRuntimeService().deleteUserIdentityLink(processInstance.getId(), identityId, type);
+
+    setStatus(Status.SUCCESS_NO_CONTENT);
+  }
 }
