@@ -22,7 +22,7 @@ angular.module('agLocale', ['pascalprecht.translate'])
 	function changeLocale(oldLocale, newLocale) {
 		angular.forEach(oldLocale, function(value, key) {
 			if (!newLocale[key]) {
-				delete oldLocale[key];
+				delete oldLocale[key]; // maybe old locale key shouldn't be deleted
 			} else if (angular.isArray(newLocale[key])) {
 				oldLocale[key].length = newLocale[key].length;
 			}

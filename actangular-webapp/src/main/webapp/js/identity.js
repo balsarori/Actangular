@@ -7,15 +7,6 @@ var DEFAULT_USER_PIC = "img/user.png",
 DEFAULT_GROUP_PIC = "img/group.png";
 
 angular.module('agIdentity', [])
-/*.factory('$userCache', ['$cacheFactory', function($cacheFactory) {
-    return $cacheFactory('user-cache');
-  }])
-.factory('$groupCache', ['$cacheFactory', function($cacheFactory) {
-    return $cacheFactory('group-cache');
-  }])*/
-.config(['$sessionProvider', function($sessionProvider) {
-	$sessionProvider.bootListeners.push('$identity');
-}])
 .service('$identity', function($http, $q) {
 	var users = {},  groups = {}, roles = {};
 
@@ -193,7 +184,7 @@ angular.module('agIdentity', [])
 		$modalInstance.dismiss('cancel');
 	};
 })
-.directive('agUser', function($identity, $translate) {
+.directive('agUser', function($identity, $otherwise) {
 	return {link: function(scope, element, attrs) {
 		var otherwiseKey = element.attr('otherwiseKey') || '';
 		scope.$watch(attrs.agUser, function (userId) {
@@ -205,7 +196,7 @@ angular.module('agIdentity', [])
 				});
 			}else{
 				if(otherwiseKey !== '')
-					element.html($translate.instant(otherwiseKey));
+					element.html($otherwise.get(otherwiseKey));
 			}
 		});
 	}};
@@ -291,11 +282,11 @@ angular.module('agIdentity', [])
 		});
 	}};
 })
-.directive('agIdentityLinkType', function($identity, $translate) {
+.directive('agIdentityLinkType', function($identity, $otherwise) {
 	return {link: function(scope, element, attrs) {
 		scope.$watch(attrs.agIdentityLinkType, function (identityLinkType) {
 			if(identityLinkType){
-				var roleName = $translate.instant('ROLE_'+identityLinkType);
+				var roleName = $otherwise.get('ROLE_'+identityLinkType);
 
 				//role translate was not found set to original identityLink.type
 				if(roleName === 'ROLE_'+identityLinkType) roleName = identityLinkType;

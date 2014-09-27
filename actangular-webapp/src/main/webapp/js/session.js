@@ -217,7 +217,7 @@ angular.module('agSession', ['ngCookies'])
 			$location.replace();
 		}
 	});
-	$ui.registarModal('showLogin', function(data){
+	$ui.registerModal('showLogin', function(data){
 		this.showModal('login.html', 'LoginController',  {
 			credentials: function () {
 				return {userId: '', userPassword: '', data: data || {}};

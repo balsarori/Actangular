@@ -12,32 +12,30 @@ angular.module('agTask', [])
 .factory('Tasks', function(RuntimeRestangular, $taskCache, Task) {
 	return RuntimeRestangular.withConfig(function(RestangularConfigurer) {
 		RestangularConfigurer.extendModel('tasks', function(task) {
+			if(task.fromServer === false) return task;
 			var cachedTask = $taskCache.get(task.id);
 			if(cachedTask){
-				angular.extend(cachedTask, task);
-				//cachedTask.update(task);
+				cachedTask.updateFromServer(task);
 				return cachedTask;
+			}else{
+				angular.extend(task, Task);
+				task.updateFromServer();
+				$taskCache.put(task.id, task);
+				return task;
 			}
-
-			$taskCache.put(task.id, task);
-
-			return angular.extend(task, Task);
+			
 		});
 	}).service('tasks');
 })
 .factory('HistoryTasks', function(HistoryRestangular, $historicTaskCache, HistoricTask) {
-	//return HistoryRestangular.service('historic-task-instances');
 	return HistoryRestangular.withConfig(function(RestangularConfigurer) {
 			RestangularConfigurer.extendModel('historic-task-instances', function(historicTask) {
 				var cachedHistoricTask = $historicTaskCache.get(historicTask.id);
 				if(cachedHistoricTask){
 					angular.extend(cachedHistoricTask, historicTask);
-					//cachedTask.update(task);
 					return cachedHistoricTask;
 				}
-
 				$historicTaskCache.put(historicTask.id, historicTask);
-
 			    return angular.extend(historicTask, HistoricTask);
 			  });
 		}).service('historic-task-instances');
@@ -66,8 +64,6 @@ angular.module('agTask', [])
 			$ui.showConfirmation('CONFIRM_DELETE_TASK', {id:task.id, name:task.name}, function(){
 				task.remove().then(
 						function(){
-							/*me.back(true);
-							me.cache.remove(task.id);*/
 							removeTask (me, task.id);
 							showTaskNotification(task, 'info', 'NOT_TASK_DELETE_OK');
 						},
@@ -92,6 +88,10 @@ angular.module('agTask', [])
 					completeTask(task, undefined, function(result){
 						removeTask (me, task.id);
 						showTaskNotification(task, 'info', 'NOT_TASK_COMPLETE_OK');
+					},
+					function (response){
+						me.back(true);
+						showTaskNotification(task, 'danger', 'NOT_TASK_COMPLETE_FAIL');
 					});
 				}, function(result){
 					removeTask (me, task.id);
@@ -101,6 +101,10 @@ angular.module('agTask', [])
 				completeTask(task, undefined, function(){
 					removeTask (me, task.id);
 					showTaskNotification(task, 'info', 'NOT_TASK_COMPLETE_OK');
+				},
+				function (response){
+					me.back(true);
+					showTaskNotification(task, 'danger', 'NOT_TASK_COMPLETE_FAIL');
 				});
 				
 			}
@@ -115,7 +119,7 @@ angular.module('agTask', [])
 					},
 					function (response){
 						me.back(true);
-						showTaskNotification(task, 'danger', 'NOT_TASK_CLAIM_OK');
+						showTaskNotification(task, 'danger', 'NOT_TASK_CLAIM_FAIL');
 					}
 			);
 		},
@@ -130,66 +134,15 @@ angular.module('agTask', [])
 	};
 
 })
-.config(['$routeProvider',
-         function($routeProvider) {
-	$routeProvider.
-	when('/tasks/inbox/:taskId?', {
-		title: 'INBOX',
-		resolve: {
-			page: function($taskPage, $route){
-				return $taskPage.getInboxPage($route.current.params.taskId);
-			}
-		}
-	}).
-	when('/tasks/mytasks/:taskId?', {
-		title: 'MYTASKS',
-		resolve: {
-			page: function($taskPage, $route){
-				return $taskPage.getMyTasksPage($route.current.params.taskId);
-			}
-		}
-	}).
-	when('/tasks/involved/:taskId?', {
-		title: 'INVOLVED',
-		resolve: {
-			page: function($taskPage, $route){
-				return $taskPage.getInvolvedPage($route.current.params.taskId);
-			}
-		}
-	}).
-	when('/tasks/queued/:taskId?', {
-		title: 'QUEUED',
-		resolve: {
-			page: function($taskPage, $route){
-				return $taskPage.getQueuedPage($route.current.params.taskId);
-			}
-		}
-	}).
-	when('/tasks/archived/:taskId?', {
-		title: 'ARCHIVED',
-		resolve: {
-			page: function($taskPage, $route){
-				return $taskPage.getArchivedPage($route.current.params.taskId);
-			}
-		}
-	}).
-	when('/tasks/:any*', {
-		redirectTo: function(params){
-			return '/tasks/inbox';
-		}
-	});
-}])
-.service('$taskService', function(Tasks, $session){
+.service('$taskService', function(Tasks){
 	this.createTask = function(task){
-		task.owner = $session.getUserId();
 		return Tasks.post(task);
 	};
 	this.createSubTask = function(parentTask, subtask, success, failed){
-		subtask.owner = $session.getUserId();
 		return parentTask.createSubTask(subtask, success, failed);
 	};
 })
-.service('$taskPage', function($session, PageList, Tasks, $taskCache, TaskPage, $historicTaskCache, HistoryTasks){
+.service('$taskPage', function($session, ListPage, Tasks, $taskCache, TaskPage, $historicTaskCache, HistoryTasks){
 	var inboxPage = createTaskListPage('inbox', 'assignee'), myTasksPage = createTaskListPage('mytasks', 'owner'),
 	involvedPage = createTaskListPage('involved', 'involvedUser'), queuedPage = createTaskListPage('queued', 'candidateUser'),
 	archivedPage = createHistoricTaskListPage('archived', 'taskInvolvedUser');
@@ -210,7 +163,7 @@ angular.module('agTask', [])
 				cache: $taskCache
 		};
 		listPage.requestParam[param] = $session.getUserId();
-		listPage = angular.extend(listPage,PageList);
+		listPage = angular.extend(listPage,ListPage);
 		/*listPage.queryOne = function(taskId, success, fail){
 			var requestParams = angular.extend({taskId: taskId}, this.requestParams);
 			return this.queryList(requestParams,function(tasks){
@@ -235,14 +188,21 @@ angular.module('agTask', [])
 				section: section,
 				itemName: 'task',
 				sortKeys: {taskInstanceId: 'id', priority: 'priority', dueDate: 'dueDate', startTime: 'startTime', endTime: 'endTime'},
-				//sortKey: 'id',
 				requestParam : {start:0, order: 'desc', sort: 'taskInstanceId', finished: true, includeTaskLocalVariables: true},
 				listSize : 10,
 				queryResource: HistoryTasks,
 				cache: $historicTaskCache
 		};
 		listPage.requestParam[param] = $session.getUserId();
-		listPage = angular.extend(listPage,PageList);
+		listPage = angular.extend(listPage,ListPage);
+		listPage.getItem = function(taskId){
+			var task = this.cache.get(taskId);
+			if(task){
+				if(task.endTime !== null)
+					return task;
+				this.cache.remove(taskId);
+			}
+		};
 		listPage.queryOne = function(taskId, success, fail){
 		var requestParams = angular.extend({taskId: taskId}, this.requestParam);
 		return this.queryList(requestParams,function(tasks){
@@ -253,7 +213,7 @@ angular.module('agTask', [])
 			}
 		},fail);
 		};
-		return listPage;//angular.extend(listPage,TaskPage);
+		return listPage;
 
 	};
 
@@ -278,9 +238,60 @@ angular.module('agTask', [])
 	};
 
 })
+.factory('CreateEditTaskHandler', function ($taskService, $ui) {
+	return{ handle : function(scope, modal, options){
+		var task = {};
+		if(options.op === 'NEW'){
+			task.owner = scope.currentUser.id;
+			task.priority = 50;
+			if(options.parentTask){
+				task.parentTaskId = options.parentTask.id;
+				scope.title = 'NEW_SUB_TASK';
+			}else{
+				scope.title = 'NEW_TASK';
+			}
+		}else{
+			task.name = options.task.name;
+			task.description = options.task.description;
+			task.priority = options.task.priority;
+			task.dueDate = options.task.dueDate;
+			task.category = options.task.category;
+			scope.title = 'EDIT_TASK';
+		}
+
+		scope.showErrors = false;
+		scope.task = task;
+
+		scope.submitForm = function(isValid) {
+			// check to make sure the form is completely valid
+			if (isValid) {
+				/*modal.close(scope.task);*/
+				/*if(options.task){
+					options.task.update($scope.task);
+					modal.close();
+					return;
+				}else if(options.parentTask){
+					options.parentTask.createSubTask(scope.task, success, failed);
+				}*/
+				$taskService.createTask(scope.task).then(
+						function(newTask){
+							modal.close();
+							$ui.showNotification({type: 'info', translateKey: 'NOT_TASK_CREATE_OK', translateValues :{taskId: newTask.id, name: newTask.name}});
+						},
+						function(){
+							$ui.showNotification({type: 'danger', translateKey: 'NOT_TASK_CREATE_FAIL'});
+						});
+			}else{
+				scope.showErrors = true;
+			}
+		};
+
+	}};
+})
 .controller('CreateEditTaskModalInstanceCtrl', function ($scope, $modalInstance, options) {
 	var task = {};
 	if(options.op === 'NEW'){
+		task.owner = $scope.currentUser.id;
 		task.priority = 50;
 		if(options.parentTask){
 			task.parentTaskId = options.parentTask.id;
@@ -300,7 +311,7 @@ angular.module('agTask', [])
 	$scope.showErrors = false;
 	$scope.task = task;
 
-	$scope.submitForm = function(isValid,assignee) {
+	$scope.submitForm = function(isValid) {
 		// check to make sure the form is completely valid
 		if (isValid) {
 			$modalInstance.close($scope.task);
@@ -309,7 +320,7 @@ angular.module('agTask', [])
 		}
 	};
 
-	$scope.cancel = function ($event) {
+	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
 	};
 
@@ -345,6 +356,10 @@ angular.module('agTask', [])
 	$scope.onFileSelect = function($file) {
 		$scope.selectedFile = $file[0];
 		$scope.data.name = $file[0].name;
+		//TODO set max file size allowed
+		//if(5242880 < $file[0].size)
+		//	console.log($file[0].size);
+		
 	};
 	$scope.uploadFile = function(file, data) {
 		$scope.upload = $upload.upload({
@@ -357,44 +372,6 @@ angular.module('agTask', [])
 			$modalInstance.close();
 		});
 	};
-})
-.run(function($taskService, $session, $ui){
-	$ui.registarModal('showCreateTask', function (onOK, onCancel){
-		this.showModal('views/createTask.html', 'CreateEditTaskModalInstanceCtrl', {options: function(){return {op:'NEW'};}}, function (task){
-			$taskService.createTask(task).then(
-					function(newTask){
-						$ui.showNotification({type: 'info', translateKey: 'NOT_TASK_CREATE_OK', translateValues :{taskId: newTask.id, name: newTask.name}});
-					},
-					function(){
-						$ui.showNotification({type: 'danger', translateKey: 'NOT_TASK_CREATE_FAIL'});
-					});
-
-		}, onCancel);
-	});
-	$ui.registarModal('showEditTask', function (task, onOK, onCancel){
-		this.showModal('views/createTask.html', 'CreateEditTaskModalInstanceCtrl', {options: function(){return {task: task, op:'EDIT'};}}, function (update){
-			task.update(update);
-		}, onCancel);
-	});
-
-	$ui.registarModal('showCreateSubTask', function (parentTask, onOK, onCancel){
-		this.showModal('views/createTask.html', 'CreateEditTaskModalInstanceCtrl', {options: function(){return {op:'NEW', parentTask: parentTask};}}, function (task){
-			$taskService.createSubTask(parentTask,task,
-					function(newTask){
-				$ui.showNotification({type: 'info', translateKey: 'NOT_TASK_CREATE_OK', translateValues :{taskId: newTask.id, name: newTask.name}});
-			},
-			function(){
-				$ui.showNotification({type: 'danger', translateKey: 'NOT_TASK_CREATE_FAIL'});
-			});
-
-		}, onCancel);
-	});
-
-	$ui.registarModal('showAddTaskAttachment', function (task, onOK, onCancel){
-		this.showModal('views/task/addAttachment.html', 'TaskAttachmentController', {options: function () {
-			return {url:task.url+'/attachments', task:task, title: '_ADD_ATTACHMENT'};
-		}}, onOK, onCancel);
-	});
 })
 .controller('TaskTabsCtrl', function($scope, $ui) {
 
@@ -413,17 +390,10 @@ angular.module('agTask', [])
 		);
 	};
 	$scope.editIdentityLink = function (task, type){
-		var options = {title: 'EDIT_TASK_ROLE_'+type, identityType: 'user'};
-		$ui.showSelectIdentity({
-			options: function () {
-				return options;
-			}
-		},
-		function (identityLink){
+		$ui.showSelectIdentity('user', 'EDIT_TASK_ROLE_'+type, function (identityLink){
 			identityLink.type = type;
 			task.addIdentityLink(identityLink);
 		});
-
 	};
 
 	$scope.addIdentityLink = function (task) {
@@ -436,16 +406,16 @@ angular.module('agTask', [])
 
 		$ui.showAddTaskAttachment(task,
 				function (result){
-			task.refreshAttachments();
-			task.refreshEvents();
+			task.refreshAttachments(true);
+			task.refreshEvents(true);
 		});
 	};
 
 	$scope.deleteAttachment = function (task, attachment){
 		$ui.showConfirmation('CONFIRM_DeleteAttachment', {name:attachment.name}, function(){
 			attachment.remove();
-			task.refreshAttachments();
-			task.refreshEvents();
+			task.refreshAttachments(true);
+			task.refreshEvents(true);
 		});
 	};
 	$scope.newSubTask = function (task) {
@@ -454,28 +424,38 @@ angular.module('agTask', [])
 })
 .factory('Task', function ($session){
 	return {
+		updateFromServer: function(update){
+			if(update){
+				delete update.variables;
+				angular.extend(this, update);
+			}else{
+				delete this.variables;
+			}
+			//updateVariables(this, this.variables);
+		},
 		refresh : function (options, success){
 			var me = this;
 			this.get().then(
 					function(task){
 						angular.extend(me, task);
-						me.refreshVariables();
+						me.refreshVariables(true);
 
 						if(me.identityLinks)
-							me.refreshIdentityLinks();
+							me.refreshIdentityLinks(true);
 
 						if(me.attachments)
-							me.refreshAttachments();
+							me.refreshAttachments(true);
 
 						if(me.subTasks)
-							me.refreshSubTasks();
+							me.refreshSubTasks(true);
 
 						if(me.events)
-							me.refreshEvents();
+							me.refreshEvents(true);
 					}
 			);
 		},
-		refreshIdentityLinks : function (options, success, failed){
+		refreshIdentityLinks : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.identityLinks) return;
 			var me = this;
 			this.getList("identitylinks").then(
 					function (identityLinks){
@@ -524,19 +504,22 @@ angular.module('agTask', [])
 					}
 			);
 		},
-		refreshAttachments : function (options, success, failed){
+		refreshAttachments : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.attachments) return;
 			var me = this;
 			this.getList("attachments").then(function (attachments){
 				me.attachments = attachments;
 			});
 		},		
-		refreshEvents : function (options, success, failed){
+		refreshEvents : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.events) return;
 			var me = this;
 			this.getList("events").then(function (events){
 				me.events = events;
 			});
 		},
-		refreshSubTasks : function (options, success, failed){
+		refreshSubTasks : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.subTasks) return;
 			var me = this;
 			this.getList('subtasks').then(
 					function (subTasks){
@@ -561,7 +544,8 @@ angular.module('agTask', [])
 						angular.extend(me, updatedTask);
 					});
 		},
-		refreshVariables : function (options, success, failed){
+		refreshVariables : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.variables) return;
 			var me = this;
 			this.getList("variables",{scope:'local'}).then(function (variables){
 				me.variables = variables;
@@ -573,7 +557,7 @@ angular.module('agTask', [])
 			variable.scope = 'local';
 			var variableArr = [variable];
 			this.customPOST(variableArr, "variables").then(function (variables){
-				me.refreshVariables();
+				me.refreshVariables(true);
 			});
 		},
 
@@ -581,23 +565,23 @@ angular.module('agTask', [])
 			var me = this;
 			variable.scope = 'local';
 			variable.customPUT(variableUpdate,variable.name).then(function (updatedVariable){
-				me.refreshVariables();
+				me.refreshVariables(true);
 			});
 		},
 
 		deleteVariable : function (variable, success, failed){
 			var me = this;
 			variable.customDELETE(variable.name).then(function (){
-				me.refreshVariables();
+				me.refreshVariables(true);
 			});
 		},
 
 		addIdentityLink : function (identityLink, success, failed){
 			var me = this;
 			this.post("identitylinks", identityLink, "identitylinks").then(function (){
-				me.refreshIdentityLinks();
+				me.refreshIdentityLinks(true);
 				if(me.events)
-					me.refreshEvents();
+					me.refreshEvents(true);
 			});
 		},
 
@@ -605,9 +589,9 @@ angular.module('agTask', [])
 			var me = this;
 			var link = (identityLink.group)? 'groups/'+identityLink.group : 'users/'+identityLink.user;
 			this.customDELETE('identitylinks/'+link+'/'+identityLink.type).then(function (){
-				me.refreshIdentityLinks();
+				me.refreshIdentityLinks(true);
 				if(me.events)
-					me.refreshEvents();
+					me.refreshEvents(true);
 			});
 		},
 
@@ -615,7 +599,7 @@ angular.module('agTask', [])
 			var me = this;
 			this.post('comments', {message: comment}).then(
 					function (){
-						me.refreshEvents();
+						me.refreshEvents(true);
 					}
 			);
 		},
@@ -623,7 +607,7 @@ angular.module('agTask', [])
 			var me = this;
 			this.customPOST(subTask, '../../tasks').then(
 					function (newSubtask){
-						me.refreshSubTasks();
+						me.refreshSubTasks(true);
 						if(success) success(newSubtask);
 					}, failed
 			);
@@ -632,7 +616,7 @@ angular.module('agTask', [])
 			var me = this;
 			this.customPOST({action:'claim', assignee:$session.getUserId()}).then(function(){
 				if(success) success();
-				me.refreshIdentityLinks();
+				me.refreshIdentityLinks(true);
 			}, failed);
 		},
 		complete: function(data, success, failed){
@@ -725,6 +709,44 @@ angular.module('agTask', [])
 			return "HIGH_PRIORITY";
 		return "NORMAL_PRIORITY";
 	};
+})
+.run(function($taskService, $session, $ui){
+	$ui.registerModal('showCreateTask', function (onOK, onCancel){
+		this.showModal('views/createTask.html', 'AgModalController', {options: function(){return {op:'NEW', handler: 'CreateEditTaskHandler'};}}, function (task){
+			/*$taskService.createTask(task).then(
+					function(newTask){
+						$ui.showNotification({type: 'info', translateKey: 'NOT_TASK_CREATE_OK', translateValues :{taskId: newTask.id, name: newTask.name}});
+					},
+					function(){
+						$ui.showNotification({type: 'danger', translateKey: 'NOT_TASK_CREATE_FAIL'});
+					});*/
+
+		}, onCancel);
+	});
+	$ui.registerModal('showEditTask', function (task, onOK, onCancel){
+		this.showModal('views/createTask.html', 'CreateEditTaskModalInstanceCtrl', {options: function(){return {task: task, op:'EDIT'};}}, function (update){
+			task.update(update);
+		}, onCancel);
+	});
+
+	$ui.registerModal('showCreateSubTask', function (parentTask, onOK, onCancel){
+		this.showModal('views/createTask.html', 'CreateEditTaskModalInstanceCtrl', {options: function(){return {op:'NEW', parentTask: parentTask};}}, function (task){
+			$taskService.createSubTask(parentTask,task,
+					function(newTask){
+				$ui.showNotification({type: 'info', translateKey: 'NOT_TASK_CREATE_OK', translateValues :{taskId: newTask.id, name: newTask.name}});
+			},
+			function(){
+				$ui.showNotification({type: 'danger', translateKey: 'NOT_TASK_CREATE_FAIL'});
+			});
+
+		}, onCancel);
+	});
+
+	$ui.registerModal('showAddTaskAttachment', function (task, onOK, onCancel){
+		this.showModal('views/task/addAttachment.html', 'TaskAttachmentController', {options: function () {
+			return {url:task.url+'/attachments', task:task, title: '_ADD_ATTACHMENT'};
+		}}, onOK, onCancel);
+	});
 });
 
 })();

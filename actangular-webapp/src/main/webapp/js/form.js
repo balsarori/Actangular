@@ -4,7 +4,7 @@
 
 function $form(FormData, $injector, formConfig){
 
-	this.getForm = function (param, success, fail){
+	this.getFormData = function (param, success, fail){
 		FormData.one().get(param).then(
 				function(formData){
 					if(success)
@@ -17,60 +17,57 @@ function $form(FormData, $injector, formConfig){
 		);
 	};
 
-	this.handleStartForm = function (processDefinitionId, options, noForm, onSuccess, onError){
+	this.handleStartForm = function (processDefinitionId, options, noForm, success, fail){
 		var param = {processDefinitionId: processDefinitionId};
-		this.getForm(param, function(formData){
-			handleForm(formData, options, noForm, onSuccess, onError);
-		}, onError);
+		this.getFormData(param, function(formData){
+			handleForm(formData, options, noForm, success, fail);
+		}, fail);
 	};
 
-	this.handleTaskForm = function (taskId, options, noForm, onSuccess, onError){
+	this.handleTaskForm = function (taskId, options, noForm, success, fail){
 		var param = {taskId: taskId};
-		this.getForm(param, function(formData){
-			handleForm(formData, options, noForm, onSuccess, onError);
-		}, onError);
+		this.getFormData(param, function(formData){
+			handleForm(formData, options, noForm, success, fail);
+		}, fail);
 	};
 
-	this.submitStartFormData = function (processDefinitionId, formProperties, success, failure) {
+	this.submitStartForm = function (processDefinitionId, formProperties, success, failure) {
 		submitFormData({processDefinitionId: processDefinitionId}, formProperties, success, failure);
 	};
-	this.submitTaskFormData = function (taskId, formProperties, success, failure) {
+	this.submitTaskForm = function (taskId, formProperties, success, failure) {
 		submitFormData({taskId: taskId}, formProperties, success, failure);
 	};
 
-	this.getFormProperties = function (formProperties){
+	this.getFormViewProperties = function (formProperties){
 		var formViewProperties = angular.copy(formProperties);
 		for(var i=0;i<formViewProperties.length;i++){
-			var formPropertyHandler = formConfig.formPropertyHandlers[formViewProperties[i].type];
+			var formPropertyHandler = formConfig.formPropertyHandlers[formViewProperties[i].type] || formConfig.formPropertyHandlers['string'];
 			if(formPropertyHandler){
 				if(formPropertyHandler.viewId)
 					formViewProperties[i].view = formPropertyHandler.viewId;
 				if(formPropertyHandler.initFormProperty)
 					$injector.invoke(formPropertyHandler.initFormProperty, formPropertyHandler, {formProperty: formViewProperties[i]});
-			}else{
-				formViewProperties[i].view = 'views/form/string.html';
 			}
 		}
 		return formViewProperties;
 	};
 
-	function handleForm (formData, options, noForm, onSuccess, onError){
+	function handleForm (formData, options, noForm, success, fail){
 		var formHandler = formConfig.formHandlers[formData.formKey];
 
 		if(formHandler)
-			$injector.get(formHandler).handleForm(formData, options, noForm, onSuccess, onError);
+			$injector.get(formHandler).handleForm(formData, options, noForm, success, fail);
 
 	};
 
 	function submitFormData (formData, formProperties, success, failure) {
 		formData.properties = [];
 		for(var i = 0; i<formProperties.length;i++){
+			if(formProperties[i].writable === false) continue;
 			var formPropertyHandler = formConfig.formPropertyHandlers[formProperties[i].type];
 			if(formPropertyHandler){
 				if(formPropertyHandler.prepareForSubmit)
 					$injector.invoke(formPropertyHandler.prepareForSubmit, formPropertyHandler, {formProperty: formProperties[i]});
-			}else{
-				formProperties[i].value = formProperties[i].value+'';
 			}
 			formData.properties.push({id: formProperties[i].id, value: formProperties[i].value});
 		}
@@ -90,8 +87,8 @@ angular.module('agForm', [])
 
 	var formConfig = {formHandlers: {}, formPropertyHandlers: {}};
 
-	this.addFormPropertyHandler = function(formPropertyId, formPropertyHandler){
-		formConfig.formPropertyHandlers[formPropertyId] = formPropertyHandler;
+	this.addFormPropertyHandler = function(formPropertyType, formPropertyHandler){
+		formConfig.formPropertyHandlers[formPropertyType] = formPropertyHandler;
 	};
 
 	this.addFormHandler = function (formKey, formHandler){
@@ -99,70 +96,34 @@ angular.module('agForm', [])
 	};
 
 	this.$get = ['FormData','$injector', function formFactory(FormData, $injector) {
+		if(angular.isUndefined(formConfig.formHandlers[null])){
+			formConfig.formHandlers[null] = 'DefaultFormHandler';
+		}
+		if(angular.isUndefined(formConfig.formPropertyHandlers['string'])){
+			formConfig.formPropertyHandlers['string'] = {viewId: 'views/form/string.html'};
+		}
 		return new $form(FormData, $injector, formConfig);
 	}];
 })
-.config(['$formProvider', function($formProvider) {
-	$formProvider.addFormHandler(null, 'DefaultFormHandler');
-
-	$formProvider.addFormPropertyHandler('string', {
-		viewId: 'views/form/string.html'
-	});
-	$formProvider.addFormPropertyHandler('date', {
-		viewId: 'views/form/date.html',
-		initFormProperty: function(formProperty){
-			/*if (formProperty.value !== null){ 
-				var datePattern = formProperty.datePattern;
-				datePattern = datePattern.replace("yy", "YY").replace("yy", "YY").replace("dd", "DD");
-				var momentDate = moment(formProperty.value, datePattern);
-				if(momentDate.isValid())
-					formProperty.value = momentDate.toDate();
-			}*/
-
-			if (formProperty.value !== null){ 
-				formProperty.value = new Date(formProperty.value);
+.factory('DefaultFormHandler', function ($ui, $form){
+	return {
+		handleForm : function(formData, options, noForm, success, fail){
+			if(formData.formProperties.length > 0){
+				var formProperties = $form.getFormViewProperties(formData.formProperties);
+				$ui.showModal('views/form/form.html', 'FormPropertiesController', 
+						{formInfo: function () {return {formProperties: formProperties, options: options};}}, function(formProperties){
+							if(formData.taskId !== null)
+								$form.submitTaskForm(formData.taskId, formProperties, success, fail);
+							else if(formData.processDefinitionId !== null)
+								$form.submitStartForm(formData.processDefinitionId, formProperties, success, fail);
+						});
+			}else{
+				if(noForm) noForm();
 			}
-		},
-		prepareForSubmit: function($filter, formProperty){
-			formProperty.value = $filter('date')(formProperty.value, formProperty.datePattern);
-		}
-	});
-
-	$formProvider.addFormPropertyHandler('long', {
-		viewId: 'views/form/long.html',
-		initFormProperty: function(formProperty){
-			if (formProperty.value !== null){ 
-				formProperty.value = parseInt(formProperty.value);
-			}
-		}
-	});
-
-	$formProvider.addFormPropertyHandler('boolean', {
-		viewId: 'views/form/boolean.html'
-	});
-
-	$formProvider.addFormPropertyHandler('enum', {
-		viewId: 'views/form/enum.html'
-	});
-
-}])
-.service('DefaultFormHandler', function ($ui, $form){
-	this.handleForm = function(formData, options, noForm, onSuccess, onError){
-		if(formData.formProperties.length > 0){
-			var formProperties = $form.getFormProperties(formData.formProperties);
-			$ui.showModal('views/form/form.html', 'FormPropertiesCtrl', 
-					{formInfo: function () {return {formProperties: formProperties, options: options};}}, function(formProperties){
-						if(formData.taskId !== null)
-							$form.submitTaskFormData(formData.taskId, formProperties, onSuccess, onError);
-						else if(formData.processDefinitionId !== null)
-							$form.submitStartFormData(formData.processDefinitionId, formProperties, onSuccess, onError);
-					});
-		}else{
-			if(noForm) noForm();
 		}
 	};
 })
-.controller('FormPropertiesCtrl', function ($scope, $modalInstance, formInfo) {
+.controller('FormPropertiesController', function ($scope, $modalInstance, formInfo) {
 	$scope.readOnly = formInfo.options.isReadOnly || false;
 	$scope.title = formInfo.options.title || '_FORM';
 
@@ -197,12 +158,13 @@ angular.module('agForm', [])
 		}};
 })
 .run(function($ui, $form){
-	$ui.registarModal('showStartForm', function(processDefinition, options, onNoForm, onSuccess, onError){
-		$form.handleStartForm(processDefinition.id, options, onNoForm, onSuccess, onError);
+	$ui.registerModal('showStartForm', function(processDefinition, options, noForm, success, fail){
+		$form.handleStartForm(processDefinition.id, options, noForm, success, fail);
 	});
-	$ui.registarModal('showTaskForm', function(task, options, onNoForm, onSuccess, onError){
-		$form.handleTaskForm(task.id, options, onNoForm, onSuccess, onError);
+	$ui.registerModal('showTaskForm', function(task, options, noForm, success, fail){
+		$form.handleTaskForm(task.id, options, noForm, success, fail);
 	});
 
 });
+
 })();

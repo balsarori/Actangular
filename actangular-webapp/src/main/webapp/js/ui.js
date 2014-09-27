@@ -45,12 +45,36 @@ angular.module('ui.bootstrap.tabs').controller('TabsetController', ['$scope', fu
   };
 }]);
 
+function $otherwise(handler){
+	
+	this.get = function(key, params){
+		return handler.get(key, params);
+	};
+};
+
 /* agUI */
 angular.module('agUI', 
 		['ui.bootstrap','selectionModel', 'angularFileUpload'])
+.provider('$otherwise', function $OtherwiseProvider() {
+
+	var handler = null;
+	this.setHandler = function (otherwiseHandler){
+		handler = otherwiseHandler;
+	};
+	
+	this.$get = ['$injector', function sessionFactory($injector) {
+		if(handler){
+			return new $otherwise($injector.get(handler));
+		}else{
+			return new $otherwise({get: function(key){return key;}});
+		}
+		
+	}];
+})
 .constant('attachmentIcons', 
 		{'image': 'fa fa-file-image-o', 'compressed': 'fa fa-file-archive-o',
 	'application/pdf': 'fa fa-file-pdf-o','application/msword': 'fa fa-file-word-o'})
+	
 .config(['$tooltipProvider', 'datepickerConfig','datepickerPopupConfig',
               function($tooltipProvider,datepickerConfig) {
 	$tooltipProvider.options({appendToBody: true});
@@ -118,69 +142,70 @@ angular.module('agUI',
   }])
 .service('$ui', function($modal, $rootScope, $location){
 	var opennedModals = {};
-	
+
 	$rootScope.$on('$locationChangeStart', function(event, currentRoute, prevRoute) {
 		if(opennedModals.current){
 			if(opennedModals.current.closeOption && opennedModals.current.closeOption.closeable === false) return;
 			opennedModals.current.dismiss('cancel');
 			delete opennedModals.current;
 		}
-});
-	this.registar = function (uiName, handler) {
+	});
+	this.register = function (uiName, handler) {
 		this[uiName] = handler;
 	},
-	this.registarModal = function (modalName, handler) {
+	this.registerModal = function (modalName, handler) {
 		this[modalName] = handler;
 	},
 	this.showModal = function (templateUrl, controller, resolve, onOK, onCancel, modalOptions, closeOption) {
 		var options = {templateUrl: templateUrl, controller: controller, resolve: resolve};
 		if(modalOptions)
 			angular.extend(options, modalOptions);
-			
+
 		var modalInstance = $modal.open(options);
 		modalInstance.result.then(function (result) {
 			delete opennedModals.current;
-		    	if(onOK)
-		    		onOK(result);
-		    	
-		    }, function () {
-		    	delete opennedModals.current;
-		    	if(onCancel)
-		    		onCancel();
-		    });
-		
+			if(onOK)
+				onOK(result);
+
+		}, function () {
+			delete opennedModals.current;
+			if(onCancel)
+				onCancel();
+		});
+
 		modalInstance.opened.then(function(){
 			opennedModals.current = modalInstance;
 			if(closeOption)
 				opennedModals.current.closeOption = closeOption;
 		});
-		};
-		
-   this.showConfirmation = function (msg, params, onOK, onCancel){
+	};
+
+	this.showConfirmation = function (msg, params, onOK, onCancel){
 		this.showModal('views/confirmation.html', 'ConfirmationController', {options: function () {return {msg:msg, msgParams:params};}}, onOK, onCancel);
 	};
-	
-   this.showSelectIdentity = function (resolve, onOK, onCancel){
-		this.showModal('views/selectIdentity.html', 'SelectIdentityController', resolve, onOK, onCancel);
+
+	this.showSelectIdentity = function (identityType, title, onOK, onCancel){
+		var options = {options: function () {return {title: title, identityType:identityType};}};
+		this.showModal('views/selectIdentity.html', 'SelectIdentityController', options, onOK, onCancel);
 	};
-	
+
 	this.showAddIdentityLink = function (identityType, roles, title, onOK, onCancel){
 		var options = {options: function () {return {title: title, roles:roles, identityType:identityType};}};
 		this.showModal('views/addIdentityLink.html', 'AddIdentityController', options, onOK, onCancel);
 	};  
-	
+
 	this.showPostComment = function (resource){
 		this.showModal('views/postComment.html', 'CommentController', {resource: function(){return resource;}});
 	};
-	
+
 	this.showAddVar = function (resource){
 		this.showModal('views/addVar.html', 'AddVarController', {resource: function(){return resource;}});
 	};
-	
+
 	this.showEditVar = function (resource, variable){
 		this.showModal('views/editVar.html', 'EditVarController', {options: function(){return {resource: resource, variable: variable};}});
 	};
-	
+
 	return this;
 })
 .controller('NotificationsController', function($scope, $timeout, $ui) {
@@ -205,10 +230,17 @@ angular.module('agUI',
 		delete $scope.alerts['alert'+index];
 	};
 	
-	$ui.registar('showNotification',function (notification) {
+	$ui.register('showNotification',function (notification) {
 		$scope.addAnAlert(notification);
 	});
     
+})
+
+.directive('agNotifications', function () {
+  return {
+    controller:'NotificationsController',
+    templateUrl:'views/notifications.html'
+  };
 })
 .controller('AgModalController', function($scope, $modalInstance, $injector, options) {
 	if(options.title)
@@ -347,14 +379,14 @@ angular.module('agUI',
 		     updateSelection();
 		  };
 		})
-.directive('agContent', function($translate) {
+.directive('agContent', function($otherwise) {
     return {link: function(scope, element, attrs) {
     	 var otherwiseKey = element.attr('otherwiseKey') || '';
 		 scope.$watch(attrs.agContent, function (content) {
 			 if(content){
 				 element.html(content);
 			  }else if(otherwiseKey !== ''){
-				  element.html($translate.instant(otherwiseKey));
+				  element.html($otherwise.get(otherwiseKey));
 			  }
        });
 		  }};
@@ -375,14 +407,14 @@ angular.module('agUI',
         }
       };
 })
-.directive('agDate', function($translate, $filter) {
+.directive('agDate', function($otherwise, $filter) {
     return {link: function(scope, element, attrs) {
     	 var otherwiseKey = element.attr('otherwiseKey') || '';
 		 scope.$watch(attrs.agDate, function (value) {
 			 if(value){
 				 element.html($filter('date')(value, 'd MMMM yyyy h:mm a'));
 			  }else if(otherwiseKey !== ''){
-				  element.html($translate.instant(otherwiseKey));
+				  element.html($otherwise.get(otherwiseKey));
 			  }
        });
 		  }};
@@ -450,7 +482,6 @@ angular.module('agUI',
   	    scope.$apply(function(){
   	    	list[targetIndex].selected = true;
   	    });
-  	    
   	};
     };
   })
@@ -499,32 +530,7 @@ angular.module('agUI',
 		connectionInterceptor.addListener(connListener);
 	};
 })
-.directive('agPageItem', function($templateCache, $compile) {
-	return{
-		restrict: 'ECA',
-	    priority: -400,
-		link: function(scope, element, attrs) {
-			function updatePage(page){
-					 if(page && page.showingItem === true && page.itemTemplate){
-						 element.html($templateCache.get(page.itemTemplate));
-						 var link = $compile(element.contents());
-						 link(scope);
-					 }
-			};
-			 scope.$watch(attrs.agPageItem, updatePage);
-				 
-			 scope.$on('pageUpdateStart', function(event, page){
-				 updatePage(page); 
-			 });
-	}};
-})
-.directive('agPageScroll', function($animate) {
-	return function (scope, element, attr){
-		scope.$watch(attr.agPageScroll, function (page){
-				element.scrollTop(0);
-		    });
-	};
-})//ag-attachment
+//ag-attachment
 .directive('agAttachment', function(attachmentIcons) {
 	return function (scope, element, attr){
 		scope.$watch(attr.agAttachment, function (attachment){
@@ -553,11 +559,12 @@ angular.module('agUI',
 		    });
 	};
 })
-.directive('agAgo', ['$interval', '$translate', '$filter',
-    function($interval, $translate, $filter) {
+.directive('agAgo', ['$interval', '$otherwise', '$filter',
+    function($interval, $otherwise, $filter) {
       return function(scope, element, attrs) {
         var stopTime = undefined,
         otherwiseKey = element.attr('otherwiseKey') || '',
+        translateKey = element.attr('translateKey') || '',
         dateValue;
         
         function updateTime() {
@@ -566,7 +573,12 @@ angular.module('agUI',
         }
         
         function updateElement(text) {
+        	if (translateKey !== ''){
+        		element.text($otherwise.get(translateKey,{ago: text}));
+        	}else{
         		element.text(text);
+        	}
+        		 
         }
 
         scope.$watch(attrs.agAgo, function(value) {
@@ -585,8 +597,8 @@ angular.module('agUI',
         			$interval.cancel(stopTime);
         		
         		if (otherwiseKey !== ''){
-        			var otherwiseVal = $translate.instant(otherwiseKey);
-        			updateElement(otherwiseVal);
+        			var otherwiseVal = $otherwise.get(otherwiseKey);
+        			element.text(otherwiseVal);
         			element.attr('title', otherwiseVal);
         		}
         	}
@@ -632,7 +644,7 @@ angular.module('agUI',
 			  title = $route.current.title;
 		  else
     		  return;
-  	  $translate('TITLE',{page: 'MENU_'+title}).then(function(translation){
+  	  $translate('PAGE_TITLE',{page: 'MENU_'+title}).then(function(translation){
   		  document.title = translation;
   	  });
     };
@@ -645,5 +657,15 @@ angular.module('agUI',
     	checkLocaleCss();
     	updateTitle();
     }
+})
+.run(function($ui, $form){
+	$ui.registerModal('showStartForm', function(processDefinition, options, noForm, success, fail){
+		$form.handleStartForm(processDefinition.id, options, noForm, success, fail);
+	});
+	$ui.registerModal('showTaskForm', function(task, options, noForm, success, fail){
+		$form.handleTaskForm(task.id, options, noForm, success, fail);
+	});
+
 });
+
 })();

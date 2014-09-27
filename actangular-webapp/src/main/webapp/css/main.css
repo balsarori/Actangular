@@ -61,26 +61,21 @@ html, body, #main {bottom: 0;font: 12px/14px Arial,Helvetica,sans-serif;height: 
 position: absolute; top:0; left:50%;z-index: 1000;
 text-align: center;    
 }
+.con-status > div{
+	color: #fff;
+	border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 3px 6px;
+    font-weight: bold;
+}
 .con-status > .loading{
  background-color: #f0ad4e;
     border-color: #eea236;
-    color: #fff;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px;
-    padding: 5px 15px;
-    font-weight: bold;
 }
 
 .con-status > .con-error{
  background-color: #d9534f;
     border-color: #d43f3a;
-    color: #fff;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 4px;
-    padding: 5px 15px;
-    font-weight: bold;
 }
 #content {background-color:#cdcdcd;margin: 0;padding: 0;height: 100%;}
 
@@ -91,7 +86,7 @@ text-align: center;
 .left-section .controls{text-align: center; border-right: 2px solid #dfdfdf;margin: 0 0 0 -2px; background-color: #909090;} 
 
 .right-section {height: inherit;background-color: #cdcdcd;margin:0;padding:0}
-.right-section .controls {border-bottom-color: #909090;}
+/*.right-section .controls {border-bottom-color: #909090;}*/
 
 .innerContent{height: inherit;padding: 0;}
 .innerContent > .alist {overflow: auto;position: relative; height: 100%}
@@ -108,7 +103,7 @@ text-align: center;
 .sectionItem{padding-left:10px;padding-top:2px;padding-bottom:2px;color:#909090}
 .sectionItem a {text-decoration: none;color:#909090}
 .sectionItem .active {font-weight:bold; cursor:default;color:#007DC3}
-.nav{padding: 5px 10px 5px 10px;margin-bottom: 5px;}
+.nav{padding: 5px 10px 5px 10px;/*margin-bottom: 5px;*/}
 .nav li {padding: 0;}
 .nav .active{font-weight:bold;}
 .nav > li > a{padding: 6px 15px;outline: none;   
@@ -624,3 +619,7 @@ white-space: nowrap;}
 .profile-col .dropdown-menu{width: 100%;}
 
 .logo div {background: #555555 url("../img/logo.png") no-repeat center;height: 50px;border: 1px solid transparent; border-radius: 5px;}
+
+.incontrols > .controls{height: 41px;}
+.full-width, .full-width > .btn-group{width: 100%;}
+.full-width > .btn-group > label{width: 50%;}
