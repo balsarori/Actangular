@@ -22,12 +22,12 @@ fozzie  | fozzie
 
 ### Authentication
 Uses a ChallengeScheme.CUSTOM authenticator which accepts HTTP_BASIC authentication and cookie based authentication. 
-Note that the authentication does not send a challenge request instead sent back an 401 Unauthorized response.
-This allows the client side to show i.e. a custom login form.
+Note that the authentication does not send a challenge request instead sends back a 401 Unauthorized response.
+This allows the client side to i.e. show a custom login form.
 
 
 ### Resources
-/boot
+##### /boot
 Returns list of users, groups, process definitions, and, information about logged-in user (i.e groups user is member of)
 
 TODO add more information
