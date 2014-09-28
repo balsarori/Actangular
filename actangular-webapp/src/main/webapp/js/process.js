@@ -242,11 +242,13 @@ angular.module('agProcess', [])
 				processInstance.deleteProcessInstance(
 						function(){
 							me.back(true);
+							me.cache.remove(processInstance.id);
 							$ui.showNotification({type: 'info', translateKey: 'NOT_PROCESS_DELETE_OK', translateValues :{id: processInstance.id, name: name}});
 						},
 						function (response){
 							//TODO handle error response
 							me.back(true);
+							me.cache.remove(processInstance.id);
 							$ui.showNotification({type: 'danger', translateKey: 'NOT_PROCESS_DELETE_FAIL', translateValues :{id: processInstance.id, name: name}});
 						}
 				);
@@ -300,6 +302,7 @@ angular.module('agProcess', [])
 		listPage.queryOne = function(processInstanceId, success, fail){
 			var requestParams = {processInstanceId: processInstanceId};
 			angular.extend(requestParams, this.requestParam);
+			requestParams.start = 0;
 			return this.queryList(requestParams,function(processInstances){
 				if(processInstances.length===0){
 					fail();
@@ -325,6 +328,7 @@ angular.module('agProcess', [])
 		listPage.queryOne = function(processInstanceId, success, fail){
 			var requestParams = {processInstanceId: processInstanceId};
 			angular.extend(requestParams, this.requestParam);
+			requestParams.start = 0;
 			return this.queryList(requestParams,function(processInstances){
 				if(processInstances.length===0){
 					fail();

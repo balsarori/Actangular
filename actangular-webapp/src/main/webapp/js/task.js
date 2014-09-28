@@ -205,6 +205,7 @@ angular.module('agTask', [])
 		};
 		listPage.queryOne = function(taskId, success, fail){
 		var requestParams = angular.extend({taskId: taskId}, this.requestParam);
+		requestParams.start = 0;
 		return this.queryList(requestParams,function(tasks){
 			if(tasks.length===0){
 				fail();
@@ -652,7 +653,8 @@ angular.module('agTask', [])
 					}
 			);
 		},
-		refreshIdentityLinks : function (options, success, failed){
+		refreshIdentityLinks : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.identityLinks) return;
 			var me = this;
 			this.getList("identitylinks").then(
 					function (identityLinks){
@@ -670,19 +672,22 @@ angular.module('agTask', [])
 					}
 			);
 		},
-		refreshAttachments : function (options, success, failed){
+		refreshAttachments : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.attachments) return;
 			var me = this;
 			this.getList("../../../runtime/tasks/"+this.id+"/attachments").then(function (attachments){
 				me.attachments = attachments;
 			});
 		},		
-		refreshEvents : function (options, success, failed){
+		refreshEvents : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.events) return;
 			var me = this;
 			this.getList("../../../runtime/tasks/"+this.id+"/events").then(function (events){
 				me.events = events;
 			});
 		},
-		refreshSubTasks : function (options, success, failed){
+		refreshSubTasks : function (forceRefresh, success, failed){
+			if(!forceRefresh && this.subTasks) return;
 			var me = this;
 			this.getList("../../historic-task-instances",{parentTaskId: this.id}).then(
 					function (subTasks){

@@ -138,7 +138,7 @@ angular.module('agPage', [])
 		}
 	};
 })
-.directive('agPageItem', function($templateCache, $compile) {
+.directive('agItemPage', function($templateCache, $compile) {
 	return{
 		restrict: 'ECA',
 	    priority: -400,
@@ -150,7 +150,7 @@ angular.module('agPage', [])
 						 link(scope);
 					 }
 			};
-			 scope.$watch(attrs.agPageItem, updatePage);
+			 scope.$watch(attrs.agItemPage, updatePage);
 				 
 			 scope.$on('pageUpdateStart', function(event, page){
 				 updatePage(page); 

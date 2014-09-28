@@ -87,7 +87,7 @@
 	<div class="row listRow">
 		<div class="col-md-12 innerContent">
 			<div id="list" ng-hide="page.showingItem" class="alist" ag-page-scroll="page" ng-include="page.listTemplate"></div>
-			<div class="alist" ng-if="page.showingItem" ag-page-item="page"></div>
+			<div class="alist" ng-if="page.showingItem" ag-item-page="page"></div>
 		</div>
 	</div>
 </div>
@@ -247,7 +247,7 @@
 				<div class="row subRow">
 					<div class="col-md-12 detailCol">
 						<div class="tabsCon" ng-controller="TaskTabsCtrl"
-							ng-init="(page.task.identityLinks.length >= 0)? '':page.task.refreshIdentityLinks();selectedTab='people';">
+							ng-init="page.task.refreshIdentityLinks();selectedTab='people'">
 							<tabset class="tabset"> <tab select="selectedTab='people'"> <tab-heading> <i class="fa fa-group"></i> {{'PEOPLE' |
 							translate}} </tab-heading>
 							<div class="identity-link-con">
@@ -277,7 +277,7 @@
 									</div>
 								</div>
 							</div>
-							</tab> <tab select="(page.task.attachments.length>=0)? '':page.task.refreshAttachments(); selectedTab='attachments'"> <tab-heading> <i
+							</tab> <tab select="page.task.refreshAttachments(); selectedTab='attachments'"> <tab-heading> <i
 								class="glyphicon glyphicon-paperclip"></i> {{'ATTACHMENTS' | translate}} </tab-heading>
 							<div class="rowsCon">
 								<div class="row line-row img-row" ng-repeat="attachment in page.task.attachments">
@@ -298,7 +298,7 @@
 									<span class="label label-default" translate="NO_ATTACHMENTS"></span>
 								</div>
 							</div>
-							</tab> <tab select="(page.task.subTasks.length>=0)? '':page.task.refreshSubTasks();selectedTab = 'subtasks' "> <tab-heading> <i
+							</tab> <tab select="page.task.refreshSubTasks();selectedTab = 'subtasks'"> <tab-heading> <i
 								class="fa fa-tasks"></i> {{'SUBTASKS' | translate}} </tab-heading>
 
 							<div class="rowsCon">
@@ -493,7 +493,7 @@
 				<div class="row subRow">
 					<div class="col-md-12 detailCol">
 						<div class="tabsCon" ng-controller="TaskTabsCtrl"
-							ng-init="(page.task.identityLinks.length >= 0)? '':page.task.refreshIdentityLinks();selectedTab='people';">
+							ng-init="page.task.refreshIdentityLinks();selectedTab='people';">
 							<tabset class="tabset"> <tab select="selectedTab='people'"> <tab-heading> <i class="fa fa-group"></i> {{'PEOPLE' |
 							translate}} </tab-heading>
 							<div class="identity-link-con">
@@ -514,7 +514,7 @@
 									</div>
 								</div>
 							</div>
-							</tab> <tab select="(page.task.attachments.length>=0)? '':page.task.refreshAttachments(); selectedTab='attachments'"> <tab-heading> <i
+							</tab> <tab select="page.task.refreshAttachments(); selectedTab='attachments'"> <tab-heading> <i
 								class="glyphicon glyphicon-paperclip"></i> {{'ATTACHMENTS' | translate}} </tab-heading>
 							<div class="rowsCon">
 								<div class="row line-row img-row" ng-repeat="attachment in page.task.attachments">
@@ -531,7 +531,7 @@
 									<span class="label label-default" translate="NO_ATTACHMENTS"></span>
 								</div>
 							</div>
-							</tab> <tab select="(page.task.subTasks.length>=0)? '':page.task.refreshSubTasks();selectedTab = 'subtasks' "> <tab-heading> <i
+							</tab> <tab select="page.task.refreshSubTasks();selectedTab = 'subtasks' "> <tab-heading> <i
 								class="fa fa-tasks"></i> {{'SUBTASKS' | translate}} </tab-heading>
 
 							<div class="rowsCon">
