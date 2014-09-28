@@ -90,7 +90,7 @@
 "NOT_TASK_CLAIM_FAIL": "لم يتم إسناد المهمة '{{name}}' لك",
 "NOT_TASK_COMPLETE_OK": "<a href='#/tasks/archived/{{taskId}}'>تم إنهاء المهمة '{{name}}'</a>",
 "NOT_TASK_COMPLETE_FAIL": "لم يتم إنهاء المهمة '{{name}}'",
-"NOT_TASK_DELETE_OK": "<a href='#/tasks/archived/{{taskId}}'>تم حذف المهمة '{{name}}' لك</a>",
+"NOT_TASK_DELETE_OK": "<a href='#/tasks/archived/{{taskId}}'>تم حذف المهمة '{{name}}'</a>",
 "NOT_TASK_DELETE_FAIL": "لم يتم حذف المهمة '{{name}}'",
 "NOT_TASK_NO_FORM": "المهمة '{{name}}' لا تحوي نموذج",
 "NOT_PROCESS_STARTED":"<a href='#/processes/myinstances/{{id}}'>تم بدء عملية رقم '{{id}}' من ألإجراء '{{name}}'</a>",
