@@ -18,7 +18,16 @@ gonzo   | gonzo
 fozzie  | fozzie
 
 
+## actangular-js - AngularJS and Javascripts modules
+
+AngularJS and Javascripts modules which provide services, directives, filters, etc! 
+actangular-session, actangular-identity, actangular-task, actangular-process, actangular-diagram, actangular-form, actangular-ui
+
+TODO add more information
+
 ## actangular-rest - The REST API
+
+?Resources are within authenticated user context?
 
 ### Authentication
 Uses a ChallengeScheme.CUSTOM authenticator which accepts HTTP_BASIC authentication and cookie based authentication. 
@@ -36,12 +45,5 @@ TODO add more information
 ## actangular-webapp - The webapp
 
 Uses AngularJS, AngularUI Bootstrap, Restangular, angular-translate, etc! in addition to actangular-js (AngularJS and Javascripts modules)
-
-TODO add more information
-
-## actangular-js - AngularJS and Javascripts modules
-
-AngularJS and Javascripts modules which that provide useable services, directives, filters, etc! 
-actangular-session, actangular-identity, actangular-task, actangular-process, actangular-diagram, actangular-form, actangular-ui
 
 TODO add more information
