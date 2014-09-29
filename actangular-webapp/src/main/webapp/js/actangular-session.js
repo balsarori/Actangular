@@ -134,17 +134,10 @@ angular.module('agSession', ['ngCookies'])
 		return new $session($rootScope, $http, $cookies,$storage, $identity, $injector, listeners);
 	}];
 })
-.controller('LoginController', function ($scope, $modalInstance, credentials, $session, $translate) {
+.controller('LoginController', function ($scope, $modalInstance, credentials, $session) {
 	$scope.credentials = credentials;
 	$scope.credentials.remember = true;
 	$scope.msg = {};
-	$scope.lang = $translate.use();
-
-	$scope.setLang = function (lang) {
-		$translate.use(lang).then(function(){
-			$scope.lang = $translate.use();
-		});
-	};
 
 	$scope.submitForm = function(isValid) {
 		$scope.msg.type = 'info'; $scope.msg.msg = "LOADING";

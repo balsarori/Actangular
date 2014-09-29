@@ -9,7 +9,9 @@ angular.module('agApp',
 		['restangular','ngRoute','agPage', 'agStorage', 'agSession', 'agLocale','agIdentity','agForm', 'agProcess','agTask','agUI','agDiagram'])
 
 //Locales config
-.constant('localeKeys', {keys: ['en', 'ar'], aliases:{'en_*': 'en','ar_*': 'ar'}})
+.constant('localeKeys', {keys: ['en', 'ar'], aliases:{'en_*': 'en','ar_*': 'ar'},
+	langDisplay:{'en': 'English', 'ar': 'عربي'}})
+	//langDisplay:[{key: 'en', value: 'English'}, {key: 'ar', value: 'عربي'}]})
 .config(function($translateProvider, localeKeys) {
 	$translateProvider.registerAvailableLanguageKeys(localeKeys.keys, localeKeys.aliases);
 	$translateProvider.determinePreferredLanguage();
@@ -195,11 +197,11 @@ angular.module('agApp',
 		/* RestangularConfigurer.setDefaultHttpFields({cache: true});*/
 	});
 })
-.factory('FormRestangular', function(Restangular) {
+/*.factory('FormRestangular', function(Restangular) {
 	return Restangular.withConfig(function(RestangularConfigurer) {
 		RestangularConfigurer.setBaseUrl('service/form/');
 	});
-})
+})*/
 .factory('HistoryRestangular', function(Restangular) {
 	return Restangular.withConfig(function(RestangularConfigurer) {
 		RestangularConfigurer.setBaseUrl('service/history/');
@@ -216,6 +218,16 @@ angular.module('agApp',
 	};
 	$scope.startProcess = function(){
 		$ui.showStartNewProcess();
+	};
+})
+.controller('LanguageController', function ($scope, $translate, localeKeys) {
+	$scope.langs = localeKeys.langDisplay;
+	$scope.lang = $translate.use();
+	
+	$scope.setLang = function (lang) {
+		$translate.use(lang).then(function(){
+			$scope.lang = $translate.use();
+		});
 	};
 })
 .config(['$otherwiseProvider', function($otherwiseProvider) {

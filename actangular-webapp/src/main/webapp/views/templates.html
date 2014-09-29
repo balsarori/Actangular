@@ -973,15 +973,16 @@
 
 			<div class="row">
 				<div class="col-md-2"></div>
-				<div class="col-md-8" ng-init="langDropDown.isopen = false">
+				<div class="col-md-8" ng-controller="LanguageController" ng-init="langDropDown.isopen = false">
 					<div class="btn-group" dropdown is-open="langDropDown.isopen">
 						<button type="button" class="btn btn-default dropdown-toggle">
-							<i class="fa fa-language"></i> <span ng-if="lang === 'en'" class="lang">English</span> <span ng-if="lang === 'ar'" class="lang">عربي</span> <span
+							<i class="fa fa-language"></i> <span class="lang">{{langs[lang]}}</span> <span
 								class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" ng-if="lang !== 'ar'" ag-click="langDropDown.isopen = false;setLang('ar')">عربي</a></li>
-							<li><a href="#" ng-if="lang !== 'en'" ag-click="langDropDown.isopen = false;setLang('en')">English</a></li>
+							<li ng-repeat="(key, value) in langs" ng-if="key !== lang">
+								<a href ag-click="langDropDown.isopen = false;setLang(key)">{{value}}</a>
+							</li>
 						</ul>
 					</div>
 				</div>
