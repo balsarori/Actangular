@@ -181,6 +181,14 @@ angular.module('agApp',
 			}
 		}
 	}).
+	when('/processes/models', {
+		title: 'MODELS',
+		resolve: {
+			page: function($processPage, $route){
+				return $processPage.getModel();
+			}
+		}
+	}).
 	otherwise({
 		redirectTo: '/home'
 	});

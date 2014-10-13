@@ -44,6 +44,7 @@
 "MENU_USERS": "Users",
 "MENU_GROUPS": "Groups",
 "MENU_PREFERENCE": "Preferences",
+"MENU_MODELS": "Models",
 "ITEMSCOUNT": "{{from}} - {{to}} of {{total}}",
 "SUBTASKS": "Sub Tasks",
 "NO_SUBTASKS": "No Sub Tasks",
@@ -161,7 +162,12 @@
 "NO_DIAGRAM":"No Diagram",
 "NO_INVOLVEMENT": "No Involvement",
 "ROLE_starter": "Starter",
-"ROLE_participant": "Participant"
+"ROLE_participant": "Participant",
+"NEW_MODEL": "New Model",
+"EDIT_MODEL": "Edit Model",
+"CONFIRM_DELETE_MODEL": "Delete model '{{id}} - {{name}}' ?",
+"OPEN_MODELER": "Open with Modeler",
+"NO_MODELS": "No models here ;)"
 },
 "locale":{
 				  "DATETIME_FORMATS": {

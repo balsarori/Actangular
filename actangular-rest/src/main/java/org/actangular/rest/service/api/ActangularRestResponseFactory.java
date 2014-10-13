@@ -16,13 +16,16 @@ import java.util.Date;
 import java.util.Map;
 
 import org.actangular.rest.service.api.identity.ExtendedUserResponse;
+import org.actangular.rest.service.api.repository.ExtendedModelResponse;
 import org.activiti.engine.form.AbstractFormType;
 import org.activiti.engine.form.FormData;
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.form.StartFormData;
 import org.activiti.engine.form.TaskFormData;
 import org.activiti.engine.identity.User;
+import org.activiti.engine.impl.persistence.entity.ModelEntity;
 import org.activiti.engine.impl.persistence.entity.UserEntity;
+import org.activiti.engine.repository.Model;
 import org.activiti.rest.common.api.SecuredResource;
 import org.activiti.rest.service.api.RestResponseFactory;
 import org.activiti.rest.service.api.RestUrls;
@@ -121,6 +124,44 @@ public class ActangularRestResponseFactory extends RestResponseFactory {
     if (propertiesMap.get("pictureByteArrayId") != null) {
       response.setPictureUrl(securedResource.createFullResourceUrl(RestUrls.URL_USER_PICTURE, user.getId()));
     }
+    return response;
+  }
+  
+  public ExtendedModelResponse createModelResponse(SecuredResource securedResource, Model model) {
+    ExtendedModelResponse response = new ExtendedModelResponse();
+    
+    response.setCategory(model.getCategory());
+    response.setCreateTime(model.getCreateTime());
+    response.setId(model.getId());
+    response.setKey(model.getKey());
+    response.setLastUpdateTime(model.getLastUpdateTime());
+    response.setMetaInfo(model.getMetaInfo());
+    response.setName(model.getName());
+    response.setDeploymentId(model.getDeploymentId());
+    response.setVersion(model.getVersion());
+    response.setTenantId(model.getTenantId());
+    
+    response.setUrl(securedResource.createFullResourceUrl(RestUrls.URL_MODEL, model.getId()));
+    if(model.getDeploymentId() != null) {
+      response.setDeploymentUrl(securedResource.createFullResourceUrl(RestUrls.URL_DEPLOYMENT, model.getDeploymentId()));
+    }
+    
+    // TODO
+    // submit a patch to Activiti adding isEditorSourceSet and
+    // isEditorSourceExtraSet to Model
+    
+    // for now check from ModelEntity
+    
+    ModelEntity modelEntity = (ModelEntity) model;
+    
+    if(modelEntity.getEditorSourceValueId() != null) {
+      response.setSourceUrl(securedResource.createFullResourceUrl(RestUrls.URL_MODEL_SOURCE, model.getId()));
+    }
+    
+    if(modelEntity.getEditorSourceExtraValueId() != null) {
+      response.setSourceExtraUrl(securedResource.createFullResourceUrl(RestUrls.URL_MODEL_SOURCE_EXTRA, model.getId()));
+    }
+    
     return response;
   }
 }

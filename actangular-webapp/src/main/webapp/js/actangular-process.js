@@ -55,6 +55,9 @@ angular.module('agProcess', [])
 		});
 	}).service('process-definitions');
 })
+.factory('Models', function(RepositoryRestangular) {
+	return RepositoryRestangular.service('models');
+})
 .factory('$processInsatnceCache', ['$cacheFactory', function($cacheFactory) {
 	return $cacheFactory('process-instance-cache');
 }])
@@ -275,11 +278,49 @@ angular.module('agProcess', [])
 		}
 	}, ListPage);
 })
-.service('$processPage', function($session, ProcessDefinitionPage, $processInsatnceCache,ProcessInstancesPage,HistoricProcessInstances){
+.factory('ModelPage', function (ListPage,Models, $ui){
+	return angular.extend({
+		template: 'views/listPage.html',
+		listControlsTemplate: 'model/listControls.html', 
+		listTemplate: 'model/list.html',
+		section: '',
+		requestParam : {start:0, order: 'desc', sort: 'id'},
+		listSize : 10,
+		queryResource: Models,
+		newModel: function(){
+			$ui.showNewModel(function(model){
+				Models.post(model);
+				this.refresh();
+			}.bind(this));
+		},
+		editModel: function(model){
+			$ui.showEditModel(model, function(modifiedModel){
+				model.customPUT(modifiedModel).then(function(updatedModel){
+					angular.extend(model, updatedModel);
+				});
+				
+			}.bind(this));
+		},
+		deleteModel : function (model) {
+			var me = this;
+			$ui.showConfirmation('CONFIRM_DELETE_MODEL', {id:model.id, name:model.name}, function(){
+				model.remove().then(
+						function(){
+							me.refresh();
+						}
+				);
+			}
+			);
+
+		}
+	}, ListPage);
+})
+.service('$processPage', function($session, ProcessDefinitionPage, $processInsatnceCache,ProcessInstancesPage,ModelPage , HistoricProcessInstances){
 	var definitionListPage = angular.extend({}, ProcessDefinitionPage),
 	myInstancesListPage = createProcessInstanceListPage('myinstances', 'startedBy'),
 	participantListPage = createProcessInstanceListPage('participant', 'involvedUser'),
-	archivedListPage = createArchivedProcessInstanceListPage('archived', 'involvedUser');
+	archivedListPage = createArchivedProcessInstanceListPage('archived', 'involvedUser'),
+	modelListPage = angular.extend({}, ModelPage);
 
 	function createProcessInstanceListPage(section, param){
 		var listPage = {section: section, cache: $processInsatnceCache};
@@ -361,6 +402,9 @@ angular.module('agProcess', [])
 		return archivedListPage.show(processInstanceId);
 	};
 	
+	this.getModel = function(modelId){
+		return modelListPage.show(modelId);
+	};
 
 })
 .service('$process', function(definitionCache, $ui, ProcessInstances, ProcessDefinitions){
@@ -417,6 +461,34 @@ angular.module('agProcess', [])
 	};
 
 })
+.controller('CreateEditModelCtrl', function ($scope, $modalInstance, options) {
+	var model = {};
+	if(options.model){
+		model.name = options.model.name;
+		model.metaInfo = options.model.metaInfo;
+		model.category = options.model.category;
+		$scope.title = 'EDIT_MODEL';
+	}else{
+		$scope.title = 'NEW_MODEL';
+	}
+
+	$scope.showErrors = false;
+	$scope.model = model;
+
+	$scope.submitForm = function(isValid) {
+		// check to make sure the form is completely valid
+		if (isValid) {
+			$modalInstance.close($scope.model);
+		}else{
+			$scope.showErrors = true;
+		}
+	};
+
+	$scope.cancel = function () {
+		$modalInstance.dismiss('cancel');
+	};
+
+})
 .run(function($process, $ui){
 	$ui.registerModal('showStartNewProcess', function (onOK, onCancel){
 		this.showModal('views/startProcess.html', 'StartProcessModalInstanceCtrl', {}, function (definition){
@@ -427,5 +499,13 @@ angular.module('agProcess', [])
 			});
 		}, onCancel);
 	});
+	$ui.registerModal('showNewModel', function (onOK, onCancel){
+		this.showModal('views/editModel.html', 'CreateEditModelCtrl', {options: function(){return {};}}, onOK, onCancel);
+	});
+	
+	$ui.registerModal('showEditModel', function (model, onOK, onCancel){
+		this.showModal('views/editModel.html', 'CreateEditModelCtrl', {options: function(){return {model: model};}}, onOK, onCancel);
+	});
 });
+
 })();

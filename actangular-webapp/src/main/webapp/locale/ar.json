@@ -45,6 +45,7 @@
 "MENU_USERS": "المستخدمين",
 "MENU_GROUPS": "المجموعات",
 "MENU_PREFERENCE": "إعدادات",
+"MENU_MODELS": "التصاميم",
 "ITEMSCOUNT": "{{from}} - {{to}} من {{total}}",
 "SUBTASKS": "المهام الفرعية",
 "NO_SUBTASKS": "لا مهام فرعية",
@@ -162,7 +163,12 @@
 "NO_DIAGRAM":"لاتوجد صورة",
 "NO_INVOLVEMENT": "لا يوجد مشاركين",
 "ROLE_starter": "بادى",
-"ROLE_participant": "مشارك"
+"ROLE_participant": "مشارك",
+"NEW_MODEL": "تصميم جديد",
+"EDIT_MODEL": "تعديل التصميم",
+"CONFIRM_DELETE_MODEL": "حذف التصميم '{{id}} - {{name}}' ؟",
+"OPEN_MODELER": "فتح بواسطة المصمم",
+"NO_MODELS": "لا توجد تصاميم هنا (;"
 },
  "relativeTime" : {
             "future" : "في %s",

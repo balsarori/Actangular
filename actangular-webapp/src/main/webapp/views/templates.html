@@ -67,6 +67,7 @@
 								<li><a href="#/processes/myinstances" translate="MENU_MYINSTANCES">My Instances</a></li>
 								<li><a href="#/processes/participant" translate="MENU_PARTICIPANT">Participant</a></li>
 								<li><a href="#/processes/archived" translate="MENU_ARCHIVED">Archive</a></li>
+								<li><a href="#/processes/models" translate="MENU_MODELS">Models</a></li>
 							</ul>
 						</div>
 					</div>
@@ -954,6 +955,57 @@
 
 <!-- end archived process -->
 
+<!-- models -->
+
+<div id="model/listControls.html">
+	<div class="col-md-9">
+		<button class="btn btn-default" tooltip="{{'NEW_MODEL' | translate}}" ng-click="page.newModel()">
+			<i class="glyphicon glyphicon-plus"> </i>
+		</button>
+		<button class="btn btn-default" tooltip="{{'_REFRESH' | translate}}" ng-click="page.refresh()">
+			<i class="glyphicon glyphicon-refresh"> </i>
+		</button>
+	</div>
+	<div class="col-md-3 itemCount" ng-include="'common/itemsNav.html'"></div>
+</div>
+
+<div id="model/list.html">
+	<div ng-if="page.list.total === 0" class="noList">
+		<h3>
+			<span class="label label-default" translate="NO_MODELS"></span>
+		</h3>
+	</div>
+	<div ng-repeat="model in page.list" class="detail">
+
+		<div class="row name header-row">
+			<div class="col-md-6 name-col">{{model.id}} - {{model.name}}</div>
+			<div class="col-md-6 edit-col">
+				<span class="label label-default"><span class="glyphicon glyphicon-time"></span> <span ag-ago="model.createTime"
+						translateKey="CREATED_AGO"></span></span>
+				<span ng-if="model.category" class="label label-success"><span class="glyphicon glyphicon-tag"></span> <span> {{model.category}}</span></span> <span
+					class="label label-info"><span class="fa fa-files-o"></span><span> {{model.version}}</span></span>
+				<a tooltip="{{'OPEN_MODELER' | translate}}" ng-href="modeler/?id={{model.id}}" target="_blank" class="btn btn-primary label">
+					<span class="glyphicon glyphicon-share"></span>
+				</a>
+				<button tooltip="{{'EDIT_MODEL' | translate}}" class="btn btn-warning label" ng-click="page.editModel(model)">
+					<span class="glyphicon glyphicon-pencil"></span>
+				</button>
+				<button class="btn btn-danger label" ng-click="page.deleteModel(model)" tooltip="{{'_DELETE' | translate}}">
+					<i class="glyphicon glyphicon-remove"></i>
+				</button>
+			</div>
+		</div>
+		<div class="row desc">
+			<div class="col-md-12">
+				<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="model.metaInfo" otherwiseKey="NO_DESCRIPTION"></span>
+			</div>
+		</div>
+		<div class="diagram"><img ng-if="model.sourceExtraUrl" ng-src="{{model.sourceExtraUrl}}"><span ng-if="!model.sourceExtraUrl" translate="NO_DIAGRAM"></span></div>
+	</div>
+</div>
+
+<!-- End of models -->
+
 <div id="login.html">
 	<div class="modal-header">
 		<div class="modal-title logo login">
@@ -1517,4 +1569,46 @@
 			<span class="fa alert-icon fa-2x"></span> <span translate="{{alert.translateKey}}" translate-values="{{alert.translateValues}}"></span>
 		</div>
 	</div>
+</div>
+
+<div id="views/editModel.html">
+	<div class="modal-header">
+		<h3 class="modal-title">
+			<span class="fa fa-tasks"></span> {{title | translate}}
+		</h3>
+	</div>
+	<form name="editModelForm" autocomplete="off" ng-submit="submitForm(editModelForm.$valid)" novalidate>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="input-group">
+						<span class="input-group-addon" translate="_NAME"></span> <input id="name" name="name" ag-focus autocomplete="off" class="form-control" type="text"
+							ng-model="model.name" ng-required="true"> <span class="input-group-addon invalid" ng-if="showErrors && editModelForm.name.$error.required"><span
+							class="glyphicon glyphicon-exclamation-sign"></span></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="input-group">
+						<span class="input-group-addon" translate="CATEGORY"></span> <input id="category" name="category" autocomplete="off" class="form-control" type="text"
+							ng-model="model.category">
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="input-group">
+						<span class="input-group-addon" translate="_DESCRIPTION"></span>
+						<textarea id="description" class="form-control" ng-model="model.metaInfo"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary" type=submit translate="_OK"></button>
+			<button class="btn btn-warning" ag-click="cancel()" translate="_CANCEL"></button>
+		</div>
+	</form>
 </div>
