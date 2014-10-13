@@ -62,7 +62,7 @@ function $diagram($http, svgConfig){
 		}else{
 			$http.get(definition.diagramResource.replace("/resources/", "/resourcedata/"),{cache:true}).success(function(svgdoc){
 				var parser = new DOMParser();
-				var doc = parser.parseFromString(svgdoc, "image/svg+xml");
+				var doc = parser.parseFromString(svgdoc, "text/xml");
 
 				processSvgElement(doc);
 				svgDocuments[definition.id] = doc.documentElement;
@@ -78,6 +78,9 @@ function $diagram($http, svgConfig){
 	};
 
 	function processSvgElement(doc){
+		doc.documentElement.removeAttribute('id');
+		doc.documentElement.removeAttribute('xmlns:xlink');
+		doc.documentElement.removeAttribute('xmlns:svg');
 		var def = doc.documentElement.querySelector('svg > defs');
 		if(def === undefined || def === null) return;
 
@@ -138,7 +141,8 @@ function $diagram($http, svgConfig){
 				}
 			}
 		}
-		def.remove();
+		//def.remove(); doesn't work on Opera!!
+		doc.documentElement.removeChild(def);
 	}
 
 	function createSvgProcessInstanceCssSelectors(processId, activities){
