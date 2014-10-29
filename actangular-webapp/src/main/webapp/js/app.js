@@ -11,7 +11,6 @@ angular.module('agApp',
 //Locales config
 .constant('localeKeys', {keys: ['en', 'ar'], aliases:{'en_*': 'en','ar_*': 'ar'},
 	langDisplay:{'en': 'English', 'ar': 'عربي'}})
-	//langDisplay:[{key: 'en', value: 'English'}, {key: 'ar', value: 'عربي'}]})
 .config(function($translateProvider, localeKeys) {
 	$translateProvider.registerAvailableLanguageKeys(localeKeys.keys, localeKeys.aliases);
 	$translateProvider.determinePreferredLanguage();
@@ -51,13 +50,21 @@ angular.module('agApp',
 }])
 //$form config
 .config(['$formProvider', function($formProvider) {
-	
+	function escapeRegExp(str) {
+		  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+		}
+	function replaceAll(find, replace, str) {
+		  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+		}
 	$formProvider.addFormPropertyHandler('date', {
 		viewId: 'views/form/date.html',
 		initFormProperty: function(formProperty){
-			// dates are converted to ISO 8601 format by server 
+			
 			if (formProperty.value !== null){ 
-				formProperty.value = new Date(formProperty.value);
+				
+				if(formProperty.datePattern)
+					formProperty.value = moment(formProperty.value, replaceAll('y','Y', replaceAll('d','D', formProperty.datePattern))).toDate();
+				
 			}
 		},
 		prepareForSubmit: function($filter, formProperty){
