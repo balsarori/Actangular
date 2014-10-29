@@ -10,68 +10,85 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.actangular.rest.service.api.boot;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.activiti.engine.IdentityService;
+import org.activiti.engine.RepositoryService;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.User;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.repository.ProcessDefinition;
-import org.activiti.rest.common.api.ActivitiUtil;
-import org.activiti.rest.common.api.SecuredResource;
 import org.activiti.rest.service.api.RestResponseFactory;
 import org.activiti.rest.service.api.identity.GroupResponse;
 import org.activiti.rest.service.api.identity.UserResponse;
 import org.activiti.rest.service.api.repository.ProcessDefinitionResponse;
-import org.activiti.rest.service.application.ActivitiRestServicesApplication;
-import org.restlet.resource.Get;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Bassam Al-Sarori
  * 
  */
-public class BootResource extends SecuredResource {
+@RestController
+public class BootResource {
 
-  @Get
-  public BootResponse getData() {
-    if (!authenticate())
-      return null;
+  @Autowired
+  protected RestResponseFactory restResponseFactory;
+  
+  @Autowired
+  protected IdentityService identityService;
+  
+  @Autowired
+  protected RepositoryService repositoryService;
+  
+  @RequestMapping(value="/boot", method = RequestMethod.POST, produces="application/json")
+  public BootResponse getData(HttpServletRequest request) {
 
+    String serverRootUrl = request.getRequestURL().toString();
+    serverRootUrl = serverRootUrl.substring(0, serverRootUrl.indexOf("/boot"));
     BootResponse bootResponse = new BootResponse();
 
-    initUsersData(bootResponse);
-    initGroupsData(bootResponse);
-    initMemberOfData(bootResponse);
-    initProcessDefinitionData(bootResponse);
+    initUsersData(bootResponse, serverRootUrl);
+    initGroupsData(bootResponse, serverRootUrl);
+    initMemberOfData(bootResponse, request.getRemoteUser());
+    initProcessDefinitionData(bootResponse, serverRootUrl);
 
     return bootResponse;
   }
 
-  protected void initUsersData(BootResponse bootResponse) {
+  protected void initUsersData(BootResponse bootResponse, String serverRootUrl) {
     List<UserResponse> users = new ArrayList<UserResponse>();
-    List<User> usersList = ActivitiUtil.getIdentityService().createUserQuery().list();
+    List<User> usersList = identityService.createUserQuery().list();
     for (User user : usersList) {
-      users.add(getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory().createUserResponse(this, user, false));
+      users.add(restResponseFactory.createUserResponse(user, false, serverRootUrl));
     }
 
     bootResponse.setUsers(users);
   }
 
-  protected void initGroupsData(BootResponse bootResponse) {
+  protected void initGroupsData(BootResponse bootResponse, String serverRootUrl) {
     List<GroupResponse> groups = new ArrayList<GroupResponse>();
-    List<Group> groupsList = ActivitiUtil.getIdentityService().createGroupQuery().list();
+    List<Group> groupsList = identityService.createGroupQuery().list();
 
     for (Group group : groupsList) {
-      groups.add(getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory().createGroupResponse(this, group));
+      groups.add(restResponseFactory.createGroupResponse(group, serverRootUrl));
     }
 
     bootResponse.setGroups(groups);
   }
 
-  protected void initMemberOfData(BootResponse bootResponse) {
+  protected void initMemberOfData(BootResponse bootResponse, String loggedInUser) {
+    bootResponse.setUserId(loggedInUser);
     List<String> groups = new ArrayList<String>();
-    List<Group> groupsList = ActivitiUtil.getIdentityService().createGroupQuery().groupMember(loggedInUser).list();
+    List<Group> groupsList = identityService.createGroupQuery().groupMember(loggedInUser).list();
 
     for (Group group : groupsList) {
       groups.add(group.getId());
@@ -80,12 +97,11 @@ public class BootResource extends SecuredResource {
     bootResponse.setMemberOf(groups);
   }
 
-  protected void initProcessDefinitionData(BootResponse bootResponse) {
-    List<ProcessDefinition> list = ActivitiUtil.getRepositoryService().createProcessDefinitionQuery().list();
+  protected void initProcessDefinitionData(BootResponse bootResponse, String serverRootUrl) {
+    List<ProcessDefinition> list = repositoryService.createProcessDefinitionQuery().list();
     List<ProcessDefinitionResponse> responseList = new ArrayList<ProcessDefinitionResponse>();
-    RestResponseFactory restResponseFactory = getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory();
     for (ProcessDefinition processDefinition : list) {
-      responseList.add(restResponseFactory.createProcessDefinitionResponse(this, processDefinition));
+      responseList.add(restResponseFactory.createProcessDefinitionResponse(processDefinition,((ProcessDefinitionEntity) processDefinition).isGraphicalNotationDefined(), serverRootUrl));
     }
     bootResponse.setProcessDefinitions(responseList);
   }

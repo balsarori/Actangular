@@ -10,6 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package org.actangular.rest.service.api.boot;
 
 import java.util.List;
@@ -24,11 +25,20 @@ import org.activiti.rest.service.api.repository.ProcessDefinitionResponse;
  */
 public class BootResponse {
 
+  protected String userId;
   protected List<UserResponse> users;
   protected List<GroupResponse> groups;
   protected List<String> memberOf;
   protected List<ProcessDefinitionResponse> processDefinitions;
 
+  public String getUserId() {
+    return userId;
+  }
+  
+  public void setUserId(String userId) {
+    this.userId = userId;
+  }
+  
   public List<UserResponse> getUsers() {
     return users;
   }

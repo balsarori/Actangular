@@ -1,86 +1,85 @@
-/**
+/* Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 package org.actangular.rest.service.api.repository;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.List;
+import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.repository.Model;
-import org.activiti.rest.common.api.ActivitiUtil;
 import org.activiti.rest.service.api.repository.BaseModelResource;
 import org.activiti.rest.service.api.repository.ModelResponse;
-import org.activiti.rest.service.application.ActivitiRestServicesApplication;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.io.IOUtils;
-import org.restlet.data.MediaType;
-import org.restlet.data.Status;
-import org.restlet.ext.fileupload.RestletFileUpload;
-import org.restlet.representation.Representation;
-import org.restlet.resource.Put;
-import org.restlet.resource.ResourceException;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
  * @author Bassam Al-Sarori
  *
  */
+@RestController
 public class ModelSourcesResource extends BaseModelResource {
-
-  @Put
-  public ModelResponse setModelSources(Representation representation) {
-    if (authenticate() == false)
-      return null;
-    
-    Model model = getModelFromRequest();
-    
-    if(!MediaType.MULTIPART_FORM_DATA.isCompatible(representation.getMediaType())) {
-      throw new ResourceException(Status.CLIENT_ERROR_UNSUPPORTED_MEDIA_TYPE.getCode(), "The request should be of type 'multipart/form-data'.", null, null);
-    }
-    
-    RestletFileUpload upload = new RestletFileUpload(new DiskFileItemFactory());
-    try {
-      FileItem jsonUploadItem = null;
-      FileItem svgUploadItem = null;
-      List<FileItem> items = upload.parseRepresentation(representation);
-      for (FileItem fileItem : items) {
-        if("json".equalsIgnoreCase(fileItem.getFieldName()))
-          jsonUploadItem = fileItem;
-        else if("svg".equalsIgnoreCase(fileItem.getFieldName()))
-          svgUploadItem = fileItem;
+  
+  @RequestMapping(value="/repository/models/{modelId}/sources", method = RequestMethod.PUT, produces = "application/json")
+  protected ModelResponse setModelSources(@PathVariable String modelId, HttpServletRequest request) {
+    Model model = getModelFromRequest(modelId);
+    if (model != null) {
+      
+      if (request instanceof MultipartHttpServletRequest == false) {
+        throw new ActivitiIllegalArgumentException("Multipart request is required");
       }
-      if(jsonUploadItem == null && svgUploadItem == null) {
+      
+      MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+      
+      if (multipartRequest.getFileMap().size() == 0) {
+        throw new ActivitiIllegalArgumentException("Multipart request with file content is required");
+      }
+      
+      Iterator<MultipartFile> files = multipartRequest.getFileMap().values().iterator();
+      MultipartFile editorSourceFile = null;
+      MultipartFile editorSourceExtraFile = null;
+      while(files.hasNext()){
+        MultipartFile file = files.next();
+        if("json".equalsIgnoreCase(file.getName()))
+          editorSourceFile = file;
+        else if("svg".equalsIgnoreCase(file.getName()))
+          editorSourceExtraFile = file;
+      }
+      
+      if(editorSourceFile == null && editorSourceExtraFile == null) {
         throw new ActivitiIllegalArgumentException("No file content was found in request body.");
       }
       
-      if(jsonUploadItem!=null){
-        ActivitiUtil.getRepositoryService().addModelEditorSource(model.getId(), getBytes(jsonUploadItem));
+      try {
+        if(editorSourceFile!=null)
+          repositoryService.addModelEditorSource(modelId, editorSourceFile.getBytes());
+        if(editorSourceExtraFile!=null)
+          repositoryService.addModelEditorSourceExtra(modelId, editorSourceExtraFile.getBytes());
+        
+        String serverRootUrl = request.getRequestURL().toString();
+        serverRootUrl = serverRootUrl.substring(0, serverRootUrl.indexOf("/repository/models/"));
+        return restResponseFactory.createModelResponse(model, serverRootUrl);
+        
+      } catch (Exception e) {
+        throw new ActivitiException("Error adding model editor source extra", e);
       }
-      if(svgUploadItem!=null){
-        ActivitiUtil.getRepositoryService().addModelEditorSourceExtra(model.getId(), getBytes(svgUploadItem));
-      }
-      return getApplication(ActivitiRestServicesApplication.class).getRestResponseFactory()
-          .createModelResponse(this, model);
-     
-    } catch (FileUploadException e) {
-      throw new ActivitiException("Error with uploaded file: " + e.getMessage(), e);
-    } catch (IOException e) {
-      throw new ActivitiException("Error while reading uploaded file: " + e.getMessage(), e);
     }
+    return null;
   }
-  
-  protected byte[] getBytes(FileItem uploadItem) throws IOException{
-    int size = ((Long) uploadItem.getSize()).intValue();
-    
-    // Copy file-body in a bytearray as the engine requires this
-    ByteArrayOutputStream bytesOutput = new ByteArrayOutputStream(size);
-    IOUtils.copy(uploadItem.getInputStream(), bytesOutput);
-   
-    return bytesOutput.toByteArray();
-  }
-
 }

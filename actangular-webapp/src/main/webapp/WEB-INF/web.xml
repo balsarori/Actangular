@@ -1,33 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>  
-<web-app id="WebApp_ID" version="2.5"  
-            xmlns="http://java.sun.com/xml/ns/javaee"  
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee  
-                 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">  
-  
-  <display-name>Actangular</display-name>
-   
-  <listener>
-    <listener-class>org.activiti.rest.common.servlet.ActivitiServletContextListener</listener-class>
-  </listener> 
-  
-  <!-- Restlet adapter -->  
-  <servlet>  
-    <servlet-name>RestletServlet</servlet-name>  
-    <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
-    <init-param>
-      <!-- Application class name -->
-      <param-name>org.restlet.application</param-name>
-      <param-value>org.actangular.rest.service.application.ActangularRestServicesApplication</param-value>
-    </init-param>
-  </servlet>
-  
-  <!-- Catch all requests -->  
-  <servlet-mapping>  
-    <servlet-name>RestletServlet</servlet-name>  
-    <url-pattern>/service/*</url-pattern>  
-  </servlet-mapping>
-  
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0"
+         metadata-complete="true">
+
+    <!--
+     Remove classpath scanning (from servlet 3.0) in order to speed jetty startup :
+     metadata-complete="true" above + empty absolute ordering below
+     -->
+    <absolute-ordering>
+      <!--
+        Empty absolute ordering is necessary to completely deactivate classpath scanning
+      -->
+    </absolute-ordering>
+
+    <display-name>Actangular REST</display-name>
+
+    <!-- All the Servlets and Filters are configured by this ServletContextListener : -->
+    <listener>
+        <listener-class>org.actangular.rest.servlet.WebConfigurer</listener-class>
+    </listener>
+    
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

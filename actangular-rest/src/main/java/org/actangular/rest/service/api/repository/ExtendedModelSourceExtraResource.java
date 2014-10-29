@@ -3,27 +3,29 @@
  */
 package org.actangular.rest.service.api.repository;
 
-import java.io.ByteArrayInputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.activiti.engine.ActivitiObjectNotFoundException;
-import org.activiti.engine.repository.Model;
-import org.activiti.rest.common.api.ActivitiUtil;
-import org.activiti.rest.service.api.repository.ModelSourceExtraResource;
-import org.restlet.data.MediaType;
-import org.restlet.representation.InputRepresentation;
+import org.activiti.rest.service.api.repository.BaseModelSourceResource;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Bassam Al-Sarori
- *
  */
-public class ExtendedModelSourceExtraResource extends ModelSourceExtraResource {
+@RestController
+public class ExtendedModelSourceExtraResource extends BaseModelSourceResource {
 
-  @Override
-  protected InputRepresentation getModelStream(Model model) {
-    byte[] editorSource = ActivitiUtil.getRepositoryService().getModelEditorSourceExtra(model.getId());
-    if(editorSource == null) {
-      throw new ActivitiObjectNotFoundException("Model with id '" + model.getId() + "' does not have extra source available.", String.class);
+  @RequestMapping(value="/repository/models/{modelId}/source-extra.svg", method = RequestMethod.GET)
+  protected @ResponseBody byte[] getModelSvg(@PathVariable String modelId, HttpServletResponse response) {
+    byte[] editorSource = repositoryService.getModelEditorSourceExtra(modelId);
+    if (editorSource == null) {
+      throw new ActivitiObjectNotFoundException("Model with id '" + modelId + "' does not have extra source available.", String.class);
     }
-    return new InputRepresentation(new ByteArrayInputStream(editorSource), MediaType.IMAGE_SVG);
+    response.setContentType("image/svg+xml");
+    return editorSource;
   }
 }
