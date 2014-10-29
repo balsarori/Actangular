@@ -1,6 +1,6 @@
 (function() {'use strict';
 
-function $session($rootScope, $http, $cookies, $storage , $identity, $injector, bootListeners){
+function $session($rootScope, $http, $storage , $identity, $injector, bootListeners){
 
 	this.getUser = function(){
 		return this.user;
@@ -20,11 +20,9 @@ function $session($rootScope, $http, $cookies, $storage , $identity, $injector, 
 	};
 
 	this.isValid = function(){
-		var authHeader = $cookies.actKey, newLoc = '#/login';
+		var userId = $storage.get("currentUserId"), newLoc = '#/login';
 
-		if(authHeader && authHeader.length > 6){
-			var decodedAuth = window.atob(authHeader.substring(6));
-			var userId = decodedAuth.substring(0, decodedAuth.lastIndexOf(':'));
+		if(userId && userId.length > 0){
 			if(this.getUserId() === userId) return true;
 
 			//user may have logged out from another window/tab 
@@ -41,46 +39,36 @@ function $session($rootScope, $http, $cookies, $storage , $identity, $injector, 
 	this.invalidate = function(data){
 		//$rootScope.$broadcast('event:session-invalidating', data);
 		this.user = null;
-		delete $cookies.actKey;
-		$storage.remove("actKey");
+		$storage.remove("currentUserId");
 	};
 
 	this.autoLogin = function (options){
-		var authHeader = $cookies.actKey || $storage.get("actKey");
-		var userId = undefined;
-
-		if(authHeader && authHeader.length > 6){
-			var decodedAuth = window.atob(authHeader.substring(6));
-			userId = decodedAuth.substring(0, decodedAuth.lastIndexOf(':'));
-		}
-
-		if(authHeader && userId){
-			this.login(userId, authHeader, options);
-		}else{
-			if(options) {
-				if(options.onError) options.onError(null, options.data);
-			}
-		}
+		this.login(null, options);
 	};
 
 	this.credentialsLogin = function (userId, password, options){
 		var btoa = userId+':'+password;
 		var authHeader = 'Basic '+window.btoa(btoa);
 
-		this.login(userId, authHeader, options);
+		this.login(authHeader, options);
 
 	};
 
-	this.login = function (userId, authHeader, options){
+	this.login = function (authHeader, options){
 		var me = this;
-		$cookies.actKey = authHeader;
-
-		$http.get('service/boot', {headers : {'Authorization': authHeader},ignoreAuth: true}).success(function(bootData) {
-
-			if (options.remember && options.remember === true && $storage.isLocalStorage) {
-				// Store
-				$storage.set("actKey", authHeader);
+		var config = {ignoreAuth: true};
+		if(authHeader){
+			config.headers = {'Authorization':authHeader};
+			if (angular.isDefined(options.remember) && options.remember === true) {
+				config.params = {remember_me : "true"};
+			}else{
+				config.params = {remember_me : "session"};
 			}
+		}
+		
+		$http.post('service/boot', {}, config).success(function(bootData) {
+
+			$storage.set("currentUserId", bootData.userId);
 
 			for(var i = 0, l=bootListeners.length; i<l;i++){
 				if(angular.isString(bootListeners[i])){
@@ -90,7 +78,7 @@ function $session($rootScope, $http, $cookies, $storage , $identity, $injector, 
 				}
 			}
 
-			$identity.getUser(userId).then(function(user){
+			$identity.getUser(bootData.userId).then(function(user){
 				me.user = user;
 				var data = {};
 				me.user.groups = {};
@@ -119,19 +107,22 @@ function $session($rootScope, $http, $cookies, $storage , $identity, $injector, 
 
 	this.logout = function (){
 		this.invalidate();
-		window.location.replace('#/login');
-		window.location.reload();
+		$http.post('service/logout', {ignoreAuth: true}).success(function() {
+			window.location.replace('#/login');
+			window.location.reload();
+		});
+		
 	};
 
 	return this;
 };
-angular.module('agSession', ['ngCookies'])
+angular.module('agSession', [])
 .provider('$session', function $SessionProvider() {
 	var listeners = this.bootListeners = [];
 
-	this.$get = ['$rootScope', '$http', '$cookies', '$storage', '$identity','$injector', function sessionFactory($rootScope, $http, $cookies,$storage, $identity, $injector) {
+	this.$get = ['$rootScope', '$http', '$storage', '$identity','$injector', function sessionFactory($rootScope, $http, $storage, $identity, $injector) {
 
-		return new $session($rootScope, $http, $cookies,$storage, $identity, $injector, listeners);
+		return new $session($rootScope, $http,$storage, $identity, $injector, listeners);
 	}];
 })
 .controller('LoginController', function ($scope, $modalInstance, credentials, $session) {
