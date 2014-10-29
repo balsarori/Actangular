@@ -297,14 +297,16 @@ angular.module('agIdentity', [])
 	}};
 })
 //filters
-.filter('userName', function($identity, $timeout) {
+.filter('userName', function($identity) {
 	return function(userId) {
-		return $identity.getUserName(userId);
+		if(userId)
+			return $identity.getUserName(userId);
 	};
 })
 .filter('groupName', function($identity) {
 	return function(groupId) {
-		return $identity.getGroupName(groupId);
+		if(groupId)
+			return $identity.getGroupName(groupId);
 	};
 })
 .filter('identityName', function($filter) {

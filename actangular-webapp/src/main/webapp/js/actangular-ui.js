@@ -551,7 +551,7 @@ angular.module('agUI',
 					}
 					if(classes === undefined || classes === '')
 						classes='fa fa-file';
-					href = attachment.contentUrl;
+					href = attachment.contentUrl + '/' + encodeURI(attachment.name);
 				}
 				element.attr('href', href);
 				element.html('<i class="'+classes+'"></i> <span>'+attachment.name+'</span>');

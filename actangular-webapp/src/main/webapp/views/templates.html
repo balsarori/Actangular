@@ -93,23 +93,28 @@
 	</div>
 </div>
 
-<script id="task/event.html" type="text/ag-template">
-<td ng-if="currentUser.id === taskEvent.userId" class="authorImg">
-<img ag-user-pic="taskEvent.userId">
-</td>
-<td colspan="9">
-<div class="popover" ng-class="{'right': currentUser.id === taskEvent.userId, 'left': currentUser.id !== taskEvent.userId}">
-<div class="arrow"></div>
-<div class="popover-inner">
-      <div class="popover-title"><div ag-user="taskEvent.userId"></div> <div ag-ago="taskEvent.time"></div></div>
-      <div class="popover-content" translate="TASK_EVENT_{{taskEvent.action}}" translate-values="taskEvent"></div>
-  </div>
+<div id="task/event.html">
+	<div class="identity-link-con eventsTable">
+		<div ng-repeat="taskEvent in page.task.events" class="event-item authorImg"
+			ng-class="{'right-event': currentUser.id === taskEvent.userId, 'left-event': currentUser.id !== taskEvent.userId}">
+			<img ng-if="currentUser.id === taskEvent.userId" ag-user-pic="taskEvent.userId">
+			<div class="popover" ng-class="{'right': currentUser.id === taskEvent.userId, 'left': currentUser.id !== taskEvent.userId}">
+				<div class="arrow"></div>
+				<div class="popover-inner">
+					<div class="popover-title">
+						<div ng-if="taskEvent.userId" ag-user="taskEvent.userId"></div>
+						<div ag-ago="taskEvent.time"></div>
+					</div>
+					<div class="popover-content" translate="TASK_EVENT_{{taskEvent.action}}" translate-values="taskEvent"></div>
+				</div>
+			</div>
+			<img ng-if="currentUser.id !== taskEvent.userId" ag-user-pic="taskEvent.userId">
+		</div>
+	</div>
+	<div class="emptyList" ng-if="page.task.events.length===0">
+		<span class="label label-default" translate="NO_EVENTS"></span>
+	</div>
 </div>
-</td>
-<td ng-if="currentUser.id !== taskEvent.userId" class="authorImg">
-<img ag-user-pic="taskEvent.userId">
-</td>
-</script>
 
 <div id="common/itemsNav.html">
 	<ul>
@@ -365,16 +370,7 @@
 						<span class="glyphicon glyphicon-comment"></span>
 					</button>
 					<div class="name">{{'EVENTS' | translate}}</div>
-					<div class="eventsList">
-						<table class="eventsTable">
-							<tr ng-repeat="taskEvent in page.task.events" ng-include="'task/event.html'"
-								ng-class="{'right-event': currentUser.id === taskEvent.userId, 'left-event': currentUser.id !== taskEvent.userId}">
-							</tr>
-						</table>
-						<div class="emptyList" ng-if="page.task.events.length===0">
-							<span class="label label-default" translate="NO_EVENTS"></span>
-						</div>
-					</div>
+					<div class="eventsList" ng-include="'task/event.html'"></div>
 				</div>
 			</div>
 		</div>
@@ -574,16 +570,7 @@
 			<div class="col-md-5 colData" ng-init="(page.task.events.length >= 0)? '':page.task.refreshEvents()">
 				<div class="detail">
 					<div class="name">{{'EVENTS' | translate}}</div>
-					<div class="eventsList">
-						<table class="eventsTable">
-							<tr ng-repeat="taskEvent in page.task.events" ng-include="'task/event.html'"
-								ng-class="{'right-event': currentUser.id === taskEvent.userId, 'left-event': currentUser.id !== taskEvent.userId}">
-							</tr>
-						</table>
-						<div class="emptyList" ng-if="page.task.events.length===0">
-							<span class="label label-default" translate="NO_EVENTS"></span>
-						</div>
-					</div>
+					<div class="eventsList" ng-include="'task/event.html'"></div>
 				</div>
 			</div>
 		</div>
@@ -1000,7 +987,7 @@
 				<span class="glyphicon glyphicon-align-justify"></span> <span ag-content="model.metaInfo" otherwiseKey="NO_DESCRIPTION"></span>
 			</div>
 		</div>
-		<div class="diagram"><img ng-if="model.sourceExtraUrl" ng-src="{{model.sourceExtraUrl}}"><span ng-if="!model.sourceExtraUrl" translate="NO_DIAGRAM"></span></div>
+		<div class="diagram"><img ng-if="model.sourceExtraUrl" ng-src="{{model.sourceExtraUrl}}.svg"><span ng-if="!model.sourceExtraUrl" translate="NO_DIAGRAM"></span></div>
 	</div>
 </div>
 
@@ -1511,7 +1498,7 @@
 	<div class="col-lg-12">
 		<div class="input-group" ng-init="formProperty.opened = false">
 			<span class="input-group-addon">{{formProperty.name}}</span> <input ag-name="formProperty.id" type="text" class="form-control"
-				ng-readonly="!formProperty.writable" ng-required="formProperty.required" datepicker-popup="dd-MM-yyyy hh:mm" is-open="formProperty.opened"
+				ng-readonly="!formProperty.writable" ng-required="formProperty.required" datepicker-popup="{{formProperty.datePattern}}" is-open="formProperty.opened"
 				ng-model="formProperty.value" close-text="Close" /> <span class="input-group-btn">
 				<button ag-click="formProperty.opened = !formProperty.opened;" class="btn btn-default"
 					ng-class="{'btn-danger':(showErrors && formPropertiesForm[formProperty.id].$error.required)}">
