@@ -118,7 +118,11 @@ ORYX.Plugins.BPMNDeploy = Clazz.extend({
 				
 		dialog.show();		
 		grid.render();
-		grid.focus( false, 100 );
+		//grid.focus( false, 100 );
+		
+		//disable spellcheck
+		grid.getEl().dom.setAttribute("spellcheck","false");
+
 		
 	},
 	/**
