@@ -47,3 +47,8 @@ TODO add more information
 Uses AngularJS, AngularUI Bootstrap, Restangular, angular-translate, etc! in addition to actangular-js modules
 
 TODO add more information
+
+## angular-js-activiti-webapp references
+
+http://alfrescoblog.com/2014/09/04/angular-js-activiti-webapp-part-iii-final/
+
