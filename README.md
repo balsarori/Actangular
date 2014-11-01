@@ -18,32 +18,19 @@ gonzo   | gonzo
 fozzie  | fozzie
 
 
-## actangular-js - AngularJS and Javascript modules
-
-AngularJS and Javascript modules that provide services, directives, filters, etc! 
-actangular-session, actangular-identity, actangular-task, actangular-process, actangular-diagram, actangular-form, actangular-ui
-
-TODO add more information
-
-## actangular-rest - The REST API
-
-Resources are within authenticated user context
-
-### Authentication
-Uses a ChallengeScheme.CUSTOM authenticator which accepts HTTP_BASIC authentication and cookie based authentication. 
-Note that the authenticator does not send a challenge to unauthenticated requests instead sends back a 401 Unauthorized response.
-This allows the client side to i.e. show a custom login form.
+## What features are currently available?
+Some of the features currently available are
+* Login and logout with remember me feature support
+* Managing tasks i.e. listing, sorting, creating/editing/claiming/completing/deleting, posting comments, adding/deleting identity links, uploading attachments, etc..
+* Managing process instances i.e. listing, sorting, starting/deleting, adding/deleting identity links, listing related tasks, etc..
+* Historic tasks and process instances listing and sorting
+* Form rendering and submitting, supports string, date, boolean, and long form property types
+* Task and process instance variables, supports string, date, and long variable types
+* Managing models i.e. listing, creating/editing/deleting models
+* Modeler integration enables modeling, converting to BPMN and deploying from the Modeler
+* Process diagrams rendering using SVG (client side) and PNG (sever side)
+* Multi-language, currently English and Arabic (with RTL support)
 
 
-### Resources
-##### /boot
-Returns list of users, groups, process definitions, and, information about logged-in user (i.e groups user is member of)
-
-TODO add more information
-
-
-## actangular-webapp - The webapp
-
-Uses AngularJS, AngularUI Bootstrap, Restangular, angular-translate, etc! in addition to actangular-js modules
-
-TODO add more information
+## External Resources
+http://sarori.blogspot.com/2014/11/introduction-to-actangular.html
