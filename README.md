@@ -1,6 +1,8 @@
 Actangular
 ==========
 
+![alt tag](http://3.bp.blogspot.com/-jSjgwJGTT4g/VFKvUwXboFI/AAAAAAAAAGE/O7Xzr9IXFjc/s1600/task-list.png)
+
 ## Getting started
 Download the source code and extract it, then run 
 ```
