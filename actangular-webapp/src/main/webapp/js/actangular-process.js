@@ -225,10 +225,11 @@ angular.module('agProcess', [])
 		}
 	}, ListPage);
 })
-.factory('ProcessInstancesPage', function (ListPage,HistoricProcessInstances, $ui, $process){
+.factory('ProcessInstancesPage', function (ListPage,HistoricProcessInstances, $processInsatnceCache, $ui, $process){
 	
-	return angular.extend({
-		loaded: false,
+	var processInstancesPage = angular.extend({}, ListPage);
+	return angular.extend(processInstancesPage, {
+		requestParam : {start:0, order: 'desc', sort: 'processInstanceId',  finished: false},
 		template: 'views/listPage.html',
 		listControlsTemplate: 'process/listControls.html', 
 		listTemplate: 'process/list.html',
@@ -238,6 +239,53 @@ angular.module('agProcess', [])
 		sortKeys: {processInstanceId: 'id', startTime: 'startTime'},
 		listSize : 10,
 		queryResource: HistoricProcessInstances,
+		cache: $processInsatnceCache,
+		queryList : function(requestParam, success, fail){
+			if(!this.list || requestParam.processInstanceId)
+				return this.queryResource.getList(requestParam).then(success, fail);
+			
+			// To refresh process diagrams
+			// keep current process instances list
+			// to force refreshing ActivityIds post 
+			// list refresh
+			var toRefreshList = [];
+			for(var i=0; i<this.list.length;i++){
+				if(this.list[i].definition.graphicalNotationDefined)
+					toRefreshList.push(this.list[i]);
+			}
+			return this.queryResource.getList(requestParam).then(function(list){
+				for(var i=0; i<toRefreshList.length;i++){
+					if(list.indexOf(toRefreshList[i]) > -1){
+						toRefreshList[i].refreshActivityIds(true);
+					}
+				}
+				success(list);
+			}, fail);
+		},
+		queryOne : function(processInstanceId, success, fail){
+			var requestParams = {processInstanceId: processInstanceId};
+			angular.extend(requestParams, this.requestParam);
+			requestParams.start = 0;
+			return this.queryList(requestParams,function(processInstances){
+				if(processInstances.length===0){
+					fail();
+				}else{
+					success(processInstances[0]);
+				}
+			},fail);
+		},
+		refreshProcessInstance : function(processInstance){
+			var me = this;
+			this.queryOne(processInstance.id, function(updatedProcessInstance){
+				
+				updatedProcessInstance.refreshIdentityLinks(true);
+				updatedProcessInstance.refreshVariables(true);
+				updatedProcessInstance.refreshTasks(true);
+				updatedProcessInstance.refreshActivityIds(true);
+			}, function(){
+				me.back(true);
+			});
+		},
 		deleteProcessInstance : function (processInstance) {
 			var me = this;
 			var name = processInstance.name || processInstance.definition.name;
@@ -276,7 +324,32 @@ angular.module('agProcess', [])
 			}
 			);
 		}
-	}, ListPage);
+	});
+})
+.factory('HistoricProcessInstancesPage', function (ListPage,HistoricProcessInstances,$processInsatnceCache){
+	
+	var archivedProcessInstancesPage = angular.extend({}, ListPage);
+	return angular.extend(archivedProcessInstancesPage, {
+		requestParam : {start:0, order: 'desc', sort: 'processInstanceId',  finished: true, includeProcessVariables: true},
+		template: 'views/listPage.html',
+		listControlsTemplate: 'archivedProcess/listControls.html', 
+		listTemplate: 'archivedProcess/list.html',
+		itemControlsTemplate: 'archivedProcess/itemControls.html', 
+		itemTemplate: 'archivedProcess/item.html',
+		itemName: 'processInstance',
+		sortKeys: {processInstanceId: 'id', startTime: 'startTime', endTime : 'endTime'},
+		listSize : 10,
+		queryResource: HistoricProcessInstances,
+		cache: $processInsatnceCache,
+		getItem : function(processInstanceId){
+			var processInstance = this.cache.get(processInstanceId);
+			if(processInstance){
+				if(processInstance.endTime !== null)
+					return processInstance;
+				this.cache.remove(processInstanceId);
+			}
+		}
+	});
 })
 .factory('ModelPage', function (ListPage,Models, $ui){
 	return angular.extend({
@@ -315,7 +388,7 @@ angular.module('agProcess', [])
 		}
 	}, ListPage);
 })
-.service('$processPage', function($session, ProcessDefinitionPage, $processInsatnceCache,ProcessInstancesPage,ModelPage , HistoricProcessInstances){
+.service('$processPage', function($session, ProcessDefinitionPage,ProcessInstancesPage, HistoricProcessInstancesPage, ModelPage){
 	var definitionListPage = angular.extend({}, ProcessDefinitionPage),
 	myInstancesListPage = createProcessInstanceListPage('myinstances', 'startedBy'),
 	participantListPage = createProcessInstanceListPage('participant', 'involvedUser'),
@@ -323,69 +396,15 @@ angular.module('agProcess', [])
 	modelListPage = angular.extend({}, ModelPage);
 
 	function createProcessInstanceListPage(section, param){
-		var listPage = {section: section, cache: $processInsatnceCache};
-		listPage = angular.extend(listPage, ProcessInstancesPage);
-		listPage.section = section;
-		listPage.requestParam = {start:0, order: 'desc', sort: 'processInstanceId',  finished: false/*, includeProcessVariables: true*/};
+		var listPage = angular.extend({section: section}, ProcessInstancesPage);
+		listPage.requestParam = angular.extend({}, ProcessInstancesPage.requestParam);
 		listPage.requestParam[param] = $session.getUserId();
-		listPage.refreshProcessInstance = function(processInstance){
-			var me = this;
-			this.queryOne(processInstance.id, function(updatedProcessInstance){
-				
-				updatedProcessInstance.refreshIdentityLinks(true);
-				updatedProcessInstance.refreshVariables(true);
-				updatedProcessInstance.refreshTasks(true);
-				updatedProcessInstance.refreshActivityIds(true);
-			}, function(){
-				me.back(true);
-			});
-		};
-		listPage.queryOne = function(processInstanceId, success, fail){
-			var requestParams = {processInstanceId: processInstanceId};
-			angular.extend(requestParams, this.requestParam);
-			requestParams.start = 0;
-			return this.queryList(requestParams,function(processInstances){
-				if(processInstances.length===0){
-					fail();
-				}else{
-					success(processInstances[0]);
-				}
-			},fail);
-		};
 		return listPage;
 	};
 	
 	function createArchivedProcessInstanceListPage(section, param){
-		var listPage = {section: section, cache: $processInsatnceCache};
-		listPage = angular.extend(listPage, ProcessInstancesPage);
-		listPage.section = section;
-		listPage.requestParam = {start:0, order: 'desc', sort: 'processInstanceId',  finished: true, includeProcessVariables: true};
-		listPage.requestParam[param] = $session.getUserId();
-		listPage.listControlsTemplate = 'archivedProcess/listControls.html';
-		listPage.listTemplate = 'archivedProcess/list.html';
-		listPage.itemControlsTemplate = 'archivedProcess/itemControls.html';
-		listPage.itemTemplate = 'archivedProcess/item.html';
-		listPage.sortKeys = angular.extend({endTime : 'endTime'}, listPage.sortKeys);
-		listPage.queryOne = function(processInstanceId, success, fail){
-			var requestParams = {processInstanceId: processInstanceId};
-			angular.extend(requestParams, this.requestParam);
-			requestParams.start = 0;
-			return this.queryList(requestParams,function(processInstances){
-				if(processInstances.length===0){
-					fail();
-				}else{
-					success(processInstances[0]);
-				}
-			},fail);
-		};
-		listPage.getItem = function(processInstanceId){
-			var processInstance = this.cache.get(processInstanceId);
-			if(processInstance){
-				if(processInstance.endTime !== null)
-					return processInstance;
-				this.cache.remove(processInstanceId);
-			}
-		};
+		var listPage = angular.extend({section: section}, HistoricProcessInstancesPage);
+		listPage.requestParam = angular.extend({}, HistoricProcessInstancesPage.requestParam);
 		return listPage;
 	};
 	
