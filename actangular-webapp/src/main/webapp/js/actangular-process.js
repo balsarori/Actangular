@@ -244,20 +244,11 @@ angular.module('agProcess', [])
 			if(!this.list || requestParam.processInstanceId)
 				return this.queryResource.getList(requestParam).then(success, fail);
 			
-			// To refresh process diagrams
-			// keep current process instances list
-			// to force refreshing ActivityIds post 
-			// list refresh
-			var toRefreshList = [];
-			for(var i=0; i<this.list.length;i++){
-				if(this.list[i].definition.graphicalNotationDefined)
-					toRefreshList.push(this.list[i]);
-			}
 			return this.queryResource.getList(requestParam).then(function(list){
-				for(var i=0; i<toRefreshList.length;i++){
-					if(list.indexOf(toRefreshList[i]) > -1){
-						toRefreshList[i].refreshActivityIds(true);
-					}
+				// force cached process instances to refresh activityIds
+				for(var i=0; i<list.length;i++){
+					if(list[i].definition && list[i].definition.graphicalNotationDefined && list[i].activities)
+						list[i].refreshActivityIds(true);
 				}
 				success(list);
 			}, fail);
