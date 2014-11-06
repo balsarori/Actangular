@@ -184,7 +184,7 @@
 			</div>
 
 			<div class="col-md-3">
-				<span class="glyphicon glyphicon-time"></span> <span ag-ago="task.dueDate" otherwiseKey="NO_DUE" translateKey="DUE_AGO"></span>
+				<span class="glyphicon glyphicon-calendar"></span> <span ag-ago="task.dueDate" otherwiseKey="NO_DUE" translateKey="DUE_AGO"></span>
 			</div>
 			<div ng-if="task.category" class="col-md-3">
 				<span class="glyphicon glyphicon-tag"></span><span> {{task.category}}</span>
@@ -235,7 +235,7 @@
 								<span ng-if="page.task.processInstanceId" class="label label-info"><span class="glyphicon glyphicon-random"></span>
 									{{page.task.processInstanceId}} - {{page.task.processDefinitionId | definitionName}}</span> <span ng-if="page.task.parentTaskId" class="label label-info"><span
 									class="glyphicon glyphicon-arrow-up"></span> {{page.task.parentTaskId}}</span> <span ng-if="page.task.dueDate" class="label label-warning"><span
-									class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.dueDate" translateKey="DUE_AGO"></span></span> <span ng-if="page.task.category"
+									class="glyphicon glyphicon-calendar"></span> <span ag-ago="page.task.dueDate" translateKey="DUE_AGO"></span></span> <span ng-if="page.task.category"
 									class="label label-default"><span class="glyphicon glyphicon-tag"></span> {{page.task.category}}</span> <span class="label"
 									ng-class="{'label-success': page.task.priority === 50 ,'label-danger': page.task.priority > 50 , 'label-warning': page.task.priority < 50}"><span
 									class="glyphicon glyphicon-flag"></span></span>
@@ -435,7 +435,7 @@
 			</div>
 
 			<div class="col-md-3">
-				<span class="glyphicon glyphicon-time"></span> <span ag-ago="task.dueDate" otherwiseKey="NO_DUE" translateKey="DUE_AGO"></span>
+				<span class="glyphicon glyphicon-calendar"></span> <span ag-ago="task.dueDate" otherwiseKey="NO_DUE" translateKey="DUE_AGO"></span>
 			</div>
 			<div ng-if="task.category" class="col-md-3">
 				<span class="glyphicon glyphicon-tag"></span><span> {{task.category}}</span>
@@ -472,7 +472,7 @@
 									ng-if="page.task.processInstanceId" class="label label-info"><span class="glyphicon glyphicon-random"></span> {{page.task.processInstanceId}} -
 									{{page.task.processDefinitionId | definitionName}}</span> <span ng-if="page.task.parentTaskId" class="label label-info"><span
 									class="glyphicon glyphicon-arrow-up"></span> {{page.task.parentTaskId}}</span> <span ng-if="page.task.dueDate" class="label label-warning"><span
-									class="glyphicon glyphicon-time"></span> <span ag-ago="page.task.dueDate" translateKey="DUE_AGO"></span></span> <span ng-if="page.task.category"
+									class="glyphicon glyphicon-calendar"></span> <span ag-ago="page.task.dueDate" translateKey="DUE_AGO"></span></span> <span ng-if="page.task.category"
 									class="label label-default"><span class="glyphicon glyphicon-tag"></span> {{page.task.category}}</span> <span class="label"
 									ng-class="{'label-success': page.task.priority === 50 ,'label-danger': page.task.priority > 50 , 'label-warning': page.task.priority < 50}"><span
 									class="glyphicon glyphicon-flag"></span></span>
