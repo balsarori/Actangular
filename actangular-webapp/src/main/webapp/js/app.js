@@ -21,6 +21,9 @@ angular.module('agApp',
 })
 //Restangular config
 .config(function(RestangularProvider) {
+	RestangularProvider.setRestangularFields({
+		  selfLink: 'url'
+		});
 	RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
 		var extractedData;
 		// extract data meta data
