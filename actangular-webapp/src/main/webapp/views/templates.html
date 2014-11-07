@@ -22,7 +22,7 @@
 
 				<div class="btn-group" dropdown is-open="profileDropDown.isopen">
 					<button type="button" class="btn btn-profile dropdown-toggle">
-						<span class="authorImg"> <img alt="profile" ag-user-pic="currentUser.id"> {{currentUser.name}}
+						<span class="authorImg"> <img alt="profile" ag-user-pic-url="currentUser.pictureUrl"> {{currentUser.name}}
 						</span> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
@@ -1545,7 +1545,71 @@
 	</div>
 	<div class="row listRow">
 		<div class="col-md-12 innerContent">
-			<div class="alist"></div>
+			<div class="alist">
+				<div class="row subRow">
+					<div class="col-md-2 colData"></div>
+					<div class="col-md-8 colData" ng-controller="UserProfileController">
+						<div class="detail">
+							<div class="name" translate="PROFILE">Profile</div>
+							<div class="user-profile">
+								<div class="row subRow">
+									<div class="col-md-4 authorImg prefs colData">
+										<img ag-profile-pic-preview="selectedFile">
+									</div>
+									<div class="col-md-8">
+										<form name="editProfileForm" autocomplete="off" ng-submit="submitForm(editProfileForm.$valid)" novalidate>
+											<div class="row subRow">
+												<div class="col-lg-12 colData">
+													<div class="input-group">
+														<span translate="FIRST_NAME" class="input-group-addon">First Name</span> <input type="text" ng-required="true" ng-model="userProfile.firstName"
+															class="form-control" autocomplete="off" name="firstName"> <span class="input-group-addon invalid"
+															ng-if="editProfileForm.firstName.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+													</div>
+												</div>
+											</div>
+											<div class="row subRow">
+												<div class="col-lg-12 colData">
+													<div class="input-group">
+														<span translate="LAST_NAME" class="input-group-addon">Last Name</span> <input type="text" ng-required="true" ng-model="userProfile.lastName"
+															class="form-control" autocomplete="off" name="lastName"> <span class="input-group-addon invalid"
+															ng-if="editProfileForm.lastName.$error.required"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+													</div>
+												</div>
+											</div>
+											<div class="row subRow">
+												<div class="col-lg-12 colData">
+													<div class="input-group">
+														<span translate="EMAIL" class="input-group-addon">Email</span> <input type="email" ng-model="userProfile.email" class="form-control"
+															autocomplete="off" name="email"> <span class="input-group-addon invalid" ng-if="editProfileForm.email.$error.email"><span
+															class="glyphicon glyphicon-exclamation-sign"></span></span>
+													</div>
+												</div>
+											</div>
+											<div class="row subRow">
+												<div class="col-lg-12 colData">
+													<div class="input-group">
+														<span class="input-group-addon" translate="PICTURE"></span> <span class="btn btn-default btn-file form-control"> <span ng-if="!fileName"
+															class="glyphicon glyphicon-paperclip"></span> <span ng-if="fileName">{{fileName}}</span> <input name="selFile" type="file"
+															ng-file-select="onPictureSelect($files);">
+														</span> <span class="input-group-addon invalid" ng-if="invalidImg"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+													</div>
+												</div>
+											</div>
+											<div class="row subRow">
+												<div class="col-lg-12 colData" style="text-align: center;">
+													<button class="btn btn-primary" type="submit" translate="SAVE"></button>
+													<button class="btn btn-warning" ag-click="resetForm()" translate="RESET"></button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 colData"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

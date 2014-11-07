@@ -6,6 +6,22 @@
 var DEFAULT_USER_PIC = "img/user.png",
 DEFAULT_GROUP_PIC = "img/group.png";
 
+function setUserPicture(userId, element, $identity){
+	if(userId){
+		$identity.getUser(userId).then(function(user){
+			if(user.pictureUrl !== null)
+				element.attr("src", user.pictureUrl);
+			else		  
+				element.attr("src", DEFAULT_USER_PIC);
+		},
+		function(){
+			element.attr("src", DEFAULT_USER_PIC);
+		});
+	}else{
+		element.attr("src", DEFAULT_USER_PIC);
+	}
+};
+
 angular.module('agIdentity', [])
 .service('$identity', function($http, $q) {
 	var users = {},  groups = {}, roles = {};
@@ -184,6 +200,87 @@ angular.module('agIdentity', [])
 		$modalInstance.dismiss('cancel');
 	};
 })
+.controller('UserProfileController', function($scope, $http, $upload) {
+	function getChanges(){
+		var changes = {}, update = $scope.userProfile;
+		var updated = false;
+		for(var key in update){
+			if($scope.currentUser[key] !== update[key]){
+				changes[key] = update[key];
+				updated = true;
+			}
+		}
+		if(updated === false) return false;
+		return changes;
+	}
+	
+	function updateUser(user, updatePic){
+		user.name = user.firstName || user.id;
+		if(user.lastName)
+			user.name += ' '+user.lastName;
+		if(updatePic){
+			updatePicture(user);
+		}else{
+			delete user.pictureUrl;
+		}
+		angular.extend($scope.currentUser,user);
+		$scope.resetForm();
+	}
+	
+	function updatePicture(user){
+		user.pictureUrl = user.url+'/picture?x='+new Date().getTime();
+	}
+	
+	$scope.submitForm = function (isValid) {
+		if(isValid){
+			var changes = getChanges();
+			if(changes){
+				$http.put($scope.currentUser.url, changes).success(function (user){
+					if($scope.selectedFile){
+						uploadPicture($scope.selectedFile, {}, $scope.currentUser.url+'/picture').success(function() {
+							updateUser(user, true);
+						});
+					}else{
+						updateUser(user, false);
+					}
+				});
+			}else if($scope.selectedFile){
+				uploadPicture($scope.selectedFile, {}, $scope.currentUser.url+'/picture').success(function() {
+					updatePicture($scope.currentUser);
+					$scope.resetForm();
+				});
+			}
+		}
+	};
+	
+	$scope.resetForm = function () {
+		$scope.userProfile = {firstName: $scope.currentUser.firstName, lastName: $scope.currentUser.lastName, email: $scope.currentUser.email};
+		delete $scope.selectedFile;
+		delete $scope.fileName;
+		$scope.invalidImg = false;
+	};
+	
+	$scope.onPictureSelect = function($file) {
+		if ($file[0].type.match('image.*')) {
+			$scope.selectedFile = $file[0];
+			$scope.fileName=$file[0].name;
+			$scope.invalidImg = false;
+		}else{
+			$scope.invalidImg = true;
+		}
+	};
+	
+	function uploadPicture(file, data, url) {
+		return $upload.upload({
+			url: url,
+			data: data,
+			file: file,
+			method: 'PUT'
+		});
+	};
+	
+	$scope.resetForm();
+})
 .directive('agUser', function($identity, $otherwise) {
 	return {link: function(scope, element, attrs) {
 		var otherwiseKey = element.attr('otherwiseKey') || '';
@@ -218,19 +315,17 @@ angular.module('agIdentity', [])
 .directive('agUserPic', function($identity) {
 	return {link: function(scope, element, attrs) {
 		scope.$watch(attrs.agUserPic, function (userId) {
-			if(userId){
-				$identity.getUser(userId).then(function(user){
-					if(user.pictureUrl !== null)
-						element.attr("src", user.pictureUrl);
-					else		  
-						element.attr("src", DEFAULT_USER_PIC);
-				},
-				function(){
-					element.attr("src", DEFAULT_USER_PIC);
-				});
-			}else{
+			setUserPicture(userId, element, $identity);
+		});
+	}};
+})
+.directive('agUserPicUrl', function() {
+	return {link: function(scope, element, attrs) {
+		scope.$watch(attrs.agUserPicUrl, function (picUrl) {
+			if(picUrl)
+				element.attr("src", picUrl);
+			else
 				element.attr("src", DEFAULT_USER_PIC);
-			}
 		});
 	}};
 })
@@ -239,19 +334,11 @@ angular.module('agIdentity', [])
 		scope.$watch(attrs.agIdentityLinkPic, function (identityLink) {
 			if(identityLink){
 				var userId = identityLink.user || identityLink.userId;
-				if(userId){
-					$identity.getUser(userId).then(function(user){
-						if(user.pictureUrl !== null)
-							element.attr("src", user.pictureUrl);
-						else		  
-							element.attr("src", DEFAULT_USER_PIC);
-					},
-					function(){
-						element.attr("src", DEFAULT_USER_PIC);
-					});
-				}else{
+				
+				if(userId)
+					setUserPicture(userId, element, $identity);
+				else
 					element.attr("src", DEFAULT_GROUP_PIC);
-				}
 			}
 		});
 	}};
@@ -292,6 +379,28 @@ angular.module('agIdentity', [])
 				if(roleName === 'ROLE_'+identityLinkType) roleName = identityLinkType;
 
 				element.html(roleName);
+			}
+		});
+	}};
+})
+.directive('agProfilePicPreview', function() {
+	return {link: function(scope, element, attrs) {
+		scope.$watch(attrs.agProfilePicPreview, function (userPicFile) {
+			if(userPicFile){
+				if (userPicFile.type.match('image.*')) {
+				var reader = new FileReader();
+				reader.onload = (function(picFile) {
+					return function(e) {
+						element.attr("src", e.target.result);
+					};
+				})(userPicFile);
+				reader.readAsDataURL(userPicFile);
+				 }
+				
+			}else if(scope.currentUser.pictureUrl){
+				element.attr("src", scope.currentUser.pictureUrl);
+			}else{
+				element.attr("src", DEFAULT_USER_PIC);
 			}
 		});
 	}};

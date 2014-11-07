@@ -168,7 +168,13 @@
 "EDIT_MODEL": "تعديل التصميم",
 "CONFIRM_DELETE_MODEL": "حذف التصميم '{{id}} - {{name}}' ؟",
 "OPEN_MODELER": "فتح بواسطة المصمم",
-"NO_MODELS": "لا توجد تصاميم هنا (;"
+"NO_MODELS": "لا توجد تصاميم هنا (;",
+"FIRST_NAME": "ألاسم اﻷول",
+"LAST_NAME": "اللقب",
+"EMAIL": "البريد اﻹلكتروني",
+"PICTURE": "الصورة",
+"SAVE": "حفظ",
+"RESET": "إستعادة"
 },
  "relativeTime" : {
             "future" : "في %s",

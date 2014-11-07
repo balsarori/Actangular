@@ -631,3 +631,8 @@ white-space: nowrap;}
 .incontrols > .controls{height: 41px;}
 .full-width, .full-width > .btn-group{width: 100%;}
 .full-width > .btn-group > label{width: 50%;}
+
+.prefs{text-align: center;}
+.detail .prefs img{width: 200px;height: 200px;}
+.user-profile .row{margin-top: 5px;}
+.user-profile .colData{margin: 0; padding: 0;}

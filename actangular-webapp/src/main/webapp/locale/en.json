@@ -167,7 +167,13 @@
 "EDIT_MODEL": "Edit Model",
 "CONFIRM_DELETE_MODEL": "Delete model '{{id}} - {{name}}' ?",
 "OPEN_MODELER": "Open with Modeler",
-"NO_MODELS": "No models here ;)"
+"NO_MODELS": "No models here ;)",
+"FIRST_NAME": "First Name",
+"LAST_NAME": "Last Name",
+"EMAIL": "Email",
+"PICTURE": "Picture",
+"SAVE": "Save",
+"RESET": "Reset"
 },
 "locale":{
 				  "DATETIME_FORMATS": {
