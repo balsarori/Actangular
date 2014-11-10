@@ -108,9 +108,13 @@ angular.module('agApp',
 	when('/login', {
 		title: 'LOGIN'
 	}).
-	when('/preference',{
-		title: 'PREFERENCE',
-		resolve: {page: function(){return {template:'views/preference.html'};}}
+	when('/account/profile',{
+		title: 'PROFILE',
+		resolve: {page: function(){return {template:'views/account/profile.html'};}}
+	}).
+	when('/account/preferences',{
+		title: 'PREFERENCES',
+		resolve: {page: function(){return {template:'views/account/preferences.html'};}}
 	}).
 	//Tasks
 	when('/tasks/inbox/:taskId?', {

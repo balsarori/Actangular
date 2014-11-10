@@ -134,6 +134,9 @@ margin-left: 0;
 .alert-icon {margin-left: 5px;margin-right: 0;}
 .alert-content{margin-left: 35px;}
 
+.nav-horz > li {float: right;}
+.nav-horz > li + li {margin-right: 2px;}
+
 svg{direction: ltr}
 /** bootstrap **/
 

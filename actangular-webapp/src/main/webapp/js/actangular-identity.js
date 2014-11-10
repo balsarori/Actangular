@@ -200,7 +200,7 @@ angular.module('agIdentity', [])
 		$modalInstance.dismiss('cancel');
 	};
 })
-.controller('UserProfileController', function($scope, $http, $upload) {
+.controller('UserProfileController', function($scope, $http, $upload, $ui) {
 	function getChanges(){
 		var changes = {}, update = $scope.userProfile;
 		var updated = false;
@@ -212,7 +212,7 @@ angular.module('agIdentity', [])
 		}
 		if(updated === false) return false;
 		return changes;
-	}
+	};
 	
 	function updateUser(user, updatePic){
 		user.name = user.firstName || user.id;
@@ -225,11 +225,20 @@ angular.module('agIdentity', [])
 		}
 		angular.extend($scope.currentUser,user);
 		$scope.resetForm();
-	}
+	};
 	
 	function updatePicture(user){
 		user.pictureUrl = user.url+'/picture?x='+new Date().getTime();
-	}
+	};
+	
+	function uploadPicture(file, data, url) {
+		return $upload.upload({
+			url: url,
+			data: data,
+			file: file,
+			method: 'PUT'
+		});
+	};
 	
 	$scope.submitForm = function (isValid) {
 		if(isValid){
@@ -270,16 +279,28 @@ angular.module('agIdentity', [])
 		}
 	};
 	
-	function uploadPicture(file, data, url) {
-		return $upload.upload({
-			url: url,
-			data: data,
-			file: file,
-			method: 'PUT'
-		});
+	$scope.changePassword = function() {
+		$ui.showModal('views/changePassword.html', 'ChangePasswordController', {});
+	};
+	$scope.resetForm();
+})
+.controller('ChangePasswordController', function ($scope, $modalInstance, $http) {
+	$scope.ok = function (isValid, currentPassword, newPassword) {
+		if(isValid){
+			$scope.showErrors = false;
+			$http.put('service/profile/changePassword', {currentPassword: currentPassword, newPassword: newPassword}).success(function (user){
+				$modalInstance.dismiss();
+				
+			}).error(function(response){
+				
+			});
+		}else
+			$scope.showErrors = true;
 	};
 	
-	$scope.resetForm();
+	$scope.cancel = function () {
+		$modalInstance.dismiss();
+	};
 })
 .directive('agUser', function($identity, $otherwise) {
 	return {link: function(scope, element, attrs) {

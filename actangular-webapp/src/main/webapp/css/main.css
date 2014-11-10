@@ -634,5 +634,6 @@ white-space: nowrap;}
 
 .prefs{text-align: center;}
 .detail .prefs img{width: 200px;height: 200px;}
-.user-profile .row{margin-top: 5px;}
+.user-profile .subRow{margin-top: 5px;}
 .user-profile .colData{margin: 0; padding: 0;}
+.detail .user-profile-edit{font-size: 10px;}

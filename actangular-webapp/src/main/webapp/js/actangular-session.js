@@ -48,22 +48,22 @@ function $session($rootScope, $http, $storage , $identity, $injector, bootListen
 
 	this.credentialsLogin = function (userId, password, options){
 		var btoa = userId+':'+password;
-		var authHeader = 'Basic '+window.btoa(btoa);
+		var authToken = 'Basic '+window.btoa(btoa);
 
-		this.login(authHeader, options);
+		this.login(authToken, options);
 
 	};
 
-	this.login = function (authHeader, options){
+	this.login = function (authToken, options){
 		var me = this;
 		var config = {ignoreAuth: true};
-		if(authHeader){
-			config.headers = {'Authorization':authHeader};
+		if(authToken){
 			if (angular.isDefined(options.remember) && options.remember === true) {
 				config.params = {remember_me : "true"};
 			}else{
 				config.params = {remember_me : "session"};
 			}
+			config.params['authToken'] = authToken;
 		}
 		
 		$http.post('service/boot', {}, config).success(function(bootData) {
