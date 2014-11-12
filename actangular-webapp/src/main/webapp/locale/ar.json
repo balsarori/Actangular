@@ -26,7 +26,7 @@
 "ENTER_CREDENTIALS": "إدخل إسم المستخدم وكلمة المرور",
 "INVALID_CREDENTIALS": "إسم المستخدم أو كلمة المرور غير صحيحة",
 "PROFILE": "بياناتي",
-"PREFERENCES": "المفضلات",
+"PREFERENCES": "التفضيلات",
 "CONFIRM_TITLE": "رسالة تأكيد",
 "MENU_LOGIN": "تسجيل الدخول",
 "MENU_HOME": "الرئسية",
@@ -44,7 +44,7 @@
 "MENU_DEPLOYMENTS": "التفعيلات",
 "MENU_USERS": "المستخدمين",
 "MENU_GROUPS": "المجموعات",
-"MENU_PREFERENCES": "المفضلات",
+"MENU_PREFERENCES": "التفضيلات",
 "MENU_MODELS": "التصاميم",
 "MENU_PROFILE": "بياناتي",
 "ITEMSCOUNT": "{{from}} - {{to}} من {{total}}",
@@ -180,7 +180,9 @@
 "CURRENT_PASSWORD": "كلمة المرور الحالية",
 "NEW_PASSWORD": "كلمة المرور الجديدة",
 "NEW_PASSWORD_CONFIRM": "تأكيد كلمة المرور",
-"ACCOUNT_SETTINGS": "إعدادات الحساب"
+"ACCOUNT_SETTINGS": "إعدادات الحساب",
+"UNKNOWN_ERROR": "حدث خطاء يرجى المحولة لاحقا",
+"ACCESS_DENIED": "تعذر الوصول"
 },
  "relativeTime" : {
             "future" : "في %s",

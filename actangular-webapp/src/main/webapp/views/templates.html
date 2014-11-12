@@ -1622,12 +1622,10 @@
 
 <div id="views/account/preferences.html">
 	<div class="incontrols">
-		<div class="row controls" ng-include="'views/account/menu.html'">
-		</div>
+		<div class="row controls" ng-include="'views/account/menu.html'"></div>
 	</div>
 	<div class="row listRow">
-		<div class="col-md-12 innerContent">
-		</div>
+		<div class="col-md-12 innerContent"></div>
 	</div>
 </div>
 
@@ -1635,40 +1633,42 @@
 	<div class="modal-header">
 		<h3 class="modal-title" translate="CHANGE_PASSWORD"></h3>
 	</div>
-	<form name="changePasswordForm" autocomplete="off" novalidate ng-submit="ok((changePasswordForm.$valid && newPassword === confirmPassword), currentPassword, newPassword)">
+	<form name="changePasswordForm" autocomplete="off" novalidate
+		ng-submit="ok((changePasswordForm.$valid && newPassword === confirmPassword), currentPassword, newPassword)">
 		<div class="modal-body">
-
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="input-group">
-						<span class="input-group-addon" translate="CURRENT_PASSWORD"></span> <input name="currentPassword" autocomplete="off" class="form-control" type="password" ng-model="currentPassword"
-							ng-required="true"> <span class="input-group-addon invalid"
+						<span class="input-group-addon" translate="CURRENT_PASSWORD"></span> <input name="currentPassword" autocomplete="off" class="form-control" type="password"
+							ng-model="currentPassword" ng-required="true"> <span class="input-group-addon invalid"
 							ng-if="showErrors && (changePasswordForm.currentPassword.$error.required)"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
 					</div>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="input-group">
-						<span class="input-group-addon" translate="NEW_PASSWORD"></span> <input name="newPassword" autocomplete="off" class="form-control" type="password" ng-model="newPassword"
-							ng-required="true" ng-minlength="6"> <span class="input-group-addon invalid"
-							ng-if="showErrors && (changePasswordForm.newPassword.$error.required || changePasswordForm.newPassword.$error.minlength || newPassword !== confirmPassword)"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+						<span class="input-group-addon" translate="NEW_PASSWORD"></span> <input name="newPassword" autocomplete="off" class="form-control" type="password"
+							ng-model="newPassword" ng-required="true" ng-minlength="6"> <span class="input-group-addon invalid"
+							ng-if="showErrors && (changePasswordForm.newPassword.$error.required || changePasswordForm.newPassword.$error.minlength || newPassword !== confirmPassword)"><span
+							class="glyphicon glyphicon-exclamation-sign"></span></span>
 					</div>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="input-group">
-						<span class="input-group-addon" translate="NEW_PASSWORD_CONFIRM"></span> <input name="confirmPassword" autocomplete="off" class="form-control" type="password" ng-model="confirmPassword"
-							ng-required="true"> <span class="input-group-addon invalid"
-							ng-if="showErrors && (changePasswordForm.confirmPassword.$error.required  || newPassword !== confirmPassword)"><span class="glyphicon glyphicon-exclamation-sign"></span></span>
+						<span class="input-group-addon" translate="NEW_PASSWORD_CONFIRM"></span> <input name="confirmPassword" autocomplete="off" class="form-control"
+							type="password" ng-model="confirmPassword" ng-required="true"> <span class="input-group-addon invalid"
+							ng-if="showErrors && (changePasswordForm.confirmPassword.$error.required  || newPassword !== confirmPassword)"><span
+							class="glyphicon glyphicon-exclamation-sign"></span></span>
 					</div>
 				</div>
+			</div>
+			<div class="login-msg">
+				<span ng-if="msg.msg" class="label" ng-class="{'label-info':msg.type === 'info', 'label-danger': msg.type === 'error'}">{{msg.msg | translate}}</span>
 			</div>
 		</div>
-
 		<div class="modal-footer">
 			<button class="btn btn-primary" type="submit" translate="_OK"></button>
 			<a href="" class="btn btn-warning" ag-click="cancel()" translate="_CANCEL"></a>

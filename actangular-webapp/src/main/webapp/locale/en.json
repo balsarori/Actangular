@@ -179,7 +179,9 @@
 "CURRENT_PASSWORD": "Current Password",
 "NEW_PASSWORD": "New Password",
 "NEW_PASSWORD_CONFIRM": "Confirm Password",
-"ACCOUNT_SETTINGS": "Account Settings"
+"ACCOUNT_SETTINGS": "Account Settings",
+"UNKNOWN_ERROR": "Unknown error, please try again later",
+"ACCESS_DENIED": "Access Denied"
 },
 "locale":{
 				  "DATETIME_FORMATS": {

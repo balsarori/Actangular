@@ -244,17 +244,20 @@ angular.module('agIdentity', [])
 		if(isValid){
 			var changes = getChanges();
 			if(changes){
-				$http.put($scope.currentUser.url, changes).success(function (user){
+				$http.put('service/identity/profile', changes).success(function (user){
 					if($scope.selectedFile){
-						uploadPicture($scope.selectedFile, {}, $scope.currentUser.url+'/picture').success(function() {
+						uploadPicture($scope.selectedFile, {}, 'service/identity/profile/picture').success(function() {
 							updateUser(user, true);
+						}).error(function(response) {
+							updateUser(user, false);
+							// TODO show error
 						});
 					}else{
 						updateUser(user, false);
 					}
 				});
 			}else if($scope.selectedFile){
-				uploadPicture($scope.selectedFile, {}, $scope.currentUser.url+'/picture').success(function() {
+				uploadPicture($scope.selectedFile, {}, 'service/identity/profile/picture').success(function() {
 					updatePicture($scope.currentUser);
 					$scope.resetForm();
 				});
@@ -285,14 +288,17 @@ angular.module('agIdentity', [])
 	$scope.resetForm();
 })
 .controller('ChangePasswordController', function ($scope, $modalInstance, $http) {
+	$scope.msg = {};
 	$scope.ok = function (isValid, currentPassword, newPassword) {
 		if(isValid){
 			$scope.showErrors = false;
-			$http.put('service/profile/changePassword', {currentPassword: currentPassword, newPassword: newPassword}).success(function (user){
+			$http.put('service/identity/profile/changePassword', {currentPassword: currentPassword, newPassword: newPassword})
+			.success(function (user){
 				$modalInstance.dismiss();
-				
-			}).error(function(response){
-				
+			}).error(function(response, status){
+				$scope.msg.type = 'error';
+				if(status === 403){$scope.msg.msg = "ACCESS_DENIED";}
+				else{$scope.msg.msg = "UNKNOWN_ERROR";}
 			});
 		}else
 			$scope.showErrors = true;

@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.identity.User;
 import org.activiti.rest.exception.ActivitiForbiddenException;
+import org.activiti.rest.service.api.identity.UserRequest;
 import org.activiti.rest.service.api.identity.UserResponse;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
@@ -40,7 +41,7 @@ public class UserResource extends org.activiti.rest.service.api.identity.UserRes
      this.publisher = publisher;
   }
   
-  @RequestMapping(value="/profile/changePassword", method = RequestMethod.PUT, produces = "application/json")
+  @RequestMapping(value="/identity/profile/changePassword", method = RequestMethod.PUT, produces = "application/json")
   public UserResponse changePassword(@RequestBody ChangePasswordRequest changePasswordRequest, HttpServletRequest request, HttpServletResponse response) {
     User user = getUserFromRequest(request.getRemoteUser());
     String currentPassword = changePasswordRequest.getCurrentPassword();
@@ -59,8 +60,30 @@ public class UserResource extends org.activiti.rest.service.api.identity.UserRes
       this.publisher.publishEvent(new PasswordChangedEvent(user,request,response));
     
     String serverRootUrl = request.getRequestURL().toString();
-    serverRootUrl = serverRootUrl.substring(0, serverRootUrl.indexOf("/profile/"));
+    serverRootUrl = serverRootUrl.substring(0, serverRootUrl.indexOf("/identity/profile/"));
     
     return restResponseFactory.createUserResponse(user, false, serverRootUrl);
   }
+  
+  @RequestMapping(value="/identity/profile", method = RequestMethod.PUT, produces = "application/json")
+  public UserResponse updateProfile(@RequestBody UserRequest userRequest, HttpServletRequest request) {
+    User user = getUserFromRequest(request.getRemoteUser());
+    if (userRequest.isEmailChanged()) {
+      user.setEmail(userRequest.getEmail());
+    }
+    if (userRequest.isFirstNameChanged()) {
+      user.setFirstName(userRequest.getFirstName());
+    }
+    if (userRequest.isLastNameChanged()) {
+      user.setLastName(userRequest.getLastName());
+    }
+    
+    identityService.saveUser(user);
+    
+    String serverRootUrl = request.getRequestURL().toString();
+    serverRootUrl = serverRootUrl.substring(0, serverRootUrl.indexOf("/identity/profile"));
+    
+    return restResponseFactory.createUserResponse(user, false, serverRootUrl);
+  }
+  
 }
