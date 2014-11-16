@@ -396,6 +396,7 @@ angular.module('agProcess', [])
 	function createArchivedProcessInstanceListPage(section, param){
 		var listPage = angular.extend({section: section}, HistoricProcessInstancesPage);
 		listPage.requestParam = angular.extend({}, HistoricProcessInstancesPage.requestParam);
+		listPage.requestParam[param] = $session.getUserId();
 		return listPage;
 	};
 	
